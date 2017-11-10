@@ -27,7 +27,7 @@ function initializeApp() {
 }
 
 function registerServiceWorker() {
-  if (navigator.serviceWorker) {
+  if (process.env.NODE_ENV === 'production' && navigator.serviceWorker) {
     navigator.serviceWorker.register('service-worker.js', { scope: './' });
   }
 }

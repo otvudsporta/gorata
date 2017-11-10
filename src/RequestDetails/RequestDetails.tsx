@@ -1,8 +1,7 @@
 import { Properties } from 'compote/html';
 import { Timeago } from 'compote/components/timeago';
 import { flex } from 'compote/components/flex';
-import * as m from 'mithril';
-import { FactoryComponent, redraw, withAttr } from 'mithril';
+import { redraw, withAttr } from 'mithril';
 
 import { Image } from '../Image/Image';
 import * as notify from '../notify';
@@ -18,7 +17,7 @@ interface State extends Properties<HTMLDivElement> {
   isRequestStatusBeingEdited?: boolean;
 }
 
-export const RequestDetails: FactoryComponent<State> = ({ attrs }) => {
+export const RequestDetails: FnComponent<State> = ({ attrs }) => {
   const state: State = {
     request: attrs.request
   };
@@ -37,9 +36,9 @@ export const RequestDetails: FactoryComponent<State> = ({ attrs }) => {
       return (
         <div>
           {request.imageUrls && request.imageUrls.length > 0 ?
-            request.imageUrls.map((imageUrl) => <Image src={imageUrl} />)
+            request.imageUrls.map((imageUrl) => m(Image, { src: imageUrl }))
             :
-            <Image src="default.png" />
+            m(Image, { src: 'default.png' })
           }
           <div class="pa-md">
             <div class="flex-row justify-content-center align-items-start">
@@ -56,14 +55,14 @@ export const RequestDetails: FactoryComponent<State> = ({ attrs }) => {
                     ]
                     :
                     [
-                      <RequestStatusItem status={request.status} />
+                      m(RequestStatusItem, { status: request.status })
                       ,
                       <div class="pointer mr-n-md pa-md unselectable" onclick={startEditingRequestStatus}>✏️</div>
                     ]
                   }
                 </div>
                 :
-                <RequestStatusItem status={request.status} />
+                m(RequestStatusItem, { status: request.status })
               }
             </div>
             <div class="mb-md">{request.text}</div>

@@ -15,8 +15,10 @@ export const Header = {
 
     // Don't show the logged out state until the user is known to be either logged in or logged out
     return [
-      MenuIcon(),
-      <Logo />,
+      <MenuIcon />
+      ,
+      <Logo />
+      ,
       <a class="menu-link br-md pa-md" oncreate={route.link} href={Routes.HOME}>Заявки</a>,
       isLoggedIn(currentUser) ?
         <a class="menu-link br-md pa-md" oncreate={route.link} href={Routes.REQUEST_CREATE}>Нова Заявка</a>
@@ -33,7 +35,8 @@ export const Header = {
         :
         null
       ,
-      <div style={flex(1)}></div>,
+      <div style={flex(1)}></div>
+      ,
       currentUser != null ?
         isLoggedIn(currentUser) ? UserMenu(currentUser) : LoginLinks()
         :

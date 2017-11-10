@@ -11,10 +11,10 @@ interface Attrs extends Properties<HTMLDivElement> {
 
 export const UserProfileImage = ({ profile, ...attrs }: Attrs) =>
   AspectRatioContainer({ aspectRatio: { x: 1, y: 1 }, ...attrs },
-    <Image
-      class="absolute stretch bg-neutral-light br-md"
-      alt={profile && profile.name || ''}
-      src={profile && profile.imageUrl || 'default.png'}
-    />
+    m(Image, {
+      class: 'absolute stretch bg-neutral-light br-md',
+      alt: profile && profile.name || '',
+      src: profile && profile.imageUrl || 'default.png'
+    })
   )
 ;

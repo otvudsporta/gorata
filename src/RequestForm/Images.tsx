@@ -8,8 +8,8 @@ import { guid, toArray } from '../utils';
 
 export const Images = (imageUrls: string[]) =>
   <div class="request-form-images-container">
-    {imageUrls.map((imageUrl) => <UploadedImage imageUrls={imageUrls} imageUrl={imageUrl} />)}
-    <UploadNewImage imageUrls={imageUrls} />
+    {imageUrls.map((imageUrl) => m(UploadedImage, { imageUrls, imageUrl }))}
+    {m(UploadNewImage, { imageUrls })}
   </div>
 ;
 

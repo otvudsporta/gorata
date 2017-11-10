@@ -33,11 +33,11 @@ export const RequestForm: FactoryComponent<State> = () => {
         <form class="form" style={flex(1)} onsubmit={returnFalse}>
           <fieldset class="form-panel lg" disabled={state.loading === true}>
             {Images(state.request.imageUrls)}
-            <AddressInput state={state} />
+            {m(AddressInput, { state: state })}
             <br /><br />
-            <TextInput request={state.request} />
+            {m(TextInput, { request: state.request })}
             <br /><br />
-            <SubmitButton state={state} />
+            {m(SubmitButton, { state: state })}
           </fieldset>
         </form>
       </div>

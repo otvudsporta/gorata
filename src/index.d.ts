@@ -2,7 +2,7 @@
 /// <reference path="../node_modules/@types/mithril/index.d.ts" />
 /// <reference path="../node_modules/compote/components/index.d.ts" />
 
-import { Hyperscript, Vnode, Component, Children, Lifecycle } from 'mithril';
+import { Hyperscript, Vnode, Component } from 'mithril';
 
 declare global {
   const process: {
@@ -13,7 +13,9 @@ declare global {
     type?: ActionType;
   }
 
-  const m: Hyperscript;
+  interface FnComponent<State = {}, ElementType = HTMLDivElement> {
+    (vnode: Vnode<State & Partial<ElementType>, null>): Component<State & Partial<ElementType>, null>;
+  }
 
   // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/index.d.ts
   namespace JSX {
@@ -23,4 +25,6 @@ declare global {
       [key: string]: any
     };
   }
+
+  const m: Hyperscript;
 }

@@ -1,5 +1,5 @@
 import { Properties } from 'compote/html';
-import { FactoryComponent, redraw } from 'mithril';
+import { redraw } from 'mithril';
 
 let options: State = {
   defaultSrc: 'default.png',
@@ -22,7 +22,7 @@ interface State extends Properties<HTMLImageElement> {
   errorSrc?: string;
 }
 
-export const Image: FactoryComponent<State> = ({ attrs: { defaultSrc, errorSrc, ...attrs } }) => {
+export const Image: FnComponent<State> = ({ attrs: { defaultSrc, errorSrc, ...attrs } }) => {
   let imageElement: HTMLImageElement;
   let src = defaultSrc || options.defaultSrc;
   let style = { ...options.style, ...attrs.style };
