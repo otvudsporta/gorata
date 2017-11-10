@@ -1,4 +1,4 @@
-import { UserProfile, UserRole } from './index';
+import { UserProfile, UserRole } from './User';
 import { FirebaseServices } from '../firebase';
 
 export const UserServices = {

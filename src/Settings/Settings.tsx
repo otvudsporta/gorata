@@ -4,7 +4,7 @@ import { redraw, withAttr, FactoryComponent } from 'mithril';
 
 import * as notify from '../notify';
 import { Actions, store } from '../store';
-import { UserProfile, UserServices } from '../user';
+import { UserProfile, UserServices } from '../User/User';
 
 interface State {
   profile: Partial<UserProfile>;

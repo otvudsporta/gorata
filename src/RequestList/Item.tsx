@@ -3,8 +3,8 @@ import { Timeago } from 'compote/components/timeago';
 import * as m from 'mithril';
 import { Component } from 'mithril';
 
-import { Image } from '../image';
-import { Request } from '../request';
+import { Image } from '../Image/Image';
+import { Request } from '../Request/Request';
 import { RequestStatusItem } from '../RequestStatusItem/RequestStatusItem';
 import { route, Routes } from '../router';
 

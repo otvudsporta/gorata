@@ -1,16 +1,14 @@
 import { Loading } from 'compote/components/loading';
 import * as m from 'mithril';
 
-import { Unauthorized } from '../401-unauthorized';
-import { NotFound } from '../404-not-found';
+import { Unauthorized } from './401-unauthorized';
+import { NotFound } from './404-not-found';
 
-import { initialUserAuth } from '../auth';
-import { Request, RequestServices } from '../request';
-import { route } from '../router';
-import { store } from '../store';
-import { isLoggedIn } from '../user';
-
-import { RouteParams, Component } from './index';
+import { initialUserAuth } from './auth';
+import { Request, RequestServices } from './Request/Request';
+import { route, RouteParams, Component } from './router';
+import { store } from './store';
+import { isLoggedIn } from './User/User';
 
 interface PipelineStep {
   getState: (state?: PipelineState, params?: RouteParams) => Promise<PipelineState | void>;

@@ -3,7 +3,7 @@ import 'firebase/auth';
 
 import * as notify from './notify';
 import { Actions, store } from './store';
-import { UserServices } from './user';
+import { UserServices } from './User/User';
 
 let initialUserAuthResolver: { resolve: Function, done?: boolean };
 export const initialUserAuth = new Promise<firebase.User>((resolve) => initialUserAuthResolver = { resolve });

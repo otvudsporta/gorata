@@ -1,7 +1,7 @@
 import { h5 } from 'compote/html';
 import { FactoryComponent } from 'mithril';
 
-import { RequestStatus, getStatusText } from '../request';
+import { RequestStatus, getStatusText } from '../Request/Request';
 import { store, Actions, RequestsFilter } from '../store';
 
 interface State {

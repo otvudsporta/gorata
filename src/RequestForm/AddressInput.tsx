@@ -3,7 +3,7 @@ import { set } from 'compote/components/utils';
 import { redraw, withAttr, FactoryComponent } from 'mithril';
 
 import { mapLoaded } from '../map';
-import { Request } from '../request';
+import { Request } from '../Request/Request';
 import { store } from '../store';
 
 import { State } from './RequestForm';

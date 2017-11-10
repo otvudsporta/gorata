@@ -1,7 +1,7 @@
 import { Properties } from 'compote/html';
 import { FactoryComponent } from 'mithril';
 
-import { RequestStatus as RequestStatusType, getStatusClass, getStatusText } from '../request';
+import { RequestStatus as RequestStatusType, getStatusClass, getStatusText } from '../Request/Request';
 
 interface Attrs extends Properties<HTMLDivElement> {
   status: RequestStatusType;

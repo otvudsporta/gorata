@@ -6,7 +6,7 @@ import { constant } from 'compote/components/utils';
 import * as m from 'mithril';
 import { FactoryComponent } from 'mithril';
 
-import { Request } from '../request';
+import { Request } from '../Request/Request';
 
 import { AddressInput } from './AddressInput';
 import { Images } from './Images';

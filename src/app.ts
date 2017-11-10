@@ -3,14 +3,13 @@ import './assets/error.png';
 import './assets/favicon.png';
 
 import './style.scss';
-import './content/style.scss';
 
 import { setHyperscriptFunction } from 'compote';
 import * as m from 'mithril';
 
 import { initializeAuth } from './auth';
 import { initializeFirebaseApp } from './firebase';
-import { Header } from './header';
+import { Header } from './Header/Header';
 import './map';
 import { initializeRouter } from './router';
 import { Actions, store } from './store';

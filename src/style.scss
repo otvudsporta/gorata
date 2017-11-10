@@ -11,3 +11,20 @@
 @import 'style/global';
 @import 'style/positioning';
 @import 'style/responsive';
+
+#content { // sass-lint:disable-line no-ids
+  @include overflow(hidden, auto);
+
+  background: $neutral-lighter;
+
+  position: relative;
+  transition: left $animation-duration $animation-easing;
+  left: 0;
+  z-index: 10;
+
+  @media (max-width: $xs-max) {
+    &.collapsed {
+      left: -100%;
+    }
+  }
+}

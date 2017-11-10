@@ -1,13 +1,13 @@
 import { Loading } from 'compote/components/loading';
 import * as m from 'mithril';
 
-import { NotFound } from '../404-not-found';
-import { Login } from '../Login/Login';
-import { Register } from '../Register/Register';
-import { RequestDetails } from '../RequestDetails/RequestDetails';
-import { RequestForm } from '../RequestForm/RequestForm';
-import { RequestList } from '../RequestList/RequestList';
-import { Settings } from '../Settings/Settings';
+import { NotFound } from './404-not-found';
+import { Login } from './Login/Login';
+import { Register } from './Register/Register';
+import { RequestDetails } from './RequestDetails/RequestDetails';
+import { RequestForm } from './RequestForm/RequestForm';
+import { RequestList } from './RequestList/RequestList';
+import { Settings } from './Settings/Settings';
 
 import { pipeline, loadWith, ifLoggedInRedirectTo, authorize, getRequest } from './pipelines';
 

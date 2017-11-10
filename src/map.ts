@@ -1,5 +1,5 @@
-import { store, Actions } from '../store';
-import { loadScript } from '../utils';
+import { store, Actions } from './store';
+import { loadScript } from './utils';
 
 export const mapLoaded = new Promise(async (resolve, reject) => {
   try {

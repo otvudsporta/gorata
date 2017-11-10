@@ -1,4 +1,4 @@
-import { img, Properties } from 'compote/html';
+import { Properties } from 'compote/html';
 import { FactoryComponent, redraw } from 'mithril';
 
 let options: State = {
@@ -27,7 +27,7 @@ export const Image: FactoryComponent<State> = ({ attrs: { defaultSrc, errorSrc, 
   let src = defaultSrc || options.defaultSrc;
   let style = { ...options.style, ...attrs.style };
 
-  const mockImageElement = new (<any>window).Image();
+  const mockImageElement = new (window as any).Image();
 
   mockImageElement.onload = () => {
     src = attrs.src;
@@ -49,10 +49,9 @@ export const Image: FactoryComponent<State> = ({ attrs: { defaultSrc, errorSrc, 
 
   return {
     oncreate({ dom }) {
-      imageElement = <HTMLImageElement>dom;
+      imageElement = dom as HTMLImageElement;
     },
-    view: () => (
-      img({ ...attrs, src, style })
-    )
+    view: () =>
+      <img {...attrs} src={src} style={style} />
   };
 };

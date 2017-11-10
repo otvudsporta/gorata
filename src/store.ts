@@ -5,10 +5,10 @@ import * as firebase from 'firebase/app';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 
 import { DataSnapshot } from './firebase';
-import { addNavigatorControl } from './navigator';
-import { Request } from './request';
+import { addNavigatorControl } from './Navigator/Navigator';
+import { Request } from './Request/Request';
 import { reloadRoute, route, Routes } from './router';
-import { CurrentUser } from './user';
+import { CurrentUser } from './User/User';
 
 interface State {
   currentUser: CurrentUser;

@@ -4,7 +4,7 @@ import { div } from 'compote/html';
 import * as m from 'mithril';
 import { FactoryComponent } from 'mithril';
 
-import { requestStatuses } from '../request';
+import { requestStatuses } from '../Request/Request';
 import { Actions, store, RequestsFilter } from '../store';
 
 import { RequestListStatusFilterItem } from './StatusFilterItem';

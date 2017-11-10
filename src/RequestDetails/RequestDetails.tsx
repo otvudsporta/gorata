@@ -4,13 +4,13 @@ import { flex } from 'compote/components/flex';
 import * as m from 'mithril';
 import { FactoryComponent, redraw, withAttr } from 'mithril';
 
-import { Image } from '../image';
+import { Image } from '../Image/Image';
 import * as notify from '../notify';
-import { Request, RequestStatus, RequestServices, requestStatuses, getStatusText } from '../request';
+import { Request, RequestStatus, RequestServices, requestStatuses, getStatusText } from '../Request/Request';
 import { RequestStatusItem } from '../RequestStatusItem/RequestStatusItem';
 import { store } from '../store';
-import { UserProfile, canModerate, UserServices } from '../user';
-import { UserProfileImage } from '../user-profile-image';
+import { UserProfile, canModerate, UserServices } from '../User/User';
+import { UserProfileImage } from '../UserProfileImage/UserProfileImage';
 
 interface State extends Properties<HTMLDivElement> {
   request: Request;

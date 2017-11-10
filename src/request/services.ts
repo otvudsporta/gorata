@@ -1,4 +1,4 @@
-import { Request, RequestStatus } from './index';
+import { Request, RequestStatus } from './Request';
 
 import { FirebaseServices } from '../firebase';
 
