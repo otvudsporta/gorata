@@ -1,4 +1,3 @@
-import { button } from 'compote/html';
 import * as firebase from 'firebase/app';
 import { redraw, FactoryComponent } from 'mithril';
 
@@ -38,6 +37,7 @@ export const SubmitButton: FactoryComponent<{ state: State }> = ({ attrs: { stat
   };
 
   return {
-    view: () => button({ class: 'form-button', type: 'submit', onclick: createRequest }, 'Създаване')
+    view: () =>
+      <button class="form-button" type="submit" onclick={createRequest}>Създаване</button>
   };
 };

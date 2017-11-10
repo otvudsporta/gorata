@@ -1,6 +1,5 @@
 import './style.scss';
 
-import { div } from 'compote/html';
 import * as m from 'mithril';
 import { FactoryComponent } from 'mithril';
 
@@ -26,14 +25,14 @@ export const RequestList: FactoryComponent<Attrs> = () => {
       const { requests } = store.getState();
       return [
         // Status Filter
-        div({ class: 'request-list-status-filter flex-row justify-content-space-around align-items-center ph-sm pv-md sticky top-0 bg-neutral-lighter' },
-          [...requestStatuses, null].map((requestStatus) => m(RequestListStatusFilterItem, {
+       <div class="request-list-status-filter flex-row justify-content-space-around align-items-center ph-sm pv-md sticky top-0 bg-neutral-lighter">
+          {[...requestStatuses, null].map((requestStatus) => m(RequestListStatusFilterItem, {
             key: requestStatus,
             parent: state,
             status: requestStatus
-          }))
-        ),
-        // List Items
+          }))}
+        </div>
+        ,
         requests.map((request) => m(RequestListItem, { key: request.id, request }))
       ];
     }

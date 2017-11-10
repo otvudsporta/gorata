@@ -1,6 +1,5 @@
 import './style.scss';
 
-import { div } from 'compote/html';
 import { render } from 'mithril';
 
 import * as notify from '../notify';
@@ -14,13 +13,9 @@ export const addNavigatorControl = (map: google.maps.Map) => {
 };
 
 const Navigator = (map: google.maps.Map) => (
-  div({
-    class: 'navigator pointer br-md bg-neutral-lighter mr-md',
-    title: 'Покажи моето местоположение',
-    onclick: getUserLocation(map)
-  }, [
-    div({ class: 'navigator-dot br-50p' })
-  ])
+  <div class="navigator pointer br-md bg-neutral-lighter mr-md" title="Покажи моето местоположение" onclick={getUserLocation(map)}>
+    <div class="navigator-dot br-50p"></div>
+  </div>
 );
 
 const userLocationZoomLevel = 18;

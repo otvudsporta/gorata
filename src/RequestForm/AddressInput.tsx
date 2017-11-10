@@ -1,4 +1,3 @@
-import { input, a, small } from 'compote/html';
 import { set } from 'compote/components/utils';
 import { redraw, withAttr, FactoryComponent } from 'mithril';
 
@@ -19,14 +18,17 @@ export const AddressInput: FactoryComponent<{ state: State }> = ({ attrs: { stat
     },
 
     view: () => [
-      input({
-        class: 'form-input',
-        type: 'text', name: 'title', placeholder: 'Къде искате да озелените?', autofocus: true, required: true,
-        value: state.request.title, oninput: setTitle,
-        oncreate: createSearchBox
-      }),
+      <input
+        class="form-input"
+        type="text" name="title" placeholder="Къде искате да озелените?" autofocus required
+        value={state.request.title} oninput={setTitle}
+        oncreate={createSearchBox}
+      />
+      ,
       state.addressSuggestion ?
-        a({ onclick: setAddress }, small(`Може би имахте предвид ${state.addressSuggestion}?`))
+        <a onclick={setAddress}>
+          <small>Може би имахте предвид {state.addressSuggestion}?</small>
+        </a>
         :
         null
     ]

@@ -1,4 +1,3 @@
-import { h5 } from 'compote/html';
 import { FactoryComponent } from 'mithril';
 
 import { RequestStatus, getStatusText } from '../Request/Request';
@@ -18,17 +17,16 @@ export const RequestListStatusFilterItem: FactoryComponent<State> = ({ attrs }) 
   };
 
   return {
-    view: () => (
-      h5({
-          class: `
-            request-list-status-filter-item br-md pv-sm ph-md pointer text-capitalize fade-animation
-            ${getFilterItemActiveClass(state)}
-          `,
-          onclick: setStatusFilter(state)
-        },
-        getStatusText(state.status, 'many') || 'всички'
-      )
-    )
+    view: () =>
+      <h5
+        class={`
+          request-list-status-filter-item br-md pv-sm ph-md pointer text-capitalize fade-animation
+          ${getFilterItemActiveClass(state)}
+        `}
+        onclick={setStatusFilter(state)}
+      >
+        {getStatusText(state.status, 'many') || 'всички'}
+      </h5>
   };
 };
 
