@@ -1,6 +1,5 @@
 import './style.scss';
 
-import { div, form, fieldset, input, br, button } from 'compote/html';
 import { Keyboard } from 'compote/components/keyboard';
 import { constant, get, set, when, equal } from 'compote/components/utils';
 import * as firebase from 'firebase/app';
@@ -40,35 +39,34 @@ export const Login: FactoryComponent<State> = () => {
   const loginOnEnter = when(equal(get<KeyboardEvent>('keyCode'), Keyboard.ENTER), login);
 
   return {
-    view: () => (
-      div({ class: 'container fade-in-animation' }, [
-        form({ class: 'form', onsubmit: returnFalse },
-          fieldset({ class: 'form-panel', disabled: state.loading === true }, [
-            button({
-              class: 'facebook-button width-100p br-md mb-xl bg-facebook pa-md color-neutral-light',
-              type: 'button',
-              onclick: loginWithFacebook
-            }, [
-              FacebookLogo({ class: 'mr-sm mv-n-sm' }),
-              'Вход с Facebook'
-            ]),
-            input({
-              class: 'form-input',
-              type: 'email', name: 'email', placeholder: 'Имейл', autofocus: true, required: true,
-              onkeyup: loginOnEnter, oninput: setEmail
-            }),
-            br(),
-            input({
-              class: 'form-input',
-              type: 'password', name: 'password', placeholder: 'Парола', required: true,
-              onkeyup: loginOnEnter, oninput: setPassword
-            }),
-            br(),
-            button({ class: 'form-button', type: 'submit', onclick: login }, 'Вход')
-          ])
-        )
-      ])
-    )
+    view: () =>
+      <div class="container fade-in-animation">
+        <form class="form" onsubmit={returnFalse}>
+          <fieldset class="form-panel" disabled={state.loading === true}>
+            <button
+              class="facebook-button width-100p br-md mb-xl bg-facebook pa-md color-neutral-light"
+              type="button"
+              onclick={loginWithFacebook}
+            >
+              {FacebookLogo({ class: 'mr-sm mv-n-sm' })}
+              Вход с Facebook
+            </button>
+            <input
+              class="form-input"
+              type="email" name="email" placeholder="Имейл" autofocus required
+              onkeyup={loginOnEnter} oninput={setEmail}
+            />
+            <br />
+            <input
+              class="form-input"
+              type="password" name="password" placeholder="Парола" required
+              onkeyup={loginOnEnter} oninput={setPassword}
+            />
+            <br />
+            <button class="form-button" type="submit" onclick={login}>Вход</button>
+          </fieldset>
+        </form>
+      </div>
   };
 };
 

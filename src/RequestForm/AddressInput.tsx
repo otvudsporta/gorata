@@ -6,7 +6,7 @@ import { mapLoaded } from '../map';
 import { Request } from '../request';
 import { store } from '../store';
 
-import { State } from './index';
+import { State } from './RequestForm';
 
 export const AddressInput: FactoryComponent<{ state: State }> = ({ attrs: { state } }) => {
   const mapEventListeners: google.maps.MapsEventListener[] = [];
@@ -36,7 +36,7 @@ export const AddressInput: FactoryComponent<{ state: State }> = ({ attrs: { stat
     await mapLoaded;
 
     const { map } = store.getState();
-    const searchBox = new google.maps.places.SearchBox(<HTMLInputElement>dom);
+    const searchBox = new google.maps.places.SearchBox(dom as HTMLInputElement);
 
     mapEventListeners.push(
       map.addListener('bounds_changed', () => searchBox.setBounds(map.getBounds()))
@@ -58,7 +58,7 @@ export const AddressInput: FactoryComponent<{ state: State }> = ({ attrs: { stat
       }
 
       // NOTE: Because this is not a Mithril event, we have to set the input's value manually
-      state.request.title = (<HTMLInputElement>dom).value;
+      state.request.title = (dom as HTMLInputElement).value;
       createRequestMarker(map, location, place.formatted_address);
     });
 

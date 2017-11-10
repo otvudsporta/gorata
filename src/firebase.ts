@@ -43,7 +43,7 @@ export const FirebaseServices = {
     return getValue ? getValue(snapshot.key, snapshot.val()) : snapshot.val();
   },
 
-  push: <T>(getPath: (params: PathParams) => string) => (params: PathParams, value: T): Promise<T> => getRef(getPath(params)).push(value),
+  push: <T>(getPath: (params: PathParams) => string) => (params: PathParams, value: T): Promise<T> => (<any>getRef(getPath(params))).push(value),
   set: <T>(getPath: (params: PathParams) => string) => (params: PathParams, value: T): Promise<T> => getRef(getPath(params)).set(value),
   update: <T>(getPath: (params: PathParams) => string) => (params: PathParams, value: T): Promise<T> => getRef(getPath(params)).update(value)
 };

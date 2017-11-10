@@ -3,7 +3,7 @@
     "rules": "firebase.rules.bolt"
   },
   "functions": {
-    "source": "functions"
+    "source": "server"
   },
   "hosting": {
     "public": "build",

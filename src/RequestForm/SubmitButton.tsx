@@ -7,7 +7,7 @@ import { Request, RequestServices } from '../request';
 import { route, Routes } from '../router';
 import { store } from '../store';
 
-import { State } from './index';
+import { State } from './RequestForm';
 
 export const SubmitButton: FactoryComponent<{ state: State }> = ({ attrs: { state } }) => {
   const createRequest = async () => {

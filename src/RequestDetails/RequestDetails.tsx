@@ -1,4 +1,4 @@
-import { div, h4, select, option, Properties } from 'compote/html';
+import { Properties } from 'compote/html';
 import { Timeago } from 'compote/components/timeago';
 import { flex } from 'compote/components/flex';
 import * as m from 'mithril';
@@ -7,7 +7,7 @@ import { FactoryComponent, redraw, withAttr } from 'mithril';
 import { Image } from '../image';
 import * as notify from '../notify';
 import { Request, RequestStatus, RequestServices, requestStatuses, getStatusText } from '../request';
-import { RequestStatusItem } from '../request-status-item';
+import { RequestStatusItem } from '../RequestStatusItem/RequestStatusItem';
 import { store } from '../store';
 import { UserProfile, canModerate, UserServices } from '../user';
 import { UserProfileImage } from '../user-profile-image';
@@ -35,35 +35,41 @@ export const RequestDetails: FactoryComponent<State> = ({ attrs }) => {
       const { request, createdBy, isRequestStatusBeingEdited } = state;
 
       return (
-        div([
-          request.imageUrls && request.imageUrls.length > 0 ?
-            request.imageUrls.map((imageUrl) => m(Image, { src: imageUrl }))
+        <div>
+          {request.imageUrls && request.imageUrls.length > 0 ?
+            request.imageUrls.map((imageUrl) => <Image src={imageUrl} />)
             :
-            m(Image, { src: 'default.png' }),
-          div({ class: 'pa-md' }, [
-            div({ class: 'flex-row justify-content-center align-items-start' }, [
-              h4({ style: flex(1) }, request.title),
-              canModerate(currentUser) ?
-                div({ class: 'flex-row justify-content-center align-items-center' }, isRequestStatusBeingEdited ?
-                  [
-                    select({ class: 'br-md pa-sm', onchange: setRequestStatusToValue, value: request.status },
-                      requestStatuses.map(RequestStatusOption)
-                    ),
-                    div({ class: 'pointer mr-n-md pa-md unselectable', onclick: stopEditingRequestStatus }, '✖️')
-                  ]
-                  :
-                  [
-                    m(RequestStatusItem, { status: request.status }),
-                    div({ class: 'pointer mr-n-md pa-md unselectable', onclick: startEditingRequestStatus }, '✏️')
-                  ]
-                )
+            <Image src="default.png" />
+          }
+          <div class="pa-md">
+            <div class="flex-row justify-content-center align-items-start">
+              <h4 style={flex(1)}>{request.title}</h4>
+              {canModerate(currentUser) ?
+                <div class="flex-row justify-content-center align-items-center">
+                  {isRequestStatusBeingEdited ?
+                    [
+                      <select class="br-md pa-sm" onchange={setRequestStatusToValue} value={request.status}>
+                        {requestStatuses.map(RequestStatusOption)}
+                      </select>
+                      ,
+                      <div class="pointer mr-n-md pa-md unselectable" onclick={stopEditingRequestStatus}>✖️</div>
+                    ]
+                    :
+                    [
+                      <RequestStatusItem status={request.status} />
+                      ,
+                      <div class="pointer mr-n-md pa-md unselectable" onclick={startEditingRequestStatus}>✏️</div>
+                    ]
+                  }
+                </div>
                 :
-                m(RequestStatusItem, { status: request.status })
-            ]),
-            div({ class: 'mb-md' }, request.text),
-            createdBy ? Created(request, createdBy) : null
-          ])
-        ])
+                <RequestStatusItem status={request.status} />
+              }
+            </div>
+            <div class="mb-md">{request.text}</div>
+            {createdBy ? Created(request, createdBy) : null}
+          </div>
+        </div>
       );
     }
   };
@@ -97,13 +103,13 @@ const setRequestStatus = (state: State) => async (status: RequestStatus) => {
   }
 };
 
-const RequestStatusOption = (status: RequestStatus) => option({ value: status }, getStatusText(status));
+const RequestStatusOption = (status: RequestStatus) => <option value={status}>{getStatusText(status)}</option>;
 
 const Created = (request: Request, createdBy: UserProfile) => (
-  div({ class: 'flex-row align-items-center' }, [
-    UserProfileImage({ class: 'width-xxs height-xxs mr-sm', profile: createdBy }),
-    createdBy.name,
-    div({ style: flex(1) }),
-    Timeago(new Date(<number>request.created))
-  ])
+  <div class="flex-row align-items-center">
+    {UserProfileImage({ class: 'width-xxs height-xxs mr-sm', profile: createdBy })}
+    {createdBy.name}
+    <div style={flex(1)}></div>
+    {Timeago(new Date(request.created as number))}
+  </div>
 );

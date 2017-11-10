@@ -1,4 +1,3 @@
-import { div, img, h1, input } from 'compote/html';
 import { AspectRatioContainer } from 'compote/components/aspect-ratio-container';
 import * as m from 'mithril';
 import { redraw, Children, FactoryComponent } from 'mithril';
@@ -7,19 +6,19 @@ import * as firebase from 'firebase/app';
 import * as notify from '../notify';
 import { guid, toArray } from '../utils';
 
-export const Images = (imageUrls: string[]) => (
-  div({ class: 'request-form-images-container' }, [
-    imageUrls.map((imageUrl) => m(UploadedImage, { imageUrls, imageUrl })),
-    m(UploadNewImage, { imageUrls })
-  ])
-);
+export const Images = (imageUrls: string[]) =>
+  <div class="request-form-images-container">
+    {imageUrls.map((imageUrl) => <UploadedImage imageUrls={imageUrls} imageUrl={imageUrl} />)}
+    <UploadNewImage imageUrls={imageUrls} />
+  </div>
+;
 
-const ImageContainer = (content: Children) => (
+const ImageContainer = (content: Children) =>
   AspectRatioContainer({
     class: 'request-form-image-container mb-md br-md bg-neutral-light fade-animation',
     aspectRatio: { x: 4, y: 3 }
   }, content)
-);
+;
 
 const UploadedImage: FactoryComponent<{ imageUrls: string[], imageUrl: string }> = ({ attrs: { imageUrls, imageUrl } }) => {
   const removeImage = async (e: MouseEvent) => {
@@ -39,12 +38,12 @@ const UploadedImage: FactoryComponent<{ imageUrls: string[], imageUrl: string }>
   };
 
   return {
-    view: () => (
+    view: () =>
       ImageContainer([
-        img({ class: 'absolute stretch', src: imageUrl }),
-        div({ class: 'request-form-remove br-50p pointer', onclick: removeImage }, '✖')
+        <img class="absolute stretch" src={imageUrl} />
+        ,
+        <div class="request-form-remove br-50p pointer" onclick={removeImage}>✖</div>
       ])
-    )
   };
 };
 
@@ -52,7 +51,7 @@ const UploadNewImage: FactoryComponent<{ imageUrls: string[] }> = ({ attrs: { im
   let uploading: boolean;
 
   const uploadImages = async (e: Event) => {
-    const files = toArray<File>((<HTMLInputElement>e.currentTarget).files);
+    const files = toArray<File>((e.currentTarget as HTMLInputElement).files);
     if (!files.length) return;
 
     uploading = true;
@@ -88,21 +87,22 @@ const UploadNewImage: FactoryComponent<{ imageUrls: string[] }> = ({ attrs: { im
   });
 
   return {
-    view: () => (
+    view: () =>
       ImageContainer([
-        div({ class: 'absolute stretch flex-row justify-content-center align-items-center fade-in-animation' }, [
-          uploading ?
-            div({ class: 'request-form-uploading br-50p spin-right-animation' })
+        <div class="absolute stretch flex-row justify-content-center align-items-center fade-in-animation">
+          {uploading ?
+            <div class="request-form-uploading br-50p spin-right-animation"></div>
             :
-            h1({ class: 'request-form-upload-text color-neutral-lighter' }, '+')
-        ]),
-        input({
-          class: 'request-form-upload-input absolute stretch pointer',
-          type: 'file', name: 'imageUrls[]', accept: 'image/*', onchange: uploadImages,
-          multiple: true,
-          title: 'Качете снимка'
-        })
+            <h1 class="request-form-upload-text color-neutral-lighter">+</h1>
+          }
+        </div>
+        ,
+        <input
+          class="request-form-upload-input absolute stretch pointer"
+          type="file" name="imageUrls[]" accept="image/*" onchange={uploadImages}
+          multiple
+          title="Качете снимка"
+        />
       ])
-    )
   };
 };

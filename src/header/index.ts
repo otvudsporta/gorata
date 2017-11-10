@@ -60,7 +60,7 @@ const toggleContent = (e: MouseEvent) => {
 const Logo = () => (
   div({ id: 'logo', class: 'mr-md hidden-xxs hidden-xs flex-row align-items-center' }, [
     img({ class: 'pa-sm', src: 'logo.png', alt: 'Лого' }),
-    h1({ class: 'hidden-sm' }, 'Гората')
+    h1({ class: 'hidden-sm' }, 'Отвъд Спорта')
   ])
 );
 

@@ -5,7 +5,7 @@ import { Component } from 'mithril';
 
 import { Image } from '../image';
 import { Request } from '../request';
-import { RequestStatusItem } from '../request-status-item';
+import { RequestStatusItem } from '../RequestStatusItem/RequestStatusItem';
 import { route, Routes } from '../router';
 
 interface Attrs {
@@ -22,7 +22,7 @@ export const RequestListItem: Component<Attrs, null> = {
       div([
         h4(request.title),
         div({ class: 'mb-xs' }, request.text),
-        Timeago(new Date(<number>request.created))
+        Timeago(new Date(request.created as number))
       ]),
       m(RequestStatusItem, { status: request.status })
     ])

@@ -7,8 +7,8 @@ import { FactoryComponent } from 'mithril';
 import { requestStatuses } from '../request';
 import { Actions, store, RequestsFilter } from '../store';
 
-import { RequestListStatusFilterItem } from './status-filter-item';
-import { RequestListItem } from './item';
+import { RequestListStatusFilterItem } from './StatusFilterItem';
+import { RequestListItem } from './Item';
 
 interface Attrs {
   requestsFilter: RequestsFilter;
