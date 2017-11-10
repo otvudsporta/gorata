@@ -1,7 +1,7 @@
 import { Loading } from 'compote/components/loading';
 import * as m from 'mithril';
 
-import { NotFound } from './404-not-found';
+import { NotFound } from './Pages/404-NotFound';
 import { Login } from './Login/Login';
 import { Register } from './Register/Register';
 import { RequestDetails } from './RequestDetails/RequestDetails';

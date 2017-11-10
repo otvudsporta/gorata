@@ -1,8 +1,8 @@
 import { Loading } from 'compote/components/loading';
 import * as m from 'mithril';
 
-import { Unauthorized } from './401-unauthorized';
-import { NotFound } from './404-not-found';
+import { Unauthorized } from './Pages/401-Unauthorized';
+import { NotFound } from './Pages/404-NotFound';
 
 import { initialUserAuth } from './auth';
 import { Request, RequestServices } from './Request/Request';

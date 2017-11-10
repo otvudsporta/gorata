@@ -5,7 +5,7 @@ import { constant, get, set, when, equal } from 'compote/components/utils';
 import * as firebase from 'firebase/app';
 import { redraw, withAttr, FactoryComponent } from 'mithril';
 
-import { FacebookLogo } from './facebook-logo';
+import { FacebookLogo } from './FacebookLogo';
 import * as notify from '../notify';
 import { route, Routes } from '../router';
 
