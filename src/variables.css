@@ -1,0 +1,71 @@
+:root {
+  /* Colors */
+  --neutral-lighter: #ffffff;
+  --neutral-light: #ecf0f1;
+  --neutral: #bdc3c7;
+  --neutral-dark: #a1aab0;
+  --neutral-darker: #6c777f;
+
+  --foreground-lighter: #999999;
+  --foreground-light: #666666;
+  --foreground: #333333;
+  --foreground-dark: #111111;
+  --foreground-darker: #000000;
+
+  --primary: #0064b1;
+  --primary-lighter: #189bff;
+  --primary-light: #0081e4;
+  --primary-dark: #00477e;
+  --primary-darker: #003965;
+
+  --success: #2ecc71;
+  --success-dark: #25a25a;
+
+  --info: #3498db;
+  --info-dark: #217dbb;
+
+  --warning: #f1c40f;
+  --warning-dark: #c29d0b;
+
+  --danger: #db4437;
+  --danger-dark: #bd2e22;
+
+  /* Device sizes */
+  --xxl-min: 2000px;
+
+  --xl-max: calc(var(--xxl-min) - 1);
+  --xl-min: 1600px;
+
+  --lg-max: calc(var(--xl-min) - 1);
+  --lg-min: 1200px;
+
+  --md-max: calc(var(--lg-min) - 1);
+  --md-min: 992px;
+
+  --sm-max: calc(var(--md-min) - 1);
+  --sm-min: 768px;
+
+  --xs-max: calc(var(--sm-min) - 1);
+  --xs-min: 375px;
+
+  --xxs-max: calc(var(--xs-min) - 1);
+
+  /* Font */
+  --font-size: 14px;
+  --font-family: 'Trebuchet MS', Helvetica, sans-serif;
+
+  --h1-font-size: 40px;
+  --h2-font-size: 32px;
+  --h3-font-size: 24px;
+  --h4-font-size: 20px;
+  --h5-font-size: 16px;
+  --h6-font-size: 14px;
+
+  /* Layout */
+  --border-radius: 3px;
+  --spacing: 10px;
+
+  /* Animation */
+  --animation-duration: 0.4s;
+  --animation-easing: cubic-bezier(0.25, 1, 0.25, 1); /* ease */
+}

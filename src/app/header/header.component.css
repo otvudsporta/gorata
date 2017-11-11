@@ -1,0 +1,7 @@
+:host {
+  grid-row: 1;
+  grid-column: 1 / -1;
+
+  background: var(--primary);
+  color: var(--neutral-lighter);
+}

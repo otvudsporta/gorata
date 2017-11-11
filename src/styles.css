@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@import './reset.css';
+@import './variables.css';
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--foreground);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--primary);
+}
