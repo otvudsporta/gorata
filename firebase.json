@@ -1,0 +1,20 @@
+{
+  "database": {
+    "rules": "firebase.rules.bolt"
+  },
+  "functions": {
+    "source": "server"
+  },
+  "hosting": {
+    "public": "build",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "storage": {
+    "rules": "firebase.storage"
+  }
+}

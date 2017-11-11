@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import {} from '@types/googlemaps';
 
-import { env } from '../env';
+import { environment } from '../../environments/environment';
 import { loadScript } from '../utils';
 
 @Component({
@@ -14,7 +14,7 @@ export class MapComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await loadScript(`https://maps.googleapis.com/maps/api/js?key=${env.GOOGLE_API_KEY}&language=bg&region=BG&libraries=places`);
+    await loadScript(`https://maps.googleapis.com/maps/api/js?key=${environment.GOOGLE_API_KEY}&language=bg&region=BG&libraries=places`);
 
     const bounds = new google.maps.LatLngBounds();
     bounds.extend({ lat: 43.541944, lng: 28.609722 }); // East
