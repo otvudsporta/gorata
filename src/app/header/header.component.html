@@ -2,5 +2,5 @@
   <img class="logo-image" src="assets/logo.png" alt="Отвъд Спорта Лого" />
 </a>
 
-<a *ngIf="auth.user == null" routerLink="/login">Вход</a>
-<a *ngIf="auth.user != null" routerLink="/" (click)="auth.logout()">Изход</a>
+<a *ngIf="(store.user | async) == null" routerLink="/login">Вход</a>
+<a *ngIf="(store.user | async) != null" routerLink="/" (click)="logout()">Изход</a>

@@ -18,6 +18,7 @@ import { PlaygroundListComponent } from './playground-list/playground-list.compo
 import { RouterModule } from './router.module';
 
 import { ErrorHandler } from './error-handler';
+import { StoreService } from './store.service';
 import { AuthService } from './auth.service';
 import { PlaygroundService } from './playground.service';
 
@@ -48,6 +49,7 @@ import { PlaygroundService } from './playground.service';
   ],
   providers: [
     { provide: NgErrorHandler, useClass: ErrorHandler },
+    StoreService,
     AuthService,
     PlaygroundService
   ],

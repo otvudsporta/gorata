@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/observable';
-
-import { Playground } from '../playground';
-import { PlaygroundService } from '../playground.service';
+import { StoreService } from '../store.service';
 
 @Component({
   selector: 'PlaygroundList',
@@ -10,12 +7,9 @@ import { PlaygroundService } from '../playground.service';
   styleUrls: ['./playground-list.component.css']
 })
 export class PlaygroundListComponent implements OnInit {
-  playgrounds: Observable<Playground[]>;
-
-  constructor(private playgroundService: PlaygroundService) {
+  constructor(public store: StoreService) {
   }
 
   ngOnInit() {
-    this.playgrounds = this.playgroundService.query();
   }
 }

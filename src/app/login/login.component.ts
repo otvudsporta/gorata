@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   };
 
   constructor(
-    private auth: AuthService,
+    private authService: AuthService,
     private router: Router
   ) {
   }
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(data: LoginData) {
-    this.auth.login(data.email, data.password).then(() => this.router.navigate(['/']));
+    this.authService.login(data.email, data.password).then(() => this.router.navigate(['/']));
   }
 
   register(data: RegisterData) {
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       throw new Error(`Паролата не съвпада с потвърждението! Моля, опитайте отново!`);
     }
 
-    this.auth.register(data.email, data.password).then(() => this.router.navigate(['/']));
+    this.authService.register(data.email, data.password).then(() => this.router.navigate(['/']));
   }
 }
 
