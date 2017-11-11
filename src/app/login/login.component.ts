@@ -8,8 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  email: string;
-  password: string;
+  data = {
+    login: <LoginData>{},
+    register: <RegisterData>{}
+  };
 
   constructor(
     private auth: AuthService,
@@ -20,7 +22,26 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(email: string, password: string) {
-    this.auth.login(email, password).then(() => this.router.navigate(['/']));
+  login(data: LoginData) {
+    this.auth.login(data.email, data.password).then(() => this.router.navigate(['/']));
   }
+
+  register(data: RegisterData) {
+    if (data.password !== data.passwordConfirmation) {
+      throw new Error(`Паролата не съвпада с потвърждението! Моля, опитайте отново!`);
+    }
+
+    this.auth.register(data.email, data.password).then(() => this.router.navigate(['/']));
+  }
+}
+
+interface LoginData {
+  email: string;
+  password: string;
+}
+
+interface RegisterData {
+  email: string;
+  password: string;
+  passwordConfirmation: string;
 }

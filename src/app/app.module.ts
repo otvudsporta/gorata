@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler as NgErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
@@ -17,6 +17,7 @@ import { PlaygroundListComponent } from './playground-list/playground-list.compo
 
 import { RouterModule } from './router.module';
 
+import { ErrorHandler } from './error-handler';
 import { AuthService } from './auth.service';
 import { PlaygroundService } from './playground.service';
 
@@ -46,6 +47,7 @@ import { PlaygroundService } from './playground.service';
     AngularFireDatabaseModule
   ],
   providers: [
+    { provide: NgErrorHandler, useClass: ErrorHandler },
     AuthService,
     PlaygroundService
   ],

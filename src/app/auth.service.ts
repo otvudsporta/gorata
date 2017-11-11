@@ -6,15 +6,19 @@ import { User } from 'firebase';
 export class AuthService {
   user: User;
 
-  constructor(public auth: AngularFireAuth) {
-    this.auth.authState.subscribe((user) => this.user = user);
+  constructor(public angularFireAuth: AngularFireAuth) {
+    this.angularFireAuth.authState.subscribe((user) => this.user = user);
+  }
+
+  register(email: string, password: string) {
+    return this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password);
   }
 
   login(email: string, password: string) {
-    return this.auth.auth.signInWithEmailAndPassword(email, password);
+    return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
   logout() {
-    return this.auth.auth.signOut();
+    return this.angularFireAuth.auth.signOut();
   }
 }
