@@ -124,8 +124,8 @@
     "component-selector": [
       true,
       "element",
-      "app",
-      "kebab-case"
+      [],
+      "PascalCase"
     ],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,

@@ -5,7 +5,7 @@ import { env } from '../env';
 import { loadScript } from '../utils';
 
 @Component({
-  selector: 'app-map',
+  selector: 'Map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
