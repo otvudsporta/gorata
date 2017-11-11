@@ -6,6 +6,9 @@ import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MapComponent } from './map/map.component';
 import { LoaderComponent } from './loader/loader.component';
+import { RouterModule } from './router.module';
+import { LoginComponent } from './login/login.component';
+import { PlaygroundListComponent } from './playground-list/playground-list.component';
 
 @NgModule({
   declarations: [
@@ -13,12 +16,16 @@ import { LoaderComponent } from './loader/loader.component';
     HeaderComponent,
     SidebarComponent,
     MapComponent,
-    LoaderComponent
+    LoaderComponent,
+    LoginComponent,
+    PlaygroundListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
