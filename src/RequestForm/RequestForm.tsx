@@ -3,7 +3,6 @@ import './style.scss';
 
 import { flex } from 'compote/components/flex';
 import { constant } from 'compote/components/utils';
-import * as m from 'mithril';
 import { FactoryComponent } from 'mithril';
 
 import { Request } from '../Request/Request';
@@ -33,11 +32,11 @@ export const RequestForm: FactoryComponent<State> = () => {
         <form class="form" style={flex(1)} onsubmit={returnFalse}>
           <fieldset class="form-panel lg" disabled={state.loading === true}>
             {Images(state.request.imageUrls)}
-            {m(AddressInput, { state: state })}
+            <AddressInput state={state} />
             <br /><br />
-            {m(TextInput, { request: state.request })}
+            <TextInput request={state.request} />
             <br /><br />
-            {m(SubmitButton, { state: state })}
+            <SubmitButton state={state} />
           </fieldset>
         </form>
       </div>

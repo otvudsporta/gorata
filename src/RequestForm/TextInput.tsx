@@ -1,9 +1,9 @@
 import { set } from 'compote/components/utils';
-import { withAttr, FactoryComponent } from 'mithril';
+import { withAttr } from 'mithril';
 
 import { Request } from '../Request/Request';
 
-export const TextInput: FactoryComponent<{ request: Request }> = ({ attrs: { request } }) => {
+export const TextInput: FnComponent = ({ attrs: { request } }) => {
   const setText = withAttr('value', set<Request>('text')(request));
 
   return {

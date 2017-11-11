@@ -1,6 +1,5 @@
 import { AspectRatioContainer } from 'compote/components/aspect-ratio-container';
-import * as m from 'mithril';
-import { redraw, Children, FactoryComponent } from 'mithril';
+import { redraw, Children } from 'mithril';
 import * as firebase from 'firebase/app';
 
 import * as notify from '../notify';
@@ -8,8 +7,8 @@ import { guid, toArray } from '../utils';
 
 export const Images = (imageUrls: string[]) =>
   <div class="request-form-images-container">
-    {imageUrls.map((imageUrl) => m(UploadedImage, { imageUrls, imageUrl }))}
-    {m(UploadNewImage, { imageUrls })}
+    {imageUrls.map((imageUrl) => <UploadedImage imageUrls={imageUrls} imageUrl={imageUrl} />)}
+    <UploadNewImage imageUrls={imageUrls} />
   </div>
 ;
 
@@ -20,7 +19,7 @@ const ImageContainer = (content: Children) =>
   }, content)
 ;
 
-const UploadedImage: FactoryComponent<{ imageUrls: string[], imageUrl: string }> = ({ attrs: { imageUrls, imageUrl } }) => {
+const UploadedImage: FnComponent = ({ attrs: { imageUrls, imageUrl } }) => {
   const removeImage = async (e: MouseEvent) => {
     const indexOfImageUrl = imageUrls.indexOf(imageUrl);
     if (indexOfImageUrl === -1) return;
@@ -47,7 +46,7 @@ const UploadedImage: FactoryComponent<{ imageUrls: string[], imageUrl: string }>
   };
 };
 
-const UploadNewImage: FactoryComponent<{ imageUrls: string[] }> = ({ attrs: { imageUrls } }) => {
+const UploadNewImage: FnComponent = ({ attrs: { imageUrls } }) => {
   let uploading: boolean;
 
   const uploadImages = async (e: Event) => {

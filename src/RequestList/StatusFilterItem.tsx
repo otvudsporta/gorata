@@ -1,5 +1,3 @@
-import { FactoryComponent } from 'mithril';
-
 import { RequestStatus, getStatusText } from '../Request/Request';
 import { store, Actions, RequestsFilter } from '../store';
 
@@ -10,7 +8,7 @@ interface State {
   status: RequestStatus;
 }
 
-export const RequestListStatusFilterItem: FactoryComponent<State> = ({ attrs }) => {
+export const RequestListStatusFilterItem: FnComponent = ({ attrs }) => {
   const state: State = {
     parent: attrs.parent,
     status: attrs.status

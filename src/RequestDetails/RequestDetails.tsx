@@ -36,9 +36,9 @@ export const RequestDetails: FnComponent<State> = ({ attrs }) => {
       return (
         <div>
           {request.imageUrls && request.imageUrls.length > 0 ?
-            request.imageUrls.map((imageUrl) => m(Image, { src: imageUrl }))
+            request.imageUrls.map((imageUrl) => <Image src={imageUrl} />)
             :
-            m(Image, { src: 'default.png' })
+            <Image src="default.png" />
           }
           <div class="pa-md">
             <div class="flex-row justify-content-center align-items-start">
@@ -55,14 +55,14 @@ export const RequestDetails: FnComponent<State> = ({ attrs }) => {
                     ]
                     :
                     [
-                      m(RequestStatusItem, { status: request.status })
+                      <RequestStatusItem status={request.status} />
                       ,
                       <div class="pointer mr-n-md pa-md unselectable" onclick={startEditingRequestStatus}>✏️</div>
                     ]
                   }
                 </div>
                 :
-                m(RequestStatusItem, { status: request.status })
+                <RequestStatusItem status={request.status} />
               }
             </div>
             <div class="mb-md">{request.text}</div>

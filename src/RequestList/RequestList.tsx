@@ -1,6 +1,5 @@
 import './style.scss';
 
-import * as m from 'mithril';
 import { FactoryComponent } from 'mithril';
 
 import { requestStatuses } from '../Request/Request';
@@ -26,14 +25,16 @@ export const RequestList: FactoryComponent<Attrs> = () => {
       return [
         // Status Filter
        <div class="request-list-status-filter flex-row justify-content-space-around align-items-center ph-sm pv-md sticky top-0 bg-neutral-lighter">
-          {[...requestStatuses, null].map((requestStatus) => m(RequestListStatusFilterItem, {
-            key: requestStatus,
-            parent: state,
-            status: requestStatus
-          }))}
+          {[...requestStatuses, null].map((requestStatus) =>
+            <RequestListStatusFilterItem
+              key={requestStatus}
+              parent={state}
+              status={requestStatus}
+            />
+          )}
         </div>
         ,
-        requests.map((request) => m(RequestListItem, { key: request.id, request }))
+        requests.map((request) => <RequestListItem key={request.id} request={request} />)
       ];
     }
   };

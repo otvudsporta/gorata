@@ -1,14 +1,12 @@
 import * as firebase from 'firebase/app';
-import { redraw, FactoryComponent } from 'mithril';
+import { redraw } from 'mithril';
 
 import * as notify from '../notify';
 import { Request, RequestServices } from '../Request/Request';
 import { route, Routes } from '../router';
 import { store } from '../store';
 
-import { State } from './RequestForm';
-
-export const SubmitButton: FactoryComponent<{ state: State }> = ({ attrs: { state } }) => {
+export const SubmitButton: FnComponent = ({ attrs: { state } }) => {
   const createRequest = async () => {
     try {
       state.loading = true;

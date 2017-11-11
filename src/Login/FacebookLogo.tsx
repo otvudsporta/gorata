@@ -1,5 +1,5 @@
 // Facebook
-export const FacebookLogo: FnComponent<{}, SVGSVGElement> = ({ attrs }) => ({
+export const FacebookLogo: FnComponent = ({ attrs }) => ({
   view: () =>
     <svg width="20" height="20" viewBox="0 0 266.893 266.895" {...attrs}>
       <path

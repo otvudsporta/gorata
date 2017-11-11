@@ -1,13 +1,11 @@
 import { set } from 'compote/components/utils';
-import { redraw, withAttr, FactoryComponent } from 'mithril';
+import { redraw, withAttr } from 'mithril';
 
 import { mapLoaded } from '../map';
 import { Request } from '../Request/Request';
 import { store } from '../store';
 
-import { State } from './RequestForm';
-
-export const AddressInput: FactoryComponent<{ state: State }> = ({ attrs: { state } }) => {
+export const AddressInput: FnComponent = ({ attrs: { state } }) => {
   const mapEventListeners: google.maps.MapsEventListener[] = [];
   const setTitle = withAttr('value', set<Request>('title')(state.request));
 

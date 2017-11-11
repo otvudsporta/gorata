@@ -5,7 +5,7 @@ import './assets/favicon.png';
 import './style.scss';
 
 import { setHyperscriptFunction } from 'compote';
-import * as m from 'mithril';
+import { redraw, mount } from 'mithril';
 
 import { initializeAuth } from './auth';
 import { initializeFirebaseApp } from './firebase';
@@ -33,11 +33,11 @@ function registerServiceWorker() {
 }
 
 function subscribeToStore() {
-  store.subscribe(m.redraw);
+  store.subscribe(redraw);
 
   const header = document.querySelector('#header');
   const unsubscribe = store.subscribe(() => {
-    m.mount(header, Header);
+    mount(header, Header);
     unsubscribe();
   });
 }

@@ -2,7 +2,7 @@
 /// <reference path="../node_modules/@types/mithril/index.d.ts" />
 /// <reference path="../node_modules/compote/components/index.d.ts" />
 
-import { Hyperscript, Vnode, Component } from 'mithril';
+import { Vnode, Component, Hyperscript } from 'mithril';
 
 declare global {
   const process: {
@@ -14,7 +14,7 @@ declare global {
   }
 
   interface FnComponent<State = {}, ElementType = HTMLDivElement> {
-    (vnode: Vnode<State & Partial<ElementType>, null>): Component<State & Partial<ElementType>, null>;
+    (vnode: any): Component<State & Partial<ElementType>, null>;
   }
 
   // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/index.d.ts

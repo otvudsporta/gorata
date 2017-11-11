@@ -4,7 +4,6 @@ import { Keyboard } from 'compote/components/keyboard';
 import { constant, get, set, when, equal } from 'compote/components/utils';
 import * as firebase from 'firebase/app';
 import { redraw, withAttr, FactoryComponent } from 'mithril';
-import * as m from 'mithril';
 
 import { FacebookLogo } from './FacebookLogo';
 import * as notify from '../notify';
@@ -49,7 +48,7 @@ export const Login: FactoryComponent<State> = () => {
               type="button"
               onclick={loginWithFacebook}
             >
-              {m(FacebookLogo, { className: 'mr-sm mv-n-sm' })}
+              <FacebookLogo class="mr-sm mv-n-sm" />
               Вход с Facebook
             </button>
             <input
