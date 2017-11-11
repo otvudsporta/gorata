@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { environment } from '../environments/environment';
@@ -16,6 +17,7 @@ import { PlaygroundListComponent } from './playground-list/playground-list.compo
 
 import { RouterModule } from './router.module';
 
+import { AuthService } from './auth.service';
 import { PlaygroundService } from './playground.service';
 
 @NgModule({
@@ -30,6 +32,7 @@ import { PlaygroundService } from './playground.service';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule,
     AngularFireModule.initializeApp({
       apiKey: environment.GOOGLE_API_KEY,
@@ -39,9 +42,11 @@ import { PlaygroundService } from './playground.service';
       storageBucket: environment.FIREBASE_STORAGE_BUCKET,
       messagingSenderId: environment.FIREBASE_MESSAGING_SENDER_ID
     }),
+    AngularFireAuthModule,
     AngularFireDatabaseModule
   ],
   providers: [
+    AuthService,
     PlaygroundService
   ],
   bootstrap: [AppComponent]

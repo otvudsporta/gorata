@@ -1,1 +1,5 @@
-Login
+<form name="login" (ngSubmit)="login(email, password)">
+  <input type="email" name="email" [(ngModel)]="email" required autofocus />
+  <input type="password" name="password" [(ngModel)]="password" required />
+  <button type="submit">Вход</button>
+</form>
