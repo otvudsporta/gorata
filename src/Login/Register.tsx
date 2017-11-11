@@ -1,7 +1,7 @@
 import { Keyboard } from 'compote/components/keyboard';
 import { constant, get, set, when, equal } from 'compote/components/utils';
 import * as firebase from 'firebase/app';
-import { redraw, withAttr, FactoryComponent } from 'mithril';
+import { redraw, withAttr } from 'mithril';
 
 import * as notify from '../notify';
 import { route, Routes } from '../router';
@@ -15,7 +15,7 @@ interface State {
 
 // TODO: Use form data
 // TODO: Add validation
-export const Register: FactoryComponent<State> = () => {
+export const Register: FnComponent<State> = () => {
   const state: State = {};
 
   const setEmail = withAttr('value', set<State>('email')(state));
@@ -44,30 +44,28 @@ export const Register: FactoryComponent<State> = () => {
 
   return {
     view: () =>
-      <div class="container fade-in-animation">
-        <form class="form" onsubmit={returnFalse}>
-          <fieldset class="form-panel" disabled={state.loading === true}>
-            <input
-              class="form-input"
-              type="email" name="email" placeholder="Имейл" autofocus required
-              onkeyup={registerOnEnter} oninput={setEmail}
-            />
-            <br />
-            <input
-              class="form-input"
-              type="password" name="password" placeholder="Парола" required
-              onkeyup={registerOnEnter} oninput={setPassword}
-            />
-            <input
-              class="form-input"
-              type="password" name="password_confirmation" placeholder="Потвърдете паролата" required
-              onkeyup={registerOnEnter} oninput={setPasswordConfirmation}
-            />
-            <br />
-            <button class="form-button" type="submit" onclick={register}>Регистрация</button>
-          </fieldset>
-        </form>
-      </div>
+      <form class="form" onsubmit={returnFalse}>
+        <fieldset class="form-panel" disabled={state.loading === true}>
+          <input
+            class="form-input"
+            type="email" name="email" placeholder="Имейл" autofocus required
+            onkeyup={registerOnEnter} oninput={setEmail}
+          />
+          <br />
+          <input
+            class="form-input"
+            type="password" name="password" placeholder="Парола" required
+            onkeyup={registerOnEnter} oninput={setPassword}
+          />
+          <input
+            class="form-input"
+            type="password" name="password_confirmation" placeholder="Потвърдете паролата" required
+            onkeyup={registerOnEnter} oninput={setPasswordConfirmation}
+          />
+          <br />
+          <button class="form-button" type="submit" onclick={register}>Регистрация</button>
+        </fieldset>
+      </form>
   };
 };
 

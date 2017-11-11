@@ -18,7 +18,7 @@ export const AddressInput: FnComponent = ({ attrs: { state } }) => {
     view: () => [
       <input
         class="form-input"
-        type="text" name="title" placeholder="Къде искате да озелените?" autofocus required
+        type="text" name="title" placeholder="Къде е игрището?" autofocus required
         value={state.request.title} oninput={setTitle}
         oncreate={createSearchBox}
       />

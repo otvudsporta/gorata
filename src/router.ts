@@ -2,8 +2,7 @@ import { Loading } from 'compote/components/loading';
 import * as m from 'mithril';
 
 import { NotFound } from './Pages/404-NotFound';
-import { Login } from './Login/Login';
-import { Register } from './Register/Register';
+import { Enter } from './Login/Enter';
 import { RequestDetails } from './RequestDetails/RequestDetails';
 import { RequestForm } from './RequestForm/RequestForm';
 import { RequestList } from './RequestList/RequestList';
@@ -20,7 +19,6 @@ export const route = m.route;
 export const Routes = {
   HOME: '/',
   LOGIN: '/login',
-  REGISTER: '/register',
 
   REQUEST_LIST: '/requests',
   REQUEST_CREATE: '/requests/new',
@@ -40,16 +38,13 @@ export function initializeRouter() {
     // Home
     [Routes.HOME]: redirectTo(Routes.REQUEST_LIST),
     [Routes.LOGIN]: {
-      onmatch: pipeline([loading, ifLoggedInRedirectTo(Routes.HOME)], load(Login))
-    },
-    [Routes.REGISTER]: {
-      onmatch: pipeline([loading, ifLoggedInRedirectTo(Routes.HOME)], load(Register))
+      onmatch: pipeline([loading, ifLoggedInRedirectTo(Routes.HOME)], load(Enter))
     },
 
     // Requests
     [Routes.REQUEST_LIST]: RequestList,
     [Routes.REQUEST_CREATE]: {
-      onmatch: pipeline([loading, authorize], load(RequestForm))
+      onmatch: pipeline([loading], load(RequestForm))
     },
     [Routes.REQUEST_DETAILS(':requestId')]: {
       onmatch: pipeline([loading, getRequest], load(RequestDetails, 'request'))

@@ -6,7 +6,7 @@ import { flex } from 'compote/components/flex';
 import { logout } from '../Logout/Logout';
 import { route, Routes } from '../router';
 import { store } from '../store';
-import { CurrentUser, isLoggedIn, canAdmin } from '../User/User';
+import { isLoggedIn, canAdmin } from '../User/User';
 import { UserProfileImage } from '../UserProfileImage/UserProfileImage';
 
 export const Header = {
@@ -19,11 +19,7 @@ export const Header = {
       ,
       <Logo />
       ,
-      <a class="menu-link br-md pa-md" oncreate={route.link} href={Routes.HOME}>Заявки</a>,
-      isLoggedIn(currentUser) ?
-        <a class="menu-link br-md pa-md" oncreate={route.link} href={Routes.REQUEST_CREATE}>Нова Заявка</a>
-        :
-        null
+      <a class="menu-link br-md pa-md" oncreate={route.link} href={Routes.REQUEST_CREATE}>Добави Игрище</a>
       ,
       canAdmin(currentUser) ?
         <a
@@ -38,7 +34,10 @@ export const Header = {
       <div style={flex(1)}></div>
       ,
       currentUser != null ?
-        isLoggedIn(currentUser) ? UserMenu(currentUser) : LoginLinks()
+        isLoggedIn(currentUser) ?
+          <UserMenu profile={currentUser.profile} role={currentUser.role} />
+          :
+          <a class="color-neutral-lighter" oncreate={route.link} href={Routes.LOGIN}>Вход</a>
         :
         null
     ];
@@ -64,26 +63,27 @@ const toggleContent = (e: MouseEvent) => {
 
 const Logo = () => ({
   view: () =>
-    <div id="logo" class="mr-md hidden-xxs hidden-xs flex-row align-items-center">
+    <a id="logo" class="mr-md flex-row align-items-center" oncreate={route.link} href={Routes.HOME}>
       <img class="pa-sm" src="logo.png" alt="Лого" />
-      <h1 class="hidden-sm">Отвъд Спорта</h1>
-    </div>
+      <h1 class="hidden-sm hidden-xs hidden-xxs">Отвъд Спорта</h1>
+    </a>
 });
 
-const UserMenu = ({ profile, role }: CurrentUser) => (
-  <div class="flex-row align-items-center">
-    <div class="text-right">
-      {profile != null ? <div class="color-neutral-lighter hidden-xxs hidden-xs" title={role || ''}>{profile.name}</div> : null}
-      <a class="color-neutral-lighter" onclick={logout}>Изход</a>
+const UserMenu: FnComponent = ({ attrs: { profile, role } }) => ({
+  view: () =>
+    <div class="flex-row align-items-center">
+      <div class="text-right">
+        {profile != null ?
+          <div class="color-neutral-lighter hidden-xxs hidden-xs" title={role || ''}>
+            {profile.name}
+          </div>
+          :
+          null
+        }
+        <a class="color-neutral-lighter" onclick={logout}>Изход</a>
+      </div>
+      <a class="color-neutral-lighter ml-md" oncreate={route.link} href={Routes.SETTINGS}>
+        <UserProfileImage class="width-sm height-sm" title="Настройки" profile={profile} />
+      </a>
     </div>
-    <a class="color-neutral-lighter ml-md" oncreate={route.link} href={Routes.SETTINGS}>
-      <UserProfileImage class="width-sm height-sm" title="Настройки" profile={profile} />
-    </a>
-  </div>
-);
-
-const LoginLinks = () => [
-  <a class="color-neutral-lighter mr-md" oncreate={route.link} href={Routes.REGISTER}>Регистрация</a>
-  ,
-  <a class="color-neutral-lighter" oncreate={route.link} href={Routes.LOGIN}>Вход</a>
-];
+});

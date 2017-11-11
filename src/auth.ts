@@ -9,7 +9,7 @@ let initialUserAuthResolver: { resolve: Function, done?: boolean };
 export const initialUserAuth = new Promise<firebase.User>((resolve) => initialUserAuthResolver = { resolve });
 
 export function initializeAuth() {
-  firebase.auth().onAuthStateChanged(async (auth: firebase.User) => {
+  firebase.auth().onAuthStateChanged((auth: firebase.User) => {
     const action = auth ? Actions.USER_LOGGED_IN : Actions.USER_LOGGED_OUT;
     store.dispatch({ type: action, auth });
 
