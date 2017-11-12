@@ -3,6 +3,7 @@ import {} from '@types/googlemaps';
 
 import { environment } from '../../environments/environment';
 import { loadScript } from '../utils';
+import { StoreService } from '../store.service';
 
 @Component({
   selector: 'Map',
@@ -10,10 +11,14 @@ import { loadScript } from '../utils';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  constructor(private elementRef: ElementRef) {
+  private mapResolved: boolean;
+
+  constructor(private elementRef: ElementRef, private store: StoreService) {
   }
 
   async ngOnInit() {
+    if (this.mapResolved) return;
+
     await loadScript(`https://maps.googleapis.com/maps/api/js?key=${environment.GOOGLE_API_KEY}&language=bg&region=BG&libraries=places`);
 
     const bounds = new google.maps.LatLngBounds();
@@ -32,5 +37,8 @@ export class MapComponent implements OnInit {
       }
     });
     map.fitBounds(bounds);
+
+    this.store.mapResolve(map);
+    this.mapResolved = true;
   }
 }

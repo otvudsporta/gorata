@@ -14,6 +14,8 @@ import { MapComponent } from './map/map.component';
 import { LoaderComponent } from './loader/loader.component';
 import { LoginComponent } from './login/login.component';
 import { PlaygroundListComponent } from './playground-list/playground-list.component';
+import { PlaygroundCreateComponent } from './playground-create/playground-create.component';
+import { AspectRatioContainerComponent } from './aspect-ratio-container/aspect-ratio-container.component';
 
 import { RouterModule } from './router.module';
 
@@ -21,6 +23,7 @@ import { ErrorHandler } from './error-handler';
 import { StoreService } from './store.service';
 import { AuthService } from './auth.service';
 import { PlaygroundService } from './playground.service';
+import { FileUploadService } from './file-upload.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import { PlaygroundService } from './playground.service';
     MapComponent,
     LoaderComponent,
     LoginComponent,
-    PlaygroundListComponent
+    PlaygroundListComponent,
+    PlaygroundCreateComponent,
+    AspectRatioContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +56,8 @@ import { PlaygroundService } from './playground.service';
     { provide: NgErrorHandler, useClass: ErrorHandler },
     StoreService,
     AuthService,
-    PlaygroundService
+    PlaygroundService,
+    FileUploadService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,30 @@
+<form name="create" (ngSubmit)="create(data)">
+  <fieldset [disabled]="loading">
+    <div class="images">
+      <AspectRatioContainer x="4" y="3" *ngFor="let imageUrl of data.imageUrls" class="br-md bg-neutral-light">
+        <img class="image absolute stretch" [src]="imageUrl" />
+        <div class="remove br-50p" (click)="removeImage(imageUrl)">✖</div>
+      </AspectRatioContainer>
+
+      <AspectRatioContainer x="4" y="3" class="upload br-md bg-neutral-light">
+        <div class="upload-container absolute stretch">
+          <Loader *ngIf="uploading"></Loader>
+          <h1 *ngIf="!uploading" class="upload-text color-neutral-lighter">+</h1>
+        </div>
+
+        <input
+          class="upload-input absolute stretch pointer"
+          type="file" name="imageUrls[]" accept="image/*" (change)="uploadImages($event.currentTarget.files)"
+          multiple
+          title="Качете снимка"
+        />
+      </AspectRatioContainer>
+    </div>
+
+    <input class="w-100p" type="text" name="title" placeholder="Къде е игрището?" [(ngModel)]="data.title" />
+
+    <textarea class="w-100p" name="text" placeholder="От какво имате нужда?" [(ngModel)]="data.text"></textarea>
+
+    <button class="form-button" type="submit">Добави игрище</button>
+  </fieldset>
+</form>

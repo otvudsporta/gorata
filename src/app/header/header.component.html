@@ -2,5 +2,9 @@
   <img class="logo-image" src="assets/logo.png" alt="Отвъд Спорта Лого" />
 </a>
 
+<a routerLink="/new">Добави Игрище</a>
+
+&nbsp;|&nbsp;
+
 <a *ngIf="(store.user | async) == null" routerLink="/login">Вход</a>
 <a *ngIf="(store.user | async) != null" routerLink="/" (click)="logout()">Изход</a>
