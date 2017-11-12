@@ -1,8 +1,7 @@
 export interface Playground {
-  imageUrls: string[];
-
   title: string;
   text: string;
+  imageUrls: string[];
   geo: google.maps.LatLngLiteral;
   created: number;
   createdBy: string;

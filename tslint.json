@@ -115,8 +115,8 @@
     ],
     "directive-selector": [
       true,
-      "attribute",
-      "app",
+      ["element", "attribute"],
+      [],
       "camelCase"
     ],
     "component-selector": [

@@ -96,9 +96,10 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy {
     this.loading = true;
 
     const newPlayground: Partial<Playground> = {
-      geo: data.marker.getPosition().toJSON(),
       title: data.title,
       text: data.text,
+      imageUrls: data.imageUrls,
+      geo: data.marker.getPosition().toJSON(),
       createdBy: this.user.uid
     };
 

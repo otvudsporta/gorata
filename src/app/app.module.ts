@@ -24,6 +24,7 @@ import { StoreService } from './store.service';
 import { AuthService } from './auth.service';
 import { PlaygroundService } from './playground.service';
 import { FileUploadService } from './file-upload.service';
+// import { ImageDirective } from './image.directive';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { FileUploadService } from './file-upload.service';
     LoginComponent,
     PlaygroundListComponent,
     PlaygroundCreateComponent,
-    AspectRatioContainerComponent
+    AspectRatioContainerComponent,
+    // ImageDirective
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,7 @@
-<div *ngFor="let playground of store.playgrounds | async">
-  {{playground.title}}
-</div>
+<a *ngFor="let playground of store.playgrounds | async" class="list-item">
+  <img [src]="playground.imageUrls[0] || 'assets/default.png'" />
+  <div>
+    <h4>{{playground.title}}</h4>
+    <p>{{playground.text}}</p>
+  </div>
+</a>
