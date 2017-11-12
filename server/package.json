@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "otvudsporta-functions",
+  "dependencies": {
+    "@google-cloud/storage": "1.4.0",
+    "firebase-admin": "5.5.0",
+    "firebase-functions": "0.7.3",
+    "uuid": "3.1.0",
+    "var": "0.3.2"
+  }
+}
