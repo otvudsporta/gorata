@@ -1,17 +1,20 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import {} from '@types/googlemaps';
 
 import { environment } from '../../environments/environment';
 import { loadScript } from '../utils';
 import { StoreService } from '../store.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'Map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
   private mapResolved: boolean;
+  private subscriptions: Subscription[] = [];
+  private markers: google.maps.Marker[] = [];
 
   constructor(private elementRef: ElementRef, private store: StoreService) {
   }
@@ -40,5 +43,24 @@ export class MapComponent implements OnInit {
 
     this.store.mapResolve(map);
     this.mapResolved = true;
+
+    this.subscriptions.push(
+      this.store.playgrounds.subscribe((playgrounds) => {
+        this.markers.forEach((marker) => marker.setMap(null));
+        playgrounds.forEach((playground) => {
+          const marker = new google.maps.Marker({
+            map,
+            position: playground.geo,
+            title: playground.title,
+            icon: 'assets/map-marker.svg'
+          });
+          this.markers.push(marker);
+        });
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 }
