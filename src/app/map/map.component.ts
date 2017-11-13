@@ -45,7 +45,7 @@ export class MapComponent implements OnInit, OnDestroy {
     this.mapResolved = true;
 
     this.subscriptions.push(
-      this.store.playgrounds.subscribe((playgrounds) => {
+      this.store.playgrounds$.subscribe((playgrounds) => {
         this.markers.forEach((marker) => marker.setMap(null));
         playgrounds.forEach((playground) => {
           const marker = new google.maps.Marker({

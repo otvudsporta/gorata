@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'Loader',
@@ -12,3 +12,13 @@ export class LoaderComponent implements OnInit {
   ngOnInit() {
   }
 }
+
+@Component({
+  selector: 'PageLoader',
+  templateUrl: './loader.component.html',
+  styleUrls: ['./loader.component.css']
+})
+export class PageLoaderComponent extends LoaderComponent {
+  @HostBinding('class.page-loader') pageLoader = true;
+}
+

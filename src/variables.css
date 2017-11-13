@@ -44,8 +44,8 @@
   --h6-font-size: 14px;
 
   /* Layout */
-  --border-radius: 3px;
-  --spacing: 10px;
+  --header-height: 75px;
+  --sidebar-width: 375px;
 
   /* Animation */
   --animation-duration: 0.4s;

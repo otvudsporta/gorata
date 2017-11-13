@@ -6,5 +6,5 @@
 
 &nbsp;|&nbsp;
 
-<a *ngIf="(store.user | async) == null" routerLink="/login">Вход</a>
-<a *ngIf="(store.user | async) != null" routerLink="/" (click)="logout()">Изход</a>
+<a *ngIf="(store.user$ | async) == null" routerLink="/login">Вход</a>
+<a *ngIf="(store.user$ | async) != null" routerLink="/" (click)="logout()">Изход</a>

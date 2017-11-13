@@ -14,8 +14,8 @@ export class StoreService {
   ) {
   }
 
-  user = this.authService.angularFireAuth.authState;
-  playgrounds = this.playgroundService.query();
+  user$ = this.authService.angularFireAuth.authState;
+  playgrounds$ = this.playgroundService.query();
 
   map = new Promise<google.maps.Map>((resolve) => this.mapResolve = resolve);
   mapResolve: Function;

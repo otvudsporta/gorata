@@ -34,7 +34,7 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     this.subscriptions.push(
-      this.store.user.subscribe((user) => this.user = user)
+      this.store.user$.subscribe((user) => this.user = user)
     );
 
     const map = await this.store.map;

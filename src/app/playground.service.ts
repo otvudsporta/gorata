@@ -10,7 +10,9 @@ export class PlaygroundService {
   }
 
   query() {
-    return this.db.list('playgrounds').valueChanges<Playground>();
+    return this.db.list('playgrounds').snapshotChanges().map((actions) => actions.map((action) =>
+      (<Playground>{ id: action.payload.key, ...action.payload.val() })
+    ));
   }
 
   get(id: string) {

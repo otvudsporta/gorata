@@ -11,10 +11,11 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MapComponent } from './map/map.component';
-import { LoaderComponent } from './loader/loader.component';
+import { LoaderComponent, PageLoaderComponent } from './loader/loader.component';
 import { LoginComponent } from './login/login.component';
-import { PlaygroundListComponent } from './playground-list/playground-list.component';
 import { PlaygroundCreateComponent } from './playground-create/playground-create.component';
+import { PlaygroundListComponent } from './playground-list/playground-list.component';
+import { PlaygroundDetailsComponent } from './playground-details/playground-details.component';
 import { AspectRatioContainerComponent } from './aspect-ratio-container/aspect-ratio-container.component';
 
 import { RouterModule } from './router.module';
@@ -32,10 +33,11 @@ import { FileUploadService } from './file-upload.service';
     HeaderComponent,
     SidebarComponent,
     MapComponent,
-    LoaderComponent,
+    LoaderComponent, PageLoaderComponent,
     LoginComponent,
-    PlaygroundListComponent,
     PlaygroundCreateComponent,
+    PlaygroundListComponent,
+    PlaygroundDetailsComponent,
     AspectRatioContainerComponent,
     // ImageDirective
   ],

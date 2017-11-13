@@ -1,0 +1,11 @@
+<ng-template #loading>
+  <PageLoader></PageLoader>
+</ng-template>
+
+<div *ngIf="(playground$ | async) as playground; else loading">
+  <img *ngFor="let imageUrl of playground.imageUrls" [src]="imageUrl" />
+  <div>
+    <h4>{{playground.title}}</h4>
+    <p>{{playground.text}}</p>
+  </div>
+</div>

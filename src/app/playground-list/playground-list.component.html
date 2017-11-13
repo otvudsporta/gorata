@@ -1,7 +1,13 @@
-<a *ngFor="let playground of store.playgrounds | async" class="list-item">
-  <img [src]="playground.imageUrls[0] || 'assets/default.png'" />
-  <div>
-    <h4>{{playground.title}}</h4>
-    <p>{{playground.text}}</p>
-  </div>
-</a>
+<ng-template #loading>
+  <PageLoader></PageLoader>
+</ng-template>
+
+<div *ngIf="(store.playgrounds$ | async) as playgrounds; else loading">
+  <a *ngFor="let playground of playgrounds" class="list-item" [routerLink]="['/playgrounds', playground.id]">
+    <img [src]="playground.imageUrls[0] || 'assets/default.png'" />
+    <div>
+      <h4>{{playground.title}}</h4>
+      <p>{{playground.text}}</p>
+    </div>
+  </a>
+</div>

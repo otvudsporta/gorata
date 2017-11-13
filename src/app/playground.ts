@@ -1,4 +1,6 @@
 export interface Playground {
+  id: string;
+
   title: string;
   text: string;
   imageUrls: string[];
