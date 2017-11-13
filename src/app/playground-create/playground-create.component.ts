@@ -116,7 +116,7 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy {
     }
   }
 
-  create(marker: google.maps.Marker, playground: Playground) {
+  create(marker: google.maps.Marker, playground: Partial<Playground>) {
     if (!marker) throw new Error(this.i18n.errors.marker.required);
     if (!playground.title) throw new Error(this.i18n.errors.title.required);
     if (!playground.address) throw new Error(this.i18n.errors.address.required);

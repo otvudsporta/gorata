@@ -55,8 +55,3 @@
 .need {
   display: block;
 }
-
-.sport-name,
-.need-name {
-  text-transform: capitalize;
-}

@@ -28,13 +28,13 @@
     <h5>{{i18n.sports.label}}</h5>
     <label *ngFor="let sport of sports" class="sport">
       <input type="checkbox" name="sport_{{sport}}" [(ngModel)]="playground.sports[sport]" />
-      <span class="sport-name">{{sport}}</span>
+      {{sport | capitalize}}
     </label>
 
     <h5>{{i18n.needs.label}}</h5>
     <label *ngFor="let need of needs" class="need">
       <input type="checkbox" name="need_{{need}}" [(ngModel)]="playground.needs[need]" />
-      <span class="need-name">{{need}}</span>
+      {{need | capitalize}}
     </label>
 
     <textarea class="w-100p" name="text" [placeholder]="i18n.text.placeholder" [(ngModel)]="playground.text"></textarea>
