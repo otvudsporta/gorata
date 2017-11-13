@@ -4,6 +4,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs/observable';
 
 import { Playground } from '../playground';
+import { keys } from '../utils';
 
 @Component({
   selector: 'PlaygroundDetails',
@@ -15,6 +16,7 @@ export class PlaygroundDetailsComponent implements OnInit {
   }
 
   playground$: Observable<Playground>;
+  keys = keys;
 
   ngOnInit() {
     this.playground$ = this.route.paramMap.switchMap((params: ParamMap) => this.playgroundService.get(params.get('id')));

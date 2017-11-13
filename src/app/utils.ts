@@ -1,6 +1,8 @@
 import * as $script from 'scriptjs';
 export const loadScript = (url: string) => new Promise((resolve, reject) => $script(url, resolve));
 
+export const keys = <T extends {}, K extends keyof T>(obj: T): K[] => obj ? <any>Object.keys(obj) : [];
+
 export const toArray = <T>(arrayLikeList: { length: number }): T[] => {
   const result: T[] = [];
   for (let index = 0; index < arrayLikeList.length; index++) {

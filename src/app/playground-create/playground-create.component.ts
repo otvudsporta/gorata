@@ -20,9 +20,37 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy {
 
   uploading: boolean;
   loading: boolean;
-  data = <PlaygroundFormData>{
-    imageUrls: []
+  marker: google.maps.Marker;
+  playground: Partial<Playground> = {
+    imageUrls: [],
+    sports: {},
+    needs: {}
   };
+
+  // TODO: Move into database
+  i18n = {
+    upload: { title: 'Качете снимка' },
+    title: { placeholder: 'Как се казва игрището?' },
+    address: { placeholder: 'Къде се намира?' },
+    sports: { label: 'За какви спортове е предназначено?' },
+    needs: { label: 'От какво има нужда игрището?' },
+    text: { placeholder: 'Допълнителни коментари' },
+    button: { content: 'Добави игрище' },
+
+    errors: {
+      marker: {
+        required: 'Моля, маркирайте мястото върху картата!'
+      },
+      title: {
+        required: 'Моля, въведете името на площадката!'
+      },
+      address: {
+        required: 'Моля, въведете местоположението на площадката!'
+      }
+    }
+  };
+  sports = ['футбол', 'баскетбол', 'волейбол', 'тенис на маса', 'тенис на стена', 'бадминтон'];
+  needs = ['обновяване', 'почистване', 'привличане на хора'];
 
   constructor(
     private fileUploadService: FileUploadService,
@@ -46,7 +74,7 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
     this.mapEventListeners.forEach((listener) => listener.remove());
-    this.destroyMarker(this.data.marker);
+    this.destroyMarker(this.marker);
   }
 
   async uploadImages(fileList: FileList) {
@@ -70,39 +98,36 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy {
     const image = document.createElement('img');
     image.src = uploadTaskSnapshot.downloadURL;
     image.onload = () => {
-      this.data.imageUrls.push(uploadTaskSnapshot.downloadURL);
+      this.playground.imageUrls.push(uploadTaskSnapshot.downloadURL);
       resolve();
     };
   })
 
   async removeImage(imageUrl: string) {
-    const indexOfImageUrl = this.data.imageUrls.indexOf(imageUrl);
+    const indexOfImageUrl = this.playground.imageUrls.indexOf(imageUrl);
     if (indexOfImageUrl === -1) return;
 
-    this.data.imageUrls.splice(indexOfImageUrl, 1);
+    this.playground.imageUrls.splice(indexOfImageUrl, 1);
     try {
       await this.fileUploadService.delete(imageUrl);
     }
     catch (error) {
-      this.data.imageUrls.splice(indexOfImageUrl, 0, imageUrl);
+      this.playground.imageUrls.splice(indexOfImageUrl, 0, imageUrl);
     }
   }
 
-  create(data: PlaygroundFormData) {
-    if (!data.marker) throw new Error('Моля, маркирайте мястото върху картата!');
-    if (!data.title) throw new Error('Моля, въведете местоположението на площадката!');
-    if (!data.text) throw new Error('Моля, въведете описание на площадката!');
-
-    this.loading = true;
+  create(marker: google.maps.Marker, playground: Playground) {
+    if (!marker) throw new Error(this.i18n.errors.marker.required);
+    if (!playground.title) throw new Error(this.i18n.errors.title.required);
+    if (!playground.address) throw new Error(this.i18n.errors.address.required);
 
     const newPlayground: Partial<Playground> = {
-      title: data.title,
-      text: data.text,
-      imageUrls: data.imageUrls,
-      geo: data.marker.getPosition().toJSON(),
+      ...playground,
+      geo: marker.getPosition().toJSON(),
       createdBy: this.user.uid
     };
 
+    this.loading = true;
     this.playgroundService.create(newPlayground)
       .then(() => this.router.navigate(['/']))
       .catch(() => this.loading = false)
@@ -111,8 +136,8 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy {
 
   // TODO: Extract to class
   async createRequestMarker(map: google.maps.Map, position: google.maps.LatLng, address?: string) {
-    this.destroyMarker(this.data.marker);
-    this.data.marker = new google.maps.Marker({ map, position, icon: 'assets/map-marker-create.svg' });
+    this.destroyMarker(this.marker);
+    this.marker = new google.maps.Marker({ map, position, icon: 'assets/map-marker-create.svg' });
 
     // if (!address) {
     //   try {
@@ -133,11 +158,4 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy {
       marker.setMap(null);
     }
   }
-}
-
-interface PlaygroundFormData {
-  marker: google.maps.Marker;
-  imageUrls: string[];
-  title: string;
-  text: string;
 }

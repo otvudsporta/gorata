@@ -6,6 +6,10 @@
   <img *ngFor="let imageUrl of playground.imageUrls" [src]="imageUrl" />
   <div>
     <h4>{{playground.title}}</h4>
+    <p>{{playground.address}}</p>
     <p>{{playground.text}}</p>
+    <span *ngFor="let sport of keys(playground.sports)">{{sport}}&nbsp;</span>
+    <br />
+    <span *ngFor="let need of keys(playground.needs)">{{need}}&nbsp;</span>
   </div>
 </div>

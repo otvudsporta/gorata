@@ -10,11 +10,15 @@ type Playground {
   create() { isAuthenticated() }
   update() { canModerate() }
 
-  imageUrls: String[]
-
   title: String
+  address: String
   text: String
+
+  imageUrls: String[]
+  sports: Boolean[]
+  needs: Boolean[]
   geo: LatLng
+
   created: InitialTimestamp
   createdBy: CurrentUser
   status: PlaygroundStatus

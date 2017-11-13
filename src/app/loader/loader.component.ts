@@ -19,6 +19,5 @@ export class LoaderComponent implements OnInit {
   styleUrls: ['./loader.component.css']
 })
 export class PageLoaderComponent extends LoaderComponent {
-  @HostBinding('class.page-loader') pageLoader = true;
+  @HostBinding('class.page-loader') true;
 }
-

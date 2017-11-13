@@ -50,3 +50,13 @@
   opacity: 0;
   width: 100%;
 }
+
+.sport,
+.need {
+  display: block;
+}
+
+.sport-name,
+.need-name {
+  text-transform: capitalize;
+}
