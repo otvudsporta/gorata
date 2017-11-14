@@ -1,18 +1,53 @@
 <form name="login" (ngSubmit)="login(data.login)">
   <fieldset [disabled]="loading">
-    <input type="email" name="email" [(ngModel)]="data.login.email" required autofocus />
-    <input type="password" name="password" [(ngModel)]="data.login.password" required />
-    <button type="submit">Вход</button>
+    <label>
+      {{i18n.email}}
+      <br />
+      <input type="email" name="email" [(ngModel)]="data.login.email" required autofocus />
+    </label>
+
+    <br />
+
+    <label>
+      {{i18n.password}}
+      <br />
+      <input type="password" name="password" [(ngModel)]="data.login.password" required />
+    </label>
+
+    <br />
+
+    <button type="submit">{{i18n.login}}</button>
   </fieldset>
 </form>
 
-или създай нов акаунт
+{{i18n.orRegister}}
 
 <form name="register" (ngSubmit)="register(data.register)">
   <fieldset [disabled]="loading">
-    <input type="email" name="email" [(ngModel)]="data.register.email" required autofocus />
-    <input type="password" name="password" [(ngModel)]="data.register.password" required />
-    <input type="password" name="passwordConfirmation" [(ngModel)]="data.register.passwordConfirmation" required />
-    <button type="submit">Създай нов акаунт</button>
+    <label>
+      {{i18n.email}}
+      <br />
+      <input type="email" name="email" [(ngModel)]="data.register.email" required autofocus />
+    </label>
+
+    <br />
+
+    <label>
+      {{i18n.password}}
+      <br />
+      <input type="password" name="password" [(ngModel)]="data.register.password" required />
+    </label>
+
+    <br />
+
+    <label>
+      {{i18n.passwordConfirmation}}
+      <br />
+      <input type="password" name="passwordConfirmation" [(ngModel)]="data.register.passwordConfirmation" required />
+    </label>
+
+    <br />
+
+    <button type="submit">{{i18n.register}}</button>
   </fieldset>
 </form>

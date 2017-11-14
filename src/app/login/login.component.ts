@@ -15,6 +15,15 @@ export class LoginComponent implements OnInit {
     register: <RegisterData>{}
   };
 
+  i18n = {
+    email: 'Имейл',
+    password: 'Парола',
+    passwordConfirmation: 'Потвърдете паролата',
+    login: 'Вход',
+    orRegister: 'или създай нов акаунт',
+    register: 'Създай нов акаунт'
+  };
+
   constructor(
     private authService: AuthService,
     private router: Router
