@@ -26,20 +26,14 @@ export class AuthService {
 
   async facebookRegister() {
     const facebook = await FacebookAPI;
-    // TODO
     console.log(facebook);
   }
 
-  // TODO: Implement accouunt linking
-  // https://firebase.google.com/docs/auth/android/account-linking
   facebookLogin() {
     return this.angularFireAuth.auth.signInWithPopup(this.facebookAuthProvider);
   }
 
   facebookLinkAccount() {
-    return this.angularFireAuth.auth.currentUser.linkWithPopup(this.facebookAuthProvider).then((result) => {
-      // TODO: Handle success
-      const { credential, user } = result.credential;
-    });
+    return this.angularFireAuth.auth.currentUser.linkWithPopup(this.facebookAuthProvider);
   }
 }

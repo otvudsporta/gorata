@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
   facebookRegister() {
     this.loading = true;
     this.authService.facebookRegister()
-      .then(() => { /* TODO */ })
+      .then((data) => { /* TODO */ })
       .catch(() => this.loading = false)
     ;
   }

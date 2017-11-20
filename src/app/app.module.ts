@@ -1,9 +1,11 @@
 import { NgModule, ErrorHandler as NgErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { environment } from '../environments/environment';
 
@@ -47,6 +49,7 @@ import { SettingsComponent } from './settings/settings.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     RouterModule,
     AngularFireModule.initializeApp({
@@ -58,7 +61,8 @@ import { SettingsComponent } from './settings/settings.component';
       messagingSenderId: environment.FIREBASE_MESSAGING_SENDER_ID
     }),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [
     { provide: NgErrorHandler, useClass: ErrorHandler },
