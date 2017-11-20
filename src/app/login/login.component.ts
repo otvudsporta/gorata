@@ -52,6 +52,23 @@ export class LoginComponent implements OnInit {
       .catch(() => this.loading = false)
     ;
   }
+
+  facebookLogin() {
+    // TODO: Show an error prompting the user to first login, then link their existing account to Facebook
+    this.loading = true;
+    this.authService.facebookLogin()
+      .then(() => this.router.navigate(['/']))
+      .catch(() => this.loading = false)
+    ;
+  }
+
+  facebookRegister() {
+    this.loading = true;
+    this.authService.facebookRegister()
+      .then(() => { /* TODO */ })
+      .catch(() => this.loading = false)
+    ;
+  }
 }
 
 interface LoginData {

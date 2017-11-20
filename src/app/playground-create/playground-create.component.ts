@@ -29,6 +29,8 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy {
 
   // TODO: Move into database
   i18n = {
+    unauthenticated: 'Преди да добавите ново игрище, моля влезте с акаунта си или се регистрирайте',
+
     upload: { title: 'Качете снимка' },
     title: { placeholder: 'Как се казва игрището?' },
     address: { placeholder: 'Къде се намира?' },
@@ -56,7 +58,7 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy {
     private fileUploadService: FileUploadService,
     private playgroundService: PlaygroundService,
     private router: Router,
-    private store: StoreService
+    public store: StoreService
   ) {
   }
 

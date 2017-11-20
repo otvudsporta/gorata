@@ -1,5 +1,12 @@
 <form name="login" (ngSubmit)="login(data.login)">
   <fieldset [disabled]="loading">
+    <button type="button" (click)="facebookLogin()">
+      <img src="assets/facebook.svg" />
+      Вход с Facebook
+    </button>
+
+    <br />
+
     <label>
       {{i18n.email}}
       <br />
@@ -24,6 +31,13 @@
 
 <form name="register" (ngSubmit)="register(data.register)">
   <fieldset [disabled]="loading">
+    <button type="button" (click)="facebookRegister()">
+      <img src="assets/facebook.svg" />
+      Регистрация с Facebook
+    </button>
+
+    <br />
+
     <label>
       {{i18n.email}}
       <br />

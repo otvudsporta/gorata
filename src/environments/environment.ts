@@ -1,5 +1,6 @@
 export const environment = {
   production: false,
+  FACEBOOK_APP_ID: '1974952072785976',
   GOOGLE_API_KEY: 'AIzaSyAjfjJr6kxVSyQu8N44NOiuYRqN9H9UBy8',
   FIREBASE_AUTH_DOMAIN: 'otvudsporta.firebaseapp.com',
   FIREBASE_DATABASE_URL: 'https://otvudsporta.firebaseio.com',

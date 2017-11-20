@@ -5,12 +5,14 @@ import { PlaygroundCreateComponent } from './playground-create/playground-create
 import { PlaygroundListComponent } from './playground-list/playground-list.component';
 import { PlaygroundDetailsComponent } from './playground-details/playground-details.component';
 import { LoginComponent } from './login/login.component';
+import { SettingsComponent } from './settings/settings.component';
 
 export const routes: Routes = [
   { path: '', component: PlaygroundListComponent },
   { path: 'new', component: PlaygroundCreateComponent },
   { path: 'playgrounds/:id', component: PlaygroundDetailsComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'settings', component: SettingsComponent }
 ];
 
 @NgModule({

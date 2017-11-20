@@ -26,6 +26,7 @@ import { AuthService } from './auth.service';
 import { PlaygroundService } from './playground.service';
 import { FileUploadService } from './file-upload.service';
 import { CapitalizePipe } from './capitalize.pipe';
+import { SettingsComponent } from './settings/settings.component';
 // import { ImageDirective } from './image.directive';
 
 @NgModule({
@@ -41,6 +42,7 @@ import { CapitalizePipe } from './capitalize.pipe';
     PlaygroundDetailsComponent,
     AspectRatioContainerComponent,
     CapitalizePipe,
+    SettingsComponent,
     // ImageDirective
   ],
   imports: [
