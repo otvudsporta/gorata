@@ -1,6 +1,6 @@
 import { AuthService } from '../auth.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { NotificationsService } from 'angular2-notifications';
+import { NotificationsService } from '../notifications.service';
 
 @Component({
   selector: 'Settings',
@@ -8,7 +8,7 @@ import { NotificationsService } from 'angular2-notifications';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
-  constructor(private authService: AuthService, private notificationsService: NotificationsService ) {
+  constructor(private authService: AuthService, private notify: NotificationsService) {
   }
 
   // TODO: Move to database
@@ -22,8 +22,8 @@ export class SettingsComponent implements OnInit {
 
   facebookLinkAccount() {
     this.authService.facebookLinkAccount()
-      .then(() => this.notificationsService.success(this.i18n.success))
-      .catch((error) => this.notificationsService.error(error && error.message || error))
+      .then(() => this.notify.success(this.i18n.success))
+      .catch((error) => this.notify.error(error && error.message || error))
     ;
   }
 }

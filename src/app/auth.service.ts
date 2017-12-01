@@ -3,7 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
-import { FacebookAPI } from './facebook';
+import * as facebook from './facebook';
 
 @Injectable()
 export class AuthService {
@@ -24,16 +24,15 @@ export class AuthService {
     return this.angularFireAuth.auth.signOut();
   }
 
-  async facebookRegister() {
-    const facebook = await FacebookAPI;
-    console.log(facebook);
-  }
-
   facebookLogin() {
     return this.angularFireAuth.auth.signInWithPopup(this.facebookAuthProvider);
   }
 
   facebookLinkAccount() {
     return this.angularFireAuth.auth.currentUser.linkWithPopup(this.facebookAuthProvider);
+  }
+
+  facebookGetUserInfo(scope?: string[], fields?: string[]) {
+    return facebook.login(scope).then(() => facebook.api(fields));
   }
 }

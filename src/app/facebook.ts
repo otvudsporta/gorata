@@ -2,7 +2,7 @@
 import { environment } from '../environments/environment';
 
 let facebookAPIResolve: Function;
-export const FacebookAPI = new Promise<any>((resolve) => facebookAPIResolve = resolve);
+const FacebookAPI = new Promise<any>((resolve) => facebookAPIResolve = resolve);
 
 (<any>window).fbAsyncInit = function () {
   FB.init({
@@ -12,6 +12,7 @@ export const FacebookAPI = new Promise<any>((resolve) => facebookAPIResolve = re
     // Automatically initialize other Facebook controls, e.g. social plugins
     xfbml            : true
   });
+
   facebookAPIResolve(FB);
 };
 
@@ -23,4 +24,28 @@ export const FacebookAPI = new Promise<any>((resolve) => facebookAPIResolve = re
    js.id = id;
    js.src = 'https://connect.facebook.net/bg_BG/sdk.js';
    fjs.parentNode.insertBefore(js, fjs);
- }(document, 'script', 'facebook-jssdk'));
+}(document, 'script', 'facebook-jssdk'));
+
+export const api = (fields?: string[]) => new Promise<any>(async (resolve, reject) => {
+  await FacebookAPI;
+  FB.api(`/me?fields=${fields.join(',')}`, (response) => {
+    if (!response || response.error) return reject(response && response.error || response);
+    resolve(response);
+  });
+});
+
+export const login = (scope?: string[]) => new Promise<{ email: string, name: string }>(async (resolve, reject) => {
+  await FacebookAPI;
+  FB.login((response) => {
+    if (!response || response.error || (<any>response).status !== 'connected') return reject('Facebook login failed!');
+    resolve(response.authResponse);
+  }, { scope: scope ? scope.join(',') : undefined });
+});
+
+export const disconnect = () => new Promise(async (resolve, reject) => {
+  await FacebookAPI;
+  FB.api('/me/permissions', 'delete', (response) => {
+    if (!response || response.error) return reject('Facebook disconnect failed!');
+    resolve(response);
+  });
+});
