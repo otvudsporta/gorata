@@ -24,7 +24,10 @@ export class LoginComponent implements OnInit {
     passwordConfirmation: 'Потвърдете паролата',
     login: 'Вход',
     orRegister: 'или създай нов акаунт',
-    register: 'Създай нов акаунт'
+    register: 'Създай нов акаунт',
+
+    loginFailed: 'Невалидна комбинация от имейл и парола. Моля, опитайте отново!',
+    facebookLoginFailed: 'Неуспешен вход с Facebook!'
   };
 
   constructor(
@@ -41,7 +44,10 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authService.login(data.email, data.password)
       .then(() => this.router.navigate(['/']))
-      .catch(() => this.loading = false)
+      .catch(() => {
+        this.notify.error(this.i18n.loginFailed);
+        this.loading = false;
+      })
     ;
   }
 
@@ -64,7 +70,10 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authService.facebookLogin()
       .then(() => this.router.navigate(['/']))
-      .catch(() => this.loading = false)
+      .catch(() => {
+        this.notify.error(this.i18n.facebookLoginFailed);
+        this.loading = false;
+      })
     ;
   }
 

@@ -26,10 +26,18 @@ const FacebookAPI = new Promise<any>((resolve) => facebookAPIResolve = resolve);
    fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
+export const getLoginStatus = () => new Promise<any>(async (resolve, reject) => {
+  await FacebookAPI;
+  FB.getLoginStatus((response) => {
+    if (!response || response.error || response.status !== 'connected') return reject(getError(response));
+    resolve(response);
+  });
+});
+
 export const api = (fields?: string[]) => new Promise<any>(async (resolve, reject) => {
   await FacebookAPI;
-  FB.api(`/me?fields=${fields.join(',')}`, (response) => {
-    if (!response || response.error) return reject(response && response.error || response);
+  FB.api(`/me${fields ? `?fields=${fields.join(',')}` : ''}`, (response) => {
+    if (!response || response.error) return reject(getError(response));
     resolve(response);
   });
 });
@@ -49,3 +57,5 @@ export const disconnect = () => new Promise(async (resolve, reject) => {
     resolve(response);
   });
 });
+
+const getError = (response: any) => response && response.error && response.error.message || response.error || response;
