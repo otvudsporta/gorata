@@ -4,7 +4,7 @@
 
 <div *ngIf="(store.playgrounds$ | async) as playgrounds; else loading">
   <a *ngFor="let playground of playgrounds" class="list-item" [routerLink]="['/playgrounds', playground.id]">
-    <img [src]="playground.imageUrls[0] || 'assets/default.png'" />
+    <img [src]="playground.imageUrls && playground.imageUrls[0] || 'assets/default.png'" />
     <div>
       <h4>{{playground.title}}</h4>
       <p>{{playground.address}}</p>

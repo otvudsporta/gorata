@@ -4,6 +4,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs/observable';
 
 import { Playground } from '../playground';
+import { StoreService } from '../store.service';
 import { keys } from '../utils';
 
 @Component({
@@ -12,7 +13,11 @@ import { keys } from '../utils';
   styleUrls: ['./playground-details.component.css']
 })
 export class PlaygroundDetailsComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private playgroundService: PlaygroundService) {
+  constructor(
+    private playgroundService: PlaygroundService,
+    private route: ActivatedRoute,
+    public store: StoreService,
+  ) {
   }
 
   playground$: Observable<Playground>;

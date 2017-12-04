@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { FileUploadService } from '../file-upload.service';
+import { NotificationsService } from '../notifications.service';
 import { Playground } from '../playground';
 import { PlaygroundService } from '../playground.service';
 import { StoreService, User } from '../store.service';
@@ -15,17 +16,14 @@ import { toArray, guid } from '../utils';
 })
 export class PlaygroundCreateComponent implements OnInit, OnDestroy {
   user: User;
-  subscriptions: Subscription[] = [];
+  subscriptions: Subscription;
   mapEventListeners: google.maps.MapsEventListener[] = [];
 
   uploading: boolean;
   loading: boolean;
   marker: google.maps.Marker;
-  playground: Partial<Playground> = {
-    imageUrls: [],
-    sports: {},
-    needs: {}
-  };
+
+  @Input() playground = this.playgroundService.getDefault();
 
   // TODO: Move into database
   i18n = {
@@ -37,8 +35,12 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy {
     sports: { label: 'За какви спортове е предназначено?' },
     needs: { label: 'От какво има нужда игрището?' },
     text: { placeholder: 'Допълнителни коментари' },
-    button: { content: 'Добави игрище' },
+    button: { create: 'Добави игрище', update: 'Запази промените' },
 
+    success: {
+      create: 'Площадката е добавена успешно',
+      update: 'Промените са запазени успешно'
+    },
     errors: {
       marker: {
         required: 'Моля, маркирайте мястото върху картата!'
@@ -56,6 +58,7 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy {
 
   constructor(
     private fileUploadService: FileUploadService,
+    private notify: NotificationsService,
     private playgroundService: PlaygroundService,
     private router: Router,
     public store: StoreService
@@ -63,18 +66,24 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-    this.subscriptions.push(
+    const map = await this.store.map;
+
+    if (this.playground && this.playground.geo) {
+      this.setMarker(map, new google.maps.LatLng(this.playground.geo.lat, this.playground.geo.lng));
+    }
+
+    this.subscriptions = new Subscription();
+    this.subscriptions.add(
       this.store.user$.subscribe((user) => this.user = user)
     );
 
-    const map = await this.store.map;
     this.mapEventListeners.push(
-      map.addListener('click', (e: google.maps.MouseEvent) => this.createRequestMarker(map, e.latLng))
+      map.addListener('click', (e: google.maps.MouseEvent) => this.setMarker(map, e.latLng))
     );
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+    this.subscriptions.unsubscribe();
     this.mapEventListeners.forEach((listener) => listener.remove());
     this.destroyMarker(this.marker);
   }
@@ -93,17 +102,19 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy {
     }
   }
 
-  uploadImage = (file: File) => new Promise(async (resolve, reject) => {
-    const uploadTaskSnapshot = await this.fileUploadService.upload(`tmp/${guid()}`, file);
+  uploadImage(file: File) {
+    return new Promise(async (resolve, reject) => {
+      const uploadTaskSnapshot = await this.fileUploadService.upload(`tmp/${guid()}`, file);
 
-    // Only redraw after the image is loaded
-    const image = document.createElement('img');
-    image.src = uploadTaskSnapshot.downloadURL;
-    image.onload = () => {
-      this.playground.imageUrls.push(uploadTaskSnapshot.downloadURL);
-      resolve();
-    };
-  })
+      // Only redraw after the image is loaded
+      const image = document.createElement('img');
+      image.src = uploadTaskSnapshot.downloadURL;
+      image.onload = () => {
+        this.playground.imageUrls.push(uploadTaskSnapshot.downloadURL);
+        resolve();
+      };
+    });
+  }
 
   async removeImage(imageUrl: string) {
     const indexOfImageUrl = this.playground.imageUrls.indexOf(imageUrl);
@@ -118,7 +129,7 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy {
     }
   }
 
-  create(marker: google.maps.Marker, playground: Partial<Playground>) {
+  save(marker: google.maps.Marker, playground: Partial<Playground>) {
     if (!marker) throw new Error(this.i18n.errors.marker.required);
     if (!playground.title) throw new Error(this.i18n.errors.title.required);
     if (!playground.address) throw new Error(this.i18n.errors.address.required);
@@ -126,18 +137,38 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy {
     const newPlayground: Partial<Playground> = {
       ...playground,
       geo: marker.getPosition().toJSON(),
-      createdBy: this.user.uid
     };
 
+    const isNew = playground.id == null;
     this.loading = true;
-    this.playgroundService.create(newPlayground)
-      .then(() => this.router.navigate(['/']))
-      .catch(() => this.loading = false)
-    ;
+    return (
+      this[isNew ? 'create' : 'update'](newPlayground)
+        .then(() => {
+          this.notify.success(this.i18n.success[isNew ? 'create' : 'update']);
+        })
+        .catch((error) => {
+          this.notify.error(error && error.message || error);
+          this.loading = false;
+        })
+    );
+  }
+
+  create(playground: Partial<Playground>) {
+    return (
+      this.playgroundService.create({ ...playground, createdBy: this.user.uid })
+        .then(() => this.router.navigate(['/']))
+    );
+  }
+
+  update(playground: Partial<Playground>) {
+    return (
+      this.playgroundService.update(playground)
+        .then(() => this.router.navigate(['playgrounds', playground.id]))
+    );
   }
 
   // TODO: Extract to class
-  async createRequestMarker(map: google.maps.Map, position: google.maps.LatLng, address?: string) {
+  async setMarker(map: google.maps.Map, position: google.maps.LatLng, address?: string) {
     this.destroyMarker(this.marker);
     this.marker = new google.maps.Marker({ map, position, icon: 'assets/map-marker-create.svg' });
 

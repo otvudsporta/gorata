@@ -1,11 +1,13 @@
-import { ErrorHandler as NgErrorHandler } from '@angular/core';
+import { Injectable, ErrorHandler as NgErrorHandler } from '@angular/core';
+import { NotificationsService } from './notifications.service';
 
+@Injectable()
 export class ErrorHandler extends NgErrorHandler {
-  constructor() {
+  constructor(private notify: NotificationsService) {
     super();
   }
 
   handleError(error: Error | string) {
-    window.alert(typeof error === 'string' ? error : error.message);
+    this.notify.error(typeof error === 'string' ? error : error.message);
   }
 }

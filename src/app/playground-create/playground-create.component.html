@@ -7,7 +7,7 @@
 </ng-container>
 
 <ng-container *ngIf="store.authenticated === true">
-  <form name="create" (ngSubmit)="create(marker, playground)">
+  <form name="create" (ngSubmit)="save(marker, playground)">
     <fieldset [disabled]="loading">
       <div class="images">
         <AspectRatioContainer x="4" y="3" *ngFor="let imageUrl of playground.imageUrls" class="br-md bg-neutral-light">
@@ -48,7 +48,7 @@
 
       <textarea class="w-100p" name="text" [placeholder]="i18n.text.placeholder" [(ngModel)]="playground.text"></textarea>
 
-      <button class="form-button" type="submit">{{i18n.button.content}}</button>
+      <button class="form-button" type="submit">{{playground.id == null ? i18n.button.create : i18n.button.update}}</button>
     </fieldset>
   </form>
 </ng-container>

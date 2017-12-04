@@ -8,7 +8,7 @@ path /playgrounds/{playgroundId} is Playground;
 
 type Playground {
   create() { isAuthenticated() }
-  update() { canModerate() }
+  update() { isCurrentUser(this.createdBy) || canModerate() }
 
   title: String
   address: String

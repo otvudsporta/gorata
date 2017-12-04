@@ -18,6 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { PlaygroundCreateComponent } from './playground-create/playground-create.component';
 import { PlaygroundListComponent } from './playground-list/playground-list.component';
 import { PlaygroundDetailsComponent } from './playground-details/playground-details.component';
+import { PlaygroundEditComponent } from './playground-edit/playground-edit.component';
 import { AspectRatioContainerComponent } from './aspect-ratio-container/aspect-ratio-container.component';
 
 import { RouterModule } from './router.module';
@@ -42,6 +43,7 @@ import { SettingsComponent } from './settings/settings.component';
     PlaygroundCreateComponent,
     PlaygroundListComponent,
     PlaygroundDetailsComponent,
+    PlaygroundEditComponent,
     AspectRatioContainerComponent,
     CapitalizePipe,
     SettingsComponent,
