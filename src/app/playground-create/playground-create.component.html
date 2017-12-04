@@ -1,44 +1,54 @@
-<form name="create" (ngSubmit)="create(marker, playground)">
-  <fieldset [disabled]="loading">
-    <div class="images">
-      <AspectRatioContainer x="4" y="3" *ngFor="let imageUrl of playground.imageUrls" class="br-md bg-neutral-light">
-        <img class="image absolute stretch" [src]="imageUrl" />
-        <div class="remove br-50p pointer" (click)="removeImage(imageUrl)">✖</div>
-      </AspectRatioContainer>
+<ng-container *ngIf="store.authenticated === undefined">
+  <PageLoader></PageLoader>
+</ng-container>
 
-      <AspectRatioContainer x="4" y="3" class="upload br-md bg-neutral-light">
-        <div class="upload-container absolute stretch">
-          <Loader *ngIf="uploading"></Loader>
-          <h1 *ngIf="!uploading" class="upload-text color-neutral-lighter">+</h1>
-        </div>
+<ng-container *ngIf="store.authenticated === false">
+  {{i18n.unauthenticated}}
+</ng-container>
 
-        <input
-          class="upload-input absolute stretch pointer"
-          type="file" name="imageUrls[]" accept="image/*" (change)="uploadImages($event.currentTarget.files)"
-          multiple
-          [title]="i18n.upload.title"
-        />
-      </AspectRatioContainer>
-    </div>
+<ng-container *ngIf="store.authenticated === true">
+  <form name="create" (ngSubmit)="create(marker, playground)">
+    <fieldset [disabled]="loading">
+      <div class="images">
+        <AspectRatioContainer x="4" y="3" *ngFor="let imageUrl of playground.imageUrls" class="br-md bg-neutral-light">
+          <img class="image absolute stretch" [src]="imageUrl" />
+          <div class="remove br-50p pointer" (click)="removeImage(imageUrl)">✖</div>
+        </AspectRatioContainer>
 
-    <input class="w-100p" type="text" name="title" [placeholder]="i18n.title.placeholder" [(ngModel)]="playground.title" required />
+        <AspectRatioContainer x="4" y="3" class="upload br-md bg-neutral-light">
+          <div class="upload-container absolute stretch">
+            <Loader *ngIf="uploading"></Loader>
+            <h1 *ngIf="!uploading" class="upload-text color-neutral-lighter">+</h1>
+          </div>
 
-    <input class="w-100p" type="text" name="address" [placeholder]="i18n.address.placeholder" [(ngModel)]="playground.address" required />
+          <input
+            class="upload-input absolute stretch pointer"
+            type="file" name="imageUrls[]" accept="image/*" (change)="uploadImages($event.currentTarget.files)"
+            multiple
+            [title]="i18n.upload.title"
+          />
+        </AspectRatioContainer>
+      </div>
 
-    <h5>{{i18n.sports.label}}</h5>
-    <label *ngFor="let sport of sports" class="sport">
-      <input type="checkbox" name="sport_{{sport}}" [(ngModel)]="playground.sports[sport]" />
-      {{sport | capitalize}}
-    </label>
+      <input class="w-100p" type="text" name="title" [placeholder]="i18n.title.placeholder" [(ngModel)]="playground.title" required />
 
-    <h5>{{i18n.needs.label}}</h5>
-    <label *ngFor="let need of needs" class="need">
-      <input type="checkbox" name="need_{{need}}" [(ngModel)]="playground.needs[need]" />
-      {{need | capitalize}}
-    </label>
+      <input class="w-100p" type="text" name="address" [placeholder]="i18n.address.placeholder" [(ngModel)]="playground.address" required />
 
-    <textarea class="w-100p" name="text" [placeholder]="i18n.text.placeholder" [(ngModel)]="playground.text"></textarea>
+      <h5>{{i18n.sports.label}}</h5>
+      <label *ngFor="let sport of sports" class="sport">
+        <input type="checkbox" name="sport_{{sport}}" [(ngModel)]="playground.sports[sport]" />
+        {{sport | capitalize}}
+      </label>
 
-    <button class="form-button" type="submit">{{i18n.button.content}}</button>
-  </fieldset>
-</form>
+      <h5>{{i18n.needs.label}}</h5>
+      <label *ngFor="let need of needs" class="need">
+        <input type="checkbox" name="need_{{need}}" [(ngModel)]="playground.needs[need]" />
+        {{need | capitalize}}
+      </label>
+
+      <textarea class="w-100p" name="text" [placeholder]="i18n.text.placeholder" [(ngModel)]="playground.text"></textarea>
+
+      <button class="form-button" type="submit">{{i18n.button.content}}</button>
+    </fieldset>
+  </form>
+</ng-container>
