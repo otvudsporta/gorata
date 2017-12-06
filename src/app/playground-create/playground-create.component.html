@@ -32,7 +32,11 @@
 
       <input class="w-100p" type="text" name="title" [placeholder]="i18n.title.placeholder" [(ngModel)]="playground.title" required />
 
-      <input class="w-100p" type="text" name="address" [placeholder]="i18n.address.placeholder" [(ngModel)]="playground.address" required />
+      <input #addressInput class="w-100p" type="text" name="address" [placeholder]="i18n.address.placeholder" [(ngModel)]="playground.address" required />
+
+      <a *ngIf="addressSuggestion" (click)="setAddressToSuggestion()">
+        <small>{{(i18n.address.suggestion | interpolate:{ address: addressSuggestion })}}</small>
+      </a>
 
       <h5>{{i18n.sports.label}}</h5>
       <label *ngFor="let sport of sports" class="sport">
