@@ -3,14 +3,14 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
-import * as facebook from './facebook';
+// import * as facebook from './facebook';
 
 @Injectable()
 export class AuthService {
   constructor(public angularFireAuth: AngularFireAuth) {
   }
 
-  facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+  // facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
 
   register(email: string, password: string) {
     return this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password);
@@ -24,15 +24,15 @@ export class AuthService {
     return this.angularFireAuth.auth.signOut();
   }
 
-  facebookLogin() {
-    return this.angularFireAuth.auth.signInWithPopup(this.facebookAuthProvider);
-  }
+  // facebookLogin() {
+  //   return this.angularFireAuth.auth.signInWithPopup(this.facebookAuthProvider);
+  // }
 
-  facebookLinkAccount() {
-    return this.angularFireAuth.auth.currentUser.linkWithPopup(this.facebookAuthProvider);
-  }
+  // facebookLinkAccount() {
+  //   return this.angularFireAuth.auth.currentUser.linkWithPopup(this.facebookAuthProvider);
+  // }
 
-  facebookGetUserInfo(scope?: string[], fields?: string[]) {
-    return facebook.login(scope).then(() => facebook.api(fields));
-  }
+  // facebookGetUserInfo(scope?: string[], fields?: string[]) {
+  //   return facebook.login(scope).then(() => facebook.api(fields));
+  // }
 }

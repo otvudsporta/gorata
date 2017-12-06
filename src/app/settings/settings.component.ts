@@ -21,9 +21,9 @@ export class SettingsComponent implements OnInit {
   }
 
   facebookLinkAccount() {
-    this.authService.facebookLinkAccount()
-      .then(() => this.notify.success(this.i18n.success))
-      .catch((error) => this.notify.error(error && error.message || error))
-    ;
+    // this.authService.facebookLinkAccount()
+    //   .then(() => this.notify.success(this.i18n.success))
+    //   .catch((error) => this.notify.error(error && error.message || error))
+    // ;
   }
 }

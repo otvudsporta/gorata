@@ -9,7 +9,7 @@
 <a *ngIf="(store.user$ | async) == null" routerLink="/login">Вход</a>
 
 <ng-container *ngIf="(store.user$ | async) != null">
-  <a routerLink="/settings">Настройки</a>
-  &nbsp;|&nbsp;
+  <!-- <a routerLink="/settings">Настройки</a>
+  &nbsp;|&nbsp; -->
   <a *ngIf="(store.user$ | async) != null" routerLink="/" (click)="logout()">Изход</a>
 </ng-container>

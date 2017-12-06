@@ -6,7 +6,7 @@ import { PlaygroundListComponent } from './playground-list/playground-list.compo
 import { PlaygroundDetailsComponent } from './playground-details/playground-details.component';
 import { PlaygroundEditComponent } from './playground-edit/playground-edit.component';
 import { LoginComponent } from './login/login.component';
-import { SettingsComponent } from './settings/settings.component';
+// import { SettingsComponent } from './settings/settings.component';
 
 export const routes: Routes = [
   { path: '', component: PlaygroundListComponent },
@@ -14,7 +14,7 @@ export const routes: Routes = [
   { path: 'playgrounds/:id', component: PlaygroundDetailsComponent },
   { path: 'playgrounds/:id/edit', component: PlaygroundEditComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'settings', component: SettingsComponent }
+  // { path: 'settings', component: SettingsComponent }
 ];
 
 @NgModule({
