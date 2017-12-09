@@ -1,3 +1,11 @@
+<form name="anonymousLogin" (ngSubmit)="anonymousLogin()">
+  <fieldset [disabled]="loading">
+    <button type="submit">{{i18n.anonymousLogin}}</button>
+  </fieldset>
+</form>
+
+{{i18n.orLogin}}
+
 <form name="login" (ngSubmit)="login(data.login)">
   <fieldset [disabled]="loading">
     <!-- <button type="button" (click)="facebookLogin()">

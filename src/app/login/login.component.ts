@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
   };
 
   i18n = {
+    anonymousLogin: 'Анонимен Вход',
+    orLogin: 'или вход с вече съществуващ акаунт',
     name: 'Име',
     email: 'Имейл',
     password: 'Парола',
@@ -40,15 +42,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  anonymousLogin() {
+    this.handlePromise(this.authService.anonymousLogin());
+  }
+
   login(data: LoginData) {
-    this.loading = true;
-    this.authService.login(data.email, data.password)
-      .then(() => this.router.navigate(['/']))
-      .catch((error) => {
-        this.notify.error(error && error.message || error);
-        this.loading = false;
-      })
-    ;
+    this.handlePromise(this.authService.login(data.email, data.password));
   }
 
   register(data: RegisterData) {
@@ -56,16 +55,7 @@ export class LoginComponent implements OnInit {
       throw new Error(`Паролата не съвпада с потвърждението! Моля, опитайте отново!`);
     }
 
-    this.loading = true;
-    // TODO: Save user name into the database
-    // TODO: Save user Facebook ID
-    this.authService.register(data.email, data.password)
-      .then(() => this.router.navigate(['/']))
-      .catch((error) => {
-        this.notify.error(error && error.message || error);
-        this.loading = false;
-      })
-    ;
+    this.handlePromise(this.authService.register(data.email, data.password));
   }
 
   // facebookLogin() {
@@ -99,6 +89,18 @@ export class LoginComponent implements OnInit {
   //     })
   //   ;
   // }
+
+  private handlePromise(promise: Promise<any>) {
+    this.loading = true;
+    return (
+      promise
+        .then(() => this.router.navigate(['/']))
+        .catch((error) => {
+          this.notify.error(error && error.message || error);
+          this.loading = false;
+        })
+    );
+  }
 }
 
 interface LoginData {

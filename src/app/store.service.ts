@@ -25,7 +25,13 @@ export class StoreService implements OnDestroy {
   map = new Promise<google.maps.Map>((resolve) => this.mapResolve = resolve);
 
   subscriptions: Subscription[] = [
-    this.authService.angularFireAuth.authState.subscribe((user) => this.authenticated = user != null)
+    this.authService.angularFireAuth.authState.subscribe((user) => {
+      if (this.authenticated == null && user == null) {
+        this.authService.anonymousLogin();
+      }
+
+      this.authenticated = user != null && !user.isAnonymous;
+    })
   ];
 
   ngOnDestroy() {

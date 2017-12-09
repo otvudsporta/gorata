@@ -1,59 +1,41 @@
-import { NgModule, ErrorHandler as NgErrorHandler } from '@angular/core';
+import { ErrorHandler as NgErrorHandler, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { environment } from '../environments/environment';
 
+import { AspectRatioContainerModule } from './aspect-ratio-container/aspect-ratio-container.module';
+// import { ImageModule } from './image/image.module';
+import { LoaderModule } from './loader/loader.module';
+import { RouterModule } from './router.module';
+// import { SettingsModule } from './settings/settings.module';
+
 import { AppComponent } from './app.component';
+import { AuthService } from './auth.service';
+import { ErrorHandler } from './error-handler';
+import { FileUploadService } from './file-upload.service';
 import { HeaderComponent } from './header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { MapComponent } from './map/map.component';
-import { LoaderComponent, PageLoaderComponent } from './loader/loader.component';
 import { LoginComponent } from './login/login.component';
+import { MapComponent } from './map/map.component';
 import { PlaygroundCreateComponent } from './playground-create/playground-create.component';
-import { PlaygroundListComponent } from './playground-list/playground-list.component';
 import { PlaygroundDetailsComponent } from './playground-details/playground-details.component';
 import { PlaygroundEditComponent } from './playground-edit/playground-edit.component';
-import { AspectRatioContainerComponent } from './aspect-ratio-container/aspect-ratio-container.component';
-
-import { RouterModule } from './router.module';
-
-import { ErrorHandler } from './error-handler';
-import { StoreService } from './store.service';
-import { AuthService } from './auth.service';
+import { PlaygroundListComponent } from './playground-list/playground-list.component';
 import { PlaygroundService } from './playground.service';
-import { FileUploadService } from './file-upload.service';
+import { SidebarComponent } from './sidebar/sidebar.component';
+
 import { CapitalizePipe } from './capitalize.pipe';
-// import { SettingsComponent } from './settings/settings.component';
-// import { ImageDirective } from './image.directive';
+import { InterpolatePipe } from './interpolate.pipe';
+
+import { StoreService } from './store.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    SidebarComponent,
-    MapComponent,
-    LoaderComponent, PageLoaderComponent,
-    LoginComponent,
-    PlaygroundCreateComponent,
-    PlaygroundListComponent,
-    PlaygroundDetailsComponent,
-    PlaygroundEditComponent,
-    AspectRatioContainerComponent,
-    CapitalizePipe,
-    // SettingsComponent,
-    // ImageDirective
-  ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    RouterModule,
     AngularFireModule.initializeApp({
       apiKey: environment.GOOGLE_API_KEY,
       authDomain: environment.FIREBASE_AUTH_DOMAIN,
@@ -64,14 +46,37 @@ import { CapitalizePipe } from './capitalize.pipe';
     }),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    SimpleNotificationsModule.forRoot()
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    SimpleNotificationsModule.forRoot(),
+
+    AspectRatioContainerModule,
+    // ImageModule,
+    LoaderModule,
+    RouterModule,
+    // SettingsModule,
+  ],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    LoginComponent,
+    MapComponent,
+    PlaygroundCreateComponent,
+    PlaygroundDetailsComponent,
+    PlaygroundEditComponent,
+    PlaygroundListComponent,
+    SidebarComponent,
+
+    CapitalizePipe,
+    InterpolatePipe,
   ],
   providers: [
     { provide: NgErrorHandler, useClass: ErrorHandler },
-    StoreService,
     AuthService,
+    FileUploadService,
     PlaygroundService,
-    FileUploadService
+    StoreService,
   ],
   bootstrap: [AppComponent]
 })

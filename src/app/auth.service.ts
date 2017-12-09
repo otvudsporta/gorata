@@ -20,6 +20,10 @@ export class AuthService {
     return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
+  anonymousLogin() {
+    return this.angularFireAuth.auth.signInAnonymously();
+  }
+
   logout() {
     return this.angularFireAuth.auth.signOut();
   }
