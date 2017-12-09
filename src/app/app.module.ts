@@ -9,16 +9,17 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { environment } from '../environments/environment';
 
-import { AppComponent } from './app.component';
 import { AspectRatioContainerModule } from './aspect-ratio-container/aspect-ratio-container.module';
+// import { ImageModule } from './image/image.module';
+import { LoaderModule } from './loader/loader.module';
+import { RouterModule } from './router.module';
+// import { SettingsModule } from './settings/settings.module';
+
+import { AppComponent } from './app.component';
 import { AuthService } from './auth.service';
-import { CapitalizePipe } from './capitalize.pipe';
 import { ErrorHandler } from './error-handler';
 import { FileUploadService } from './file-upload.service';
 import { HeaderComponent } from './header/header.component';
-// import { ImageModule } from './image/image.module';
-import { InterpolatePipe } from './interpolate.pipe';
-import { LoaderModule } from './loader/loader.module';
 import { LoginComponent } from './login/login.component';
 import { MapComponent } from './map/map.component';
 import { PlaygroundCreateComponent } from './playground-create/playground-create.component';
@@ -26,9 +27,11 @@ import { PlaygroundDetailsComponent } from './playground-details/playground-deta
 import { PlaygroundEditComponent } from './playground-edit/playground-edit.component';
 import { PlaygroundListComponent } from './playground-list/playground-list.component';
 import { PlaygroundService } from './playground.service';
-import { RouterModule } from './router.module';
-// import { SettingsComponent } from './settings/settings.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+
+import { CapitalizePipe } from './capitalize.pipe';
+import { InterpolatePipe } from './interpolate.pipe';
+
 import { StoreService } from './store.service';
 
 @NgModule({
@@ -46,26 +49,27 @@ import { StoreService } from './store.service';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    RouterModule,
     SimpleNotificationsModule.forRoot(),
 
     AspectRatioContainerModule,
     // ImageModule,
     LoaderModule,
+    RouterModule,
+    // SettingsModule,
   ],
   declarations: [
     AppComponent,
-    CapitalizePipe,
     HeaderComponent,
-    InterpolatePipe,
     LoginComponent,
     MapComponent,
     PlaygroundCreateComponent,
     PlaygroundDetailsComponent,
     PlaygroundEditComponent,
     PlaygroundListComponent,
-    // SettingsComponent,
     SidebarComponent,
+
+    CapitalizePipe,
+    InterpolatePipe,
   ],
   providers: [
     { provide: NgErrorHandler, useClass: ErrorHandler },
