@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, AfterViewInit, ChangeDetectorRef, Input, 
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
+import { AuthService } from '../auth.service';
 import { FileUploadService } from '../file-upload.service';
 import { NotificationsService } from '../notifications.service';
 import { Playground } from '../playground';
@@ -16,6 +17,7 @@ import { toArray, guid } from '../utils';
 })
 export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
+    private authService: AuthService,
     private changeDetector: ChangeDetectorRef,
     private fileUploadService: FileUploadService,
     private notify: NotificationsService,
@@ -60,6 +62,9 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
       },
       address: {
         required: 'Моля, въведете местоположението на площадката!'
+      },
+      text: {
+        required: 'Моля, въведете допълнителна информация!'
       }
     },
     google: {
@@ -241,6 +246,7 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
     if (!marker) throw new Error(this.i18n.errors.marker.required);
     if (!playground.title) throw new Error(this.i18n.errors.title.required);
     if (!playground.address) throw new Error(this.i18n.errors.address.required);
+    if (!playground.text) throw new Error(this.i18n.errors.text.required);
   }
 
   private create(playground: Partial<Playground>) {
