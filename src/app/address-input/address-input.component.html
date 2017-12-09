@@ -1,0 +1,13 @@
+<input
+  #addressInput
+  class="w-100p"
+  type="text"
+  [name]="name"
+  [placeholder]="placeholder"
+  [(ngModel)]="address"
+  required
+/>
+
+<a *ngIf="suggestion" (click)="setAddressToSuggestion()">
+  <small>{{(i18n.suggestion | interpolate:{ address: suggestion })}}</small>
+</a>

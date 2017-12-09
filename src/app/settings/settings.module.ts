@@ -5,12 +5,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { SettingsComponent } from './settings.component';
 
 @NgModule({
-  declarations: [
-    SettingsComponent,
-  ],
   imports: [
     BrowserModule,
     FormsModule,
+  ],
+  declarations: [
+    SettingsComponent,
+  ],
+  exports: [
+    SettingsComponent,
   ],
 })
 export class SettingsModule {
