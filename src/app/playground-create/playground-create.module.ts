@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { AddressInputModule } from '../address-input/address-input.module';
 import { AspectRatioContainerModule } from '../aspect-ratio-container/aspect-ratio-container.module';
 import { LoaderModule } from '../loader/loader.module';
 
@@ -16,7 +15,6 @@ import { PlaygroundCreateComponent } from './playground-create.component';
     CommonModule,
     FormsModule,
 
-    AddressInputModule,
     AspectRatioContainerModule,
     LoaderModule,
   ],

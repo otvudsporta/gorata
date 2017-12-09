@@ -1,8 +1,7 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ChangeDetectorRef, Input, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ChangeDetectorRef, Input, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
-import { AddressInputComponent } from '../address-input/address-input.component';
 import { FileUploadService } from '../file-upload.service';
 import { NotificationsService } from '../notifications.service';
 import { Playground } from '../playground';
@@ -22,12 +21,12 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
     private notify: NotificationsService,
     private playgroundService: PlaygroundService,
     private router: Router,
-    public store: StoreService
+    public store: StoreService,
   ) {
   }
 
   @Input() playground = this.playgroundService.getDefault();
-  @ViewChildren('addressInput') addressInput: QueryList<ElementRef>;
+  @ViewChild('addressInput') addressInput: ElementRef;
 
   user: User;
   subscriptions: Subscription;
@@ -40,8 +39,6 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
 
   // TODO: Move into database
   i18n = {
-    unauthenticated: 'Преди да добавите ново игрище, моля влезте с акаунта си или се регистрирайте',
-
     upload: { title: 'Качете снимка' },
     title: { placeholder: 'Как се казва игрището?' },
     address: { placeholder: 'Къде се намира?', suggestion: 'Може би имахте предвид {{address}}?' },
@@ -91,11 +88,7 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   ngAfterViewInit() {
-    this.subscriptions.add(
-      this.addressInput.changes.subscribe((addressInput: QueryList<ElementRef>) => {
-        this.createSearchBox(addressInput.first.nativeElement);
-      })
-    );
+    this.createSearchBox(this.addressInput.nativeElement);
   }
 
   ngOnDestroy() {
