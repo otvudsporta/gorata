@@ -8,8 +8,23 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'Map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  template: `
+    <div>
+      <Loader></Loader>
+    </div>
+  `,
+  styles: [`
+    :host {
+      grid-row: 1 / -1;
+      grid-column: 2;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 300px;
+      color: var(--neutral-lighter);
+    }
+  `]
 })
 export class MapComponent implements OnInit, OnDestroy {
   private mapResolved: boolean;

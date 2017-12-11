@@ -9,8 +9,24 @@ import { keys } from '../utils';
 
 @Component({
   selector: 'PlaygroundDetails',
-  templateUrl: './playground-details.component.html',
-  styleUrls: ['./playground-details.component.css']
+  template: `
+    <ng-template #loading>
+      <PageLoader></PageLoader>
+    </ng-template>
+
+    <div *ngIf="(playground$ | async) as playground; else loading">
+      <img *ngFor="let imageUrl of playground.imageUrls" [src]="imageUrl" />
+      <div>
+        <a *ngIf="(store.user$ | async)?.uid === playground.createdBy" [routerLink]="['edit']">✏️</a>
+        <h4>{{playground.title}}</h4>
+        <p>{{playground.address}}</p>
+        <p>{{playground.text}}</p>
+        <span *ngFor="let sport of keys(playground.sports)">{{sport}}&nbsp;</span>
+        <br />
+        <span *ngFor="let need of keys(playground.needs)">{{need}}&nbsp;</span>
+      </div>
+    </div>
+  `,
 })
 export class PlaygroundDetailsComponent implements OnInit {
   constructor(

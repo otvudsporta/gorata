@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { AspectRatioContainerModule } from '../aspect-ratio-container/aspect-ratio-container.module';
+
 import { LoaderModule } from '../loader/loader.module';
 
 import { CapitalizePipe } from '../capitalize.pipe';

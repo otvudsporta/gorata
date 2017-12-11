@@ -8,8 +8,9 @@ import { PlaygroundService } from '../playground.service';
 
 @Component({
   selector: 'PlaygroundEdit',
-  templateUrl: './playground-edit.component.html',
-  styleUrls: ['./playground-edit.component.css']
+  template: `
+    <PlaygroundCreate *ngIf="(playground$ | async) as playground" [playground]="playground"></PlaygroundCreate>
+  `,
 })
 export class PlaygroundEditComponent implements OnInit {
   playground$: Observable<Playground>;

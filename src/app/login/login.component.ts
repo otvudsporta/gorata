@@ -7,7 +7,6 @@ import { NotificationsService } from '../notifications.service';
 @Component({
   selector: 'Login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   loading: boolean;

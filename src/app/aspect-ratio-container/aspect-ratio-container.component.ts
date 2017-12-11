@@ -2,8 +2,15 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'AspectRatioContainer',
-  templateUrl: './aspect-ratio-container.component.html',
-  styleUrls: ['./aspect-ratio-container.component.css']
+  template: `
+    <div [style.padding-bottom.%]="100 * y / x"></div>
+    <ng-content></ng-content>
+  `,
+  styles: [`
+    :host {
+      position: relative;
+    }
+  `]
 })
 export class AspectRatioContainerComponent {
   @Input() x: number;

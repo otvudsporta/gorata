@@ -1,13 +1,17 @@
 import { AuthService } from '../auth.service';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import { NotificationsService } from '../notifications.service';
 
 @Component({
   selector: 'Settings',
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css']
+  template: `
+  <button (click)="facebookLinkAccount()">
+    <img src="assets/facebook.svg" />
+    {{i18n.facebookLinkAccount}}
+  </button>
+  `,
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent {
   constructor(private authService: AuthService, private notify: NotificationsService) {
   }
 
@@ -16,9 +20,6 @@ export class SettingsComponent implements OnInit {
     facebookLinkAccount: 'Свързване на Facebook акаунт',
     success: 'Успешно свързахте акаунта си!'
   };
-
-  ngOnInit() {
-  }
 
   facebookLinkAccount() {
     // this.authService.facebookLinkAccount()

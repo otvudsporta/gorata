@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'Sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  template: `<router-outlet></router-outlet>`,
+  styles: [`
+    :host {
+      grid-row: 2;
+      grid-column: 1;
+      background: var(--neutral-lighter);
+    }
+  `]
 })
-export class SidebarComponent implements OnInit {
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
+export class SidebarComponent {
 }

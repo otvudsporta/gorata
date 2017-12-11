@@ -13,6 +13,7 @@ import { AspectRatioContainerModule } from './aspect-ratio-container/aspect-rati
 // import { ImageModule } from './image/image.module';
 import { LoaderModule } from './loader/loader.module';
 import { RouterModule } from './router.module';
+import { PlaygroundCreateModule } from './playground-create/playground-create.module';
 // import { SettingsModule } from './settings/settings.module';
 
 import { AppComponent } from './app.component';
@@ -22,15 +23,11 @@ import { FileUploadService } from './file-upload.service';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { MapComponent } from './map/map.component';
-import { PlaygroundCreateComponent } from './playground-create/playground-create.component';
 import { PlaygroundDetailsComponent } from './playground-details/playground-details.component';
 import { PlaygroundEditComponent } from './playground-edit/playground-edit.component';
 import { PlaygroundListComponent } from './playground-list/playground-list.component';
 import { PlaygroundService } from './playground.service';
 import { SidebarComponent } from './sidebar/sidebar.component';
-
-import { CapitalizePipe } from './capitalize.pipe';
-import { InterpolatePipe } from './interpolate.pipe';
 
 import { StoreService } from './store.service';
 
@@ -54,6 +51,7 @@ import { StoreService } from './store.service';
     AspectRatioContainerModule,
     // ImageModule,
     LoaderModule,
+    PlaygroundCreateModule,
     RouterModule,
     // SettingsModule,
   ],
@@ -62,14 +60,10 @@ import { StoreService } from './store.service';
     HeaderComponent,
     LoginComponent,
     MapComponent,
-    PlaygroundCreateComponent,
     PlaygroundDetailsComponent,
     PlaygroundEditComponent,
     PlaygroundListComponent,
     SidebarComponent,
-
-    CapitalizePipe,
-    InterpolatePipe,
   ],
   providers: [
     { provide: NgErrorHandler, useClass: ErrorHandler },
