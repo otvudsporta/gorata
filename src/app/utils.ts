@@ -18,3 +18,24 @@ export const guid = (): string => {
     return v.toString(16);
   });
 };
+
+export const createElement = <
+  TagNameType extends keyof ElementTagNameMap,
+  ElementType extends ElementTagNameMap[TagNameType]
+>(tag: TagNameType, attrs: CustomAttrs & Partial<ElementType> = {}, children = []): ElementType => {
+  const el = document.createElement(tag);
+  Object.keys(attrs).forEach((attr) => {
+    el[attrMap[attr] || attr] = attrs[attr];
+  });
+  children.forEach((child) => el.appendChild(child));
+
+  return el as ElementType;
+};
+
+const attrMap = {
+  class: 'className'
+};
+
+interface CustomAttrs {
+  class?: string;
+}

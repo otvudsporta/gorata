@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import {} from '@types/googlemaps';
+import { Subscription } from 'rxjs/Subscription';
 
 import { environment } from '../../environments/environment';
-import { loadScript } from '../utils';
 import { StoreService } from '../store.service';
-import { Subscription } from 'rxjs/Subscription';
+import { loadScript } from '../utils';
+
+import { NavigatorService } from '../navigator.service';
 
 @Component({
   selector: 'Map',
@@ -31,7 +33,11 @@ export class MapComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   private markers: google.maps.Marker[] = [];
 
-  constructor(private elementRef: ElementRef, private store: StoreService) {
+  constructor(
+    private elementRef: ElementRef,
+    private navigatorService: NavigatorService,
+    private store: StoreService
+  ) {
   }
 
   async ngOnInit() {
@@ -55,6 +61,7 @@ export class MapComponent implements OnInit, OnDestroy {
       }
     });
     map.fitBounds(bounds);
+    this.navigatorService.addNavigatorControl(map);
 
     this.store.mapResolve(map);
     this.mapResolved = true;

@@ -12,9 +12,13 @@ import { environment } from '../environments/environment';
 import { AspectRatioContainerModule } from './aspect-ratio-container/aspect-ratio-container.module';
 // import { ImageModule } from './image/image.module';
 import { LoaderModule } from './loader/loader.module';
+import { MapModule } from './map/map.module';
 import { RouterModule } from './router.module';
 import { PlaygroundCreateModule } from './playground-create/playground-create.module';
 // import { SettingsModule } from './settings/settings.module';
+
+import { NavigatorService } from './navigator.service';
+import { StoreService } from './store.service';
 
 import { AppComponent } from './app.component';
 import { AuthService } from './auth.service';
@@ -22,14 +26,11 @@ import { ErrorHandler } from './error-handler';
 import { FileUploadService } from './file-upload.service';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
-import { MapComponent } from './map/map.component';
 import { PlaygroundDetailsComponent } from './playground-details/playground-details.component';
 import { PlaygroundEditComponent } from './playground-edit/playground-edit.component';
 import { PlaygroundListComponent } from './playground-list/playground-list.component';
 import { PlaygroundService } from './playground.service';
 import { SidebarComponent } from './sidebar/sidebar.component';
-
-import { StoreService } from './store.service';
 
 @NgModule({
   imports: [
@@ -51,26 +52,28 @@ import { StoreService } from './store.service';
     AspectRatioContainerModule,
     // ImageModule,
     LoaderModule,
+    MapModule,
     PlaygroundCreateModule,
     RouterModule,
     // SettingsModule,
-  ],
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    LoginComponent,
-    MapComponent,
-    PlaygroundDetailsComponent,
-    PlaygroundEditComponent,
-    PlaygroundListComponent,
-    SidebarComponent,
   ],
   providers: [
     { provide: NgErrorHandler, useClass: ErrorHandler },
     AuthService,
     FileUploadService,
     PlaygroundService,
+
+    NavigatorService,
     StoreService,
+  ],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    LoginComponent,
+    PlaygroundDetailsComponent,
+    PlaygroundEditComponent,
+    PlaygroundListComponent,
+    SidebarComponent,
   ],
   bootstrap: [AppComponent]
 })
