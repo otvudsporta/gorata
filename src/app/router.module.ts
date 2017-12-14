@@ -9,8 +9,8 @@ import { LoginComponent } from './login/login.component';
 // import { SettingsComponent } from './settings/settings.component';
 
 export const routes: Routes = [
-  { path: '', component: PlaygroundListComponent },
-  { path: 'new', component: PlaygroundCreateComponent },
+  { path: '', component: PlaygroundCreateComponent },
+  { path: 'playgrounds', component: PlaygroundListComponent },
   { path: 'playgrounds/:id', component: PlaygroundDetailsComponent },
   { path: 'playgrounds/:id/edit', component: PlaygroundEditComponent },
   { path: 'login', component: LoginComponent },

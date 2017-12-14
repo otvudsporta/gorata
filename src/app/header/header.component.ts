@@ -9,7 +9,11 @@ import { AuthService } from '../auth.service';
       <img class="logo-image" src="assets/logo.png" alt="Отвъд Спорта Лого" />
     </a>
 
-    <a routerLink="/new">Добави Игрище</a>
+    <a routerLink="/">Добави Игрище</a>
+
+    &nbsp;|&nbsp;
+
+    <a routerLink="/playgrounds">Игрища</a>
 
     &nbsp;|&nbsp;
 
