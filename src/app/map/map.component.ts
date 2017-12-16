@@ -4,11 +4,13 @@ import {} from '@types/googlemaps';
 import { Subscription } from 'rxjs/Subscription';
 
 import { environment } from '../../environments/environment';
+import { NavigatorService } from '../navigator.service';
 import { Playground } from '../playground';
 import { StoreService } from '../store.service';
 import { loadScript } from '../utils';
 
-import { NavigatorService } from '../navigator.service';
+// Source: https://mapstyle.withgoogle.com
+import mapStyles from './styles.json';
 
 @Component({
   selector: 'Map',
@@ -60,6 +62,7 @@ export class MapComponent implements OnInit, OnDestroy {
       center: bounds.getCenter(),
       scaleControl: true,
       panControl: false,
+      styles: mapStyles,
       zoomControlOptions: {
         position: google.maps.ControlPosition.RIGHT_TOP,
         style: google.maps.ZoomControlStyle.SMALL
