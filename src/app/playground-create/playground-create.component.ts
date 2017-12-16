@@ -8,7 +8,7 @@ import { NotificationsService } from '../notifications.service';
 import { Playground } from '../playground';
 import { PlaygroundService } from '../playground.service';
 import { StoreService, User } from '../store.service';
-import { toArray, guid, loadImage } from '../utils';
+import { toArray, guid, loadImageIntoCache } from '../utils';
 
 @Component({
   selector: 'PlaygroundCreate',
@@ -114,8 +114,7 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
       await Promise.all(files.map(async (file) => {
         const uploadTaskSnapshot = await this.fileUploadService.upload(`tmp/${guid()}`, file);
 
-        // NOTE: Show the image after it's loaded in the browser cache
-        await loadImage(uploadTaskSnapshot.downloadURL);
+        await loadImageIntoCache(uploadTaskSnapshot.downloadURL);
         this.playground.imageUrls.push(uploadTaskSnapshot.downloadURL);
       }));
     }

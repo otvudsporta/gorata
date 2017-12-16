@@ -33,10 +33,15 @@
         <div class="remove br-50p pointer" (click)="removeImage(imageUrl)">✖</div>
       </AspectRatioContainer>
 
+      <AspectRatioContainer *ngIf="uploading" x="4" y="3" class="upload br-md bg-neutral-light">
+        <div class="upload-container absolute stretch">
+          <Loader></Loader>
+        </div>
+      </AspectRatioContainer>
+
       <AspectRatioContainer x="4" y="3" class="upload br-md bg-neutral-light">
         <div class="upload-container absolute stretch">
-          <Loader *ngIf="uploading"></Loader>
-          <h1 *ngIf="!uploading" class="upload-text color-neutral-lighter">+</h1>
+          <h1 class="upload-text color-neutral-lighter">+</h1>
         </div>
 
         <input

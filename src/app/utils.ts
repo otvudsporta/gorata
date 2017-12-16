@@ -19,11 +19,12 @@ export const guid = (): string => {
   });
 };
 
-export const loadImage = (src: string) => new Promise((resolve, reject) => {
+export const loadImageIntoCache = (src: string) => new Promise((resolve, reject) => {
   const image = document.createElement('img');
   image.src = src;
   image.onload = resolve;
-  image.onerror = reject;
+  // Resolve with success, even though the caching failed
+  image.onerror = resolve;
 });
 
 export const createElement = <
