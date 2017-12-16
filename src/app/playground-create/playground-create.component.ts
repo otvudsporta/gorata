@@ -8,7 +8,7 @@ import { NotificationsService } from '../notifications.service';
 import { Playground } from '../playground';
 import { PlaygroundService } from '../playground.service';
 import { StoreService, User } from '../store.service';
-import { toArray, guid } from '../utils';
+import { toArray, guid, loadImage } from '../utils';
 
 @Component({
   selector: 'PlaygroundCreate',
@@ -41,12 +41,13 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
 
   // TODO: Move into database
   i18n = {
-    upload: { title: 'Качете снимка' },
+    callToAction: 'Попълни основната информация за игрището:',
+    address: { placeholder: 'Отбележи на картата / потърси по адрес', suggestion: '{{address}}' },
     title: { placeholder: 'Как се казва игрището?' },
-    address: { placeholder: 'Къде се намира?', suggestion: 'Може би имахте предвид {{address}}?' },
     sports: { label: 'За какви спортове е предназначено?' },
     needs: { label: 'От какво има нужда игрището?' },
-    text: { placeholder: 'Допълнителни коментари' },
+    images: { label: 'Добавяне на снимки (опционално)', title: 'Качете снимка' },
+    text: { placeholder: 'Допълнителни коментари (опционално)' },
     button: { create: 'Добави игрище', update: 'Запази промените' },
 
     success: {
@@ -110,25 +111,19 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
     this.uploading = true;
 
     try {
-      await Promise.all(files.map(this.uploadImage));
+      await Promise.all(files.map(async (file) => {
+        const uploadTaskSnapshot = await this.fileUploadService.upload(`tmp/${guid()}`, file);
+
+        // NOTE: Show the image after it's loaded in the browser cache
+        await loadImage(uploadTaskSnapshot.downloadURL);
+        this.playground.imageUrls.push(uploadTaskSnapshot.downloadURL);
+      }));
+    }
+    catch (error) {
     }
     finally {
       this.uploading = false;
     }
-  }
-
-  uploadImage(file: File) {
-    return new Promise(async (resolve, reject) => {
-      const uploadTaskSnapshot = await this.fileUploadService.upload(`tmp/${guid()}`, file);
-
-      // Only redraw after the image is loaded
-      const image = document.createElement('img');
-      image.src = uploadTaskSnapshot.downloadURL;
-      image.onload = () => {
-        this.playground.imageUrls.push(uploadTaskSnapshot.downloadURL);
-        resolve();
-      };
-    });
   }
 
   async removeImage(imageUrl: string) {
@@ -176,6 +171,9 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
   setAddressToSuggestion() {
     this.playground.address = this.addressSuggestion;
     this.addressSuggestion = null;
+    // NOTE: Because the address input is outside of Angular,
+    // change detection has to be run manually here
+    this.changeDetector.detectChanges();
   }
 
   private async setMarker(map: google.maps.Map, position: google.maps.LatLng, address?: string) {

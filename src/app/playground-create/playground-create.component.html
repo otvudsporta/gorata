@@ -1,5 +1,32 @@
 <form name="create" (ngSubmit)="save(marker, playground)">
   <fieldset [disabled]="loading">
+    <h5>{{i18n.callToAction}}</h5>
+
+    <!-- Address -->
+    <input #addressInput class="w-100p" type="text" name="address" [placeholder]="i18n.address.placeholder" [(ngModel)]="playground.address" required />
+    <small *ngIf="addressSuggestion" class="pointer" (click)="setAddressToSuggestion()">
+      {{(i18n.address.suggestion | interpolate:{ address: addressSuggestion })}}
+    </small>
+
+    <!-- Title -->
+    <input class="w-100p" type="text" name="title" [placeholder]="i18n.title.placeholder" [(ngModel)]="playground.title" required />
+
+    <!-- Sports -->
+    <h5>{{i18n.sports.label}}</h5>
+    <label *ngFor="let sport of sports" class="sport">
+      <input type="checkbox" name="sport_{{sport}}" [(ngModel)]="playground.sports[sport]" />
+      {{sport | capitalize}}
+    </label>
+
+    <!-- Needs -->
+    <h5>{{i18n.needs.label}}</h5>
+    <label *ngFor="let need of needs" class="need">
+      <input type="checkbox" name="need_{{need}}" [(ngModel)]="playground.needs[need]" />
+      {{need | capitalize}}
+    </label>
+
+    <!-- Images -->
+    <h5>{{i18n.images.label}}</h5>
     <div class="images">
       <AspectRatioContainer x="4" y="3" *ngFor="let imageUrl of playground.imageUrls" class="br-md bg-neutral-light">
         <img class="image absolute stretch" [src]="imageUrl" />
@@ -16,33 +43,15 @@
           class="upload-input absolute stretch pointer"
           type="file" name="imageUrls[]" accept="image/*" (change)="uploadImages($event.currentTarget.files)"
           multiple
-          [title]="i18n.upload.title"
+          [title]="i18n.images.title"
         />
       </AspectRatioContainer>
     </div>
 
-    <input class="w-100p" type="text" name="title" [placeholder]="i18n.title.placeholder" [(ngModel)]="playground.title" required />
-
-    <input #addressInput class="w-100p" type="text" name="address" [placeholder]="i18n.address.placeholder" [(ngModel)]="playground.address" required />
-
-    <a *ngIf="addressSuggestion" (click)="setAddressToSuggestion()">
-      <small>{{(i18n.address.suggestion | interpolate:{ address: addressSuggestion })}}</small>
-    </a>
-
-    <h5>{{i18n.sports.label}}</h5>
-    <label *ngFor="let sport of sports" class="sport">
-      <input type="checkbox" name="sport_{{sport}}" [(ngModel)]="playground.sports[sport]" />
-      {{sport | capitalize}}
-    </label>
-
-    <h5>{{i18n.needs.label}}</h5>
-    <label *ngFor="let need of needs" class="need">
-      <input type="checkbox" name="need_{{need}}" [(ngModel)]="playground.needs[need]" />
-      {{need | capitalize}}
-    </label>
-
+    <!-- Additional info -->
     <textarea class="w-100p" name="text" [placeholder]="i18n.text.placeholder" [(ngModel)]="playground.text"></textarea>
 
+    <!-- Submit -->
     <button class="form-button" type="submit">{{playground.id == null ? i18n.button.create : i18n.button.update}}</button>
   </fieldset>
 </form>

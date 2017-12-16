@@ -4,9 +4,6 @@ import 'firebase/storage';
 
 @Injectable()
 export class FileUploadService {
-  constructor() {
-  }
-
   upload(path: string, file: File) {
     return firebase.storage().ref().child(path).put(file);
   }

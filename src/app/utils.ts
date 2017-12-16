@@ -19,6 +19,13 @@ export const guid = (): string => {
   });
 };
 
+export const loadImage = (src: string) => new Promise((resolve, reject) => {
+  const image = document.createElement('img');
+  image.src = src;
+  image.onload = resolve;
+  image.onerror = reject;
+});
+
 export const createElement = <
   TagNameType extends keyof ElementTagNameMap,
   ElementType extends ElementTagNameMap[TagNameType]
