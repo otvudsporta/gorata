@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
       grid-row: 2;
       grid-column: 1;
       background: var(--neutral-lighter);
+      overflow-x: hidden;
+      overflow-y: auto;
     }
   `]
 })

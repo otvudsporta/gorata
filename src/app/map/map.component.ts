@@ -1,8 +1,10 @@
-import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 import {} from '@types/googlemaps';
 import { Subscription } from 'rxjs/Subscription';
 
 import { environment } from '../../environments/environment';
+import { Playground } from '../playground';
 import { StoreService } from '../store.service';
 import { loadScript } from '../utils';
 
@@ -30,13 +32,16 @@ import { NavigatorService } from '../navigator.service';
 })
 export class MapComponent implements OnInit, OnDestroy {
   private mapResolved: boolean;
-  private subscriptions: Subscription[] = [];
+  private subscriptions = new Subscription();
   private markers: google.maps.Marker[] = [];
+  private markerListeners: google.maps.MapsEventListener[] = [];
 
   constructor(
     private elementRef: ElementRef,
     private navigatorService: NavigatorService,
-    private store: StoreService
+    private router: Router,
+    private store: StoreService,
+    private zone: NgZone
   ) {
   }
 
@@ -66,9 +71,10 @@ export class MapComponent implements OnInit, OnDestroy {
     this.store.mapResolve(map);
     this.mapResolved = true;
 
-    this.subscriptions.push(
+    this.subscriptions.add(
       this.store.playgrounds$.subscribe((playgrounds) => {
-        this.markers.forEach((marker) => marker.setMap(null));
+        this.removeAllMarkers();
+        this.removeAllMarkerListeners();
         playgrounds.forEach((playground) => {
           const marker = new google.maps.Marker({
             map,
@@ -77,12 +83,30 @@ export class MapComponent implements OnInit, OnDestroy {
             icon: 'assets/map-marker.svg'
           });
           this.markers.push(marker);
+          this.addMarkerListener(marker, playground);
         });
       })
     );
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+    this.subscriptions.unsubscribe();
+    this.removeAllMarkerListeners();
+  }
+
+  private removeAllMarkers() {
+    this.markers.forEach((marker) => marker.setMap(null));
+  }
+
+  private addMarkerListener(marker: google.maps.Marker, playground: Playground) {
+    this.markerListeners.push(
+      marker.addListener('click', () => {
+        this.zone.run(() => this.router.navigate(['playgrounds', playground.id]));
+      })
+    );
+  }
+
+  private removeAllMarkerListeners() {
+    this.markerListeners.forEach((listener) => listener.remove());
   }
 }
