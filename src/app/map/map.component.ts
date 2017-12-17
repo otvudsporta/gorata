@@ -10,7 +10,7 @@ import { StoreService } from '../store.service';
 import { loadScript } from '../utils';
 
 // Source: https://mapstyle.withgoogle.com
-import mapStyles from './styles.json';
+// import mapStyles from './styles.json';
 
 @Component({
   selector: 'Map',
@@ -34,7 +34,7 @@ import mapStyles from './styles.json';
 })
 export class MapComponent implements OnInit, OnDestroy {
   private mapResolved: boolean;
-  private subscriptions = new Subscription();
+  private subscriptions: Subscription[] = [];
   private markers: google.maps.Marker[] = [];
   private markerListeners: google.maps.MapsEventListener[] = [];
 
@@ -62,7 +62,7 @@ export class MapComponent implements OnInit, OnDestroy {
       center: bounds.getCenter(),
       scaleControl: true,
       panControl: false,
-      styles: mapStyles,
+      // styles: mapStyles,
       zoomControlOptions: {
         position: google.maps.ControlPosition.RIGHT_TOP,
         style: google.maps.ZoomControlStyle.SMALL
@@ -74,7 +74,7 @@ export class MapComponent implements OnInit, OnDestroy {
     this.store.mapResolve(map);
     this.mapResolved = true;
 
-    this.subscriptions.add(
+    this.subscriptions.push(
       this.store.playgrounds$.subscribe((playgrounds) => {
         this.removeAllMarkers();
         this.removeAllMarkerListeners();
@@ -93,7 +93,8 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptions.unsubscribe();
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+    this.subscriptions = [];
     this.removeAllMarkerListeners();
   }
 
@@ -111,5 +112,6 @@ export class MapComponent implements OnInit, OnDestroy {
 
   private removeAllMarkerListeners() {
     this.markerListeners.forEach((listener) => listener.remove());
+    this.markerListeners = [];
   }
 }
