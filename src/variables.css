@@ -6,10 +6,10 @@
   --neutral-dark: #a5a5a5;
   --neutral-darker: #6c777f;
 
-  --foreground-lighter: #999999;
+  --foreground-lighter: #dbdbdb;
   --foreground-light: #666666;
-  --foreground: #333333;
-  --foreground-dark: #111111;
+  --foreground: #3b4349;
+  --foreground-dark: #12191e;
   --foreground-darker: #000000;
 
   --primary: #0064b1;
@@ -32,8 +32,15 @@
 
   --facebook: #3b5998;
 
+  /* Spacing */
+  --spacing-xs: 0.4rem;
+  --spacing-sm: 0.8rem;
+  --spacing-md: 1.2rem;
+  --spacing-lg: 1.6rem;
+  --spacing-xl: 2rem;
+
   /* Font */
-  --font-size: 14px;
+  --font-size: 15px;
   --font-family: 'Roboto', Helvetica, sans-serif;
 
   --h1-font-size: 40px;
@@ -47,7 +54,10 @@
   --sidebar-width-min: 375px;
   --sidebar-width-max: 35%;
 
-  /* Animation */
-  --animation-duration: 0.4s;
-  --animation-easing: cubic-bezier(0.25, 1, 0.25, 1); /* ease */
+  /* Transitions */
+  --transition-duration: 0.4s;
+  --transition-easing: cubic-bezier(0.25, 1, 0.25, 1); /* ease */
+
+  /* Misc */
+  --box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.18);
 }

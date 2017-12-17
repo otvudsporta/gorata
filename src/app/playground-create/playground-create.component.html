@@ -1,68 +1,89 @@
 <form name="create" (ngSubmit)="save(marker, playground)">
   <fieldset [disabled]="loading">
-    <h5>{{i18n.callToAction}}</h5>
+    <div class="ph-lg">
+      <h4 class="mv-md">{{i18n.details}}</h4>
 
-    <!-- Address -->
-    <input #addressInput class="w-100p" type="text" name="address" [placeholder]="i18n.address.placeholder" [(ngModel)]="playground.address" required />
-    <small *ngIf="addressSuggestion" class="pointer" (click)="setAddressToSuggestion()">
-      {{(i18n.address.suggestion | interpolate:{ address: addressSuggestion })}}
-    </small>
+      <!-- Address -->
+      <input #addressInput class="w-100p" type="text" name="address" [placeholder]="i18n.address.placeholder" [(ngModel)]="playground.address" required />
+      <small *ngIf="addressSuggestion" class="pointer" (click)="setAddressToSuggestion()">
+        {{(i18n.address.suggestion | interpolate:{ address: addressSuggestion })}}
+      </small>
 
-    <!-- Title -->
-    <input class="w-100p" type="text" name="title" [placeholder]="i18n.title.placeholder" [(ngModel)]="playground.title" required />
-
-    <!-- Sports -->
-    <h5>{{i18n.sports.label}}</h5>
-    <label *ngFor="let sport of sports" class="sport">
-      <input type="checkbox" name="sport_{{sport}}" [(ngModel)]="playground.sports[sport]" />
-      {{sport | capitalize}}
-    </label>
-
-    <!-- Needs -->
-    <h5>{{i18n.needs.label}}</h5>
-    <label *ngFor="let need of needs" class="need">
-      <input type="checkbox" name="need_{{need}}" [(ngModel)]="playground.needs[need]" />
-      {{need | capitalize}}
-    </label>
-
-    <!-- Images -->
-    <h5>{{i18n.images.label}}</h5>
-    <div class="images">
-      <AspectRatioContainer x="4" y="3" *ngFor="let imageUrl of playground.imageUrls" class="br-md bg-neutral-light">
-        <img class="image absolute stretch" [src]="imageUrl" />
-        <div class="remove br-50p pointer" (click)="removeImage(imageUrl)">✖</div>
-      </AspectRatioContainer>
-
-      <AspectRatioContainer *ngIf="uploading" x="4" y="3" class="upload br-md bg-neutral-light">
-        <div class="upload-container absolute stretch">
-          <Loader></Loader>
-        </div>
-      </AspectRatioContainer>
-
-      <AspectRatioContainer x="4" y="3" class="upload br-md bg-neutral-light">
-        <div class="upload-container absolute stretch">
-          <h1 class="upload-text color-neutral-lighter">+</h1>
-        </div>
-
-        <input
-          class="upload-input absolute stretch pointer"
-          type="file" name="imageUrls[]" accept="image/*" (change)="uploadImages($event.currentTarget.files)"
-          multiple
-          [title]="i18n.images.title"
-        />
-      </AspectRatioContainer>
+      <!-- Title -->
+      <input class="w-100p" type="text" name="title" [placeholder]="i18n.title.placeholder" [(ngModel)]="playground.title" required />
     </div>
 
-    <!-- Additional info -->
-    <textarea class="w-100p" name="text" [placeholder]="i18n.text.placeholder" [(ngModel)]="playground.text"></textarea>
+    <hr class="mv-md" />
 
-    <!-- Name -->
-    <input class="w-100p" type="text" name="name" [placeholder]="i18n.name.placeholder" [(ngModel)]="playground.name" required />
+    <div class="ph-lg">
+      <!-- Sports -->
+      <h4 class="mv-md">{{i18n.sports.label}}</h4>
+      <label *ngFor="let sport of sports" class="flex ai-center pointer">
+        <input type="checkbox" name="sport_{{sport}}" [(ngModel)]="playground.sports[sport]" />
+        {{sport | capitalize}}
+      </label>
+    </div>
 
-    <!-- Name -->
-    <input class="w-100p" type="email" name="email" [placeholder]="i18n.email.placeholder" [(ngModel)]="playground.email" required />
+    <hr class="mv-md" />
 
-    <!-- Submit -->
-    <button class="form-button" type="submit">{{playground.id == null ? i18n.button.create : i18n.button.update}}</button>
+    <div class="ph-lg">
+      <!-- Needs -->
+      <h4 class="mv-md">{{i18n.needs.label}}</h4>
+      <label *ngFor="let need of needs" class="flex ai-center pointer">
+        <input type="checkbox" name="need_{{need}}" [(ngModel)]="playground.needs[need]" />
+        {{need | capitalize}}
+      </label>
+    </div>
+
+    <hr class="mv-md" />
+
+    <div class="ph-lg">
+      <!-- Images -->
+      <h4 class="mv-md">{{i18n.images.label}}</h4>
+      <div class="images__container">
+        <AspectRatioContainer x="4" y="3" *ngFor="let imageUrl of playground.imageUrls" class="br-md bg-neutral-light">
+          <img class="image absolute stretch br-md" [src]="imageUrl" />
+          <div class="image__remove br-50p pointer" (click)="removeImage(imageUrl)">✖</div>
+        </AspectRatioContainer>
+
+        <AspectRatioContainer *ngIf="uploading" x="4" y="3" class="br-md bg-neutral-light">
+          <div class="upload__container absolute stretch">
+            <Loader></Loader>
+          </div>
+        </AspectRatioContainer>
+      </div>
+
+      <button class="images__addButton relative w-100p bg-neutral-lighter color-primary border-primary" type="button">
+        + {{i18n.images.title}}
+
+        <input
+          class="images__input absolute stretch pointer"
+          type="file" name="imageUrls[]" accept="image/*" (change)="uploadImages($event.currentTarget.files)"
+          multiple
+        />
+      </button>
+    </div>
+
+    <hr class="mv-md" />
+
+    <div class="ph-lg">
+      <!-- Additional info -->
+      <textarea class="w-100p" name="text" [placeholder]="i18n.text.placeholder" rows="6" [(ngModel)]="playground.text"></textarea>
+    </div>
+
+    <hr class="mv-md" />
+
+    <div class="ph-lg">
+      <!-- Name -->
+      <input class="w-100p" type="text" name="name" [placeholder]="i18n.name.placeholder" [(ngModel)]="playground.name" required />
+
+      <!-- Email -->
+      <input class="w-100p" type="email" name="email" [placeholder]="i18n.email.placeholder" [(ngModel)]="playground.email" required />
+
+      <!-- Submit -->
+      <button class="w-100p bg-primary color-neutral-lighter" type="submit">
+        {{playground.id == null ? i18n.button.create : i18n.button.update}}
+      </button>
+    </div>
   </fieldset>
 </form>

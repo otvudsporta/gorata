@@ -41,16 +41,16 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
 
   // TODO: Move into database
   i18n = {
-    callToAction: 'Попълни основната информация за игрището:',
+    details: 'Данни за игрището',
     address: { placeholder: 'Отбележи на картата / потърси по адрес', suggestion: '{{address}}' },
     title: { placeholder: 'Как се казва игрището?' },
     sports: { label: 'За какви спортове е предназначено?' },
     needs: { label: 'От какво има нужда игрището?' },
-    images: { label: 'Добавяне на снимки (опционално)', title: 'Качете снимка' },
+    images: { label: 'Добавяне на снимки (опционално)', title: 'Добави снимка' },
     text: { placeholder: 'Допълнителни коментари (опционално)' },
     name: { placeholder: 'Твоето име' },
     email: { placeholder: 'E-mail за връзка' },
-    button: { create: 'Добави игрище', update: 'Запази промените' },
+    button: { create: 'Добави игрището', update: 'Запази промените' },
 
     success: {
       create: 'Площадката е добавена успешно',

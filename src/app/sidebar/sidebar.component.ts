@@ -3,10 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'Sidebar',
   template: `
-    <Header class="header"></Header>
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
+    <Header class="header sticky top-0"></Header>
+    <router-outlet></router-outlet>
   `,
   styles: [`
     :host {
@@ -25,13 +23,7 @@ import { Component } from '@angular/core';
     }
 
     .header {
-      position: sticky;
-      top: 0;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.18);
-    }
-
-    .content {
-      padding: 1.75rem;
+      box-shadow: var(--box-shadow);
     }
   `]
 })

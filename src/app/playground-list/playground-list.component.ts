@@ -23,8 +23,8 @@ import { StoreService } from '../store.service';
     .list-item {
       display: grid;
       grid-template-columns: 64px 1fr auto;
-      grid-gap: 5px;
-      padding: 10px;
+      grid-gap: 0.25rem;
+      padding: 0.75rem;
     }
 
     .list-item + .list-item {

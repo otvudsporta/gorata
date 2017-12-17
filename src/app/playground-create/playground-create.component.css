@@ -1,23 +1,24 @@
-.images {
+.images__container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
+  grid-gap: 0.6rem;
 }
 
 .image {
+  box-shadow: var(--box-shadow);
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.remove {
+.image__remove {
   --size: 24px;
 
   position: absolute;
   top: -5px;
   right: -5px;
 
-  transition: all var(--animation-duration) var(--animation-easing);
+  transition: all var(--transition-duration) var(--transition-easing);
   border: 2px solid var(--neutral-lighter);
   background: var(--neutral);
   width: var(--size);
@@ -27,31 +28,22 @@
   color: var(--neutral-lighter);
 }
 
-.remove:hover {
+.image__remove:hover {
   transform: scale(1.25);
 }
 
-.upload-container {
+.images__addButton {
+  font-weight: 500;
+}
+
+.upload__container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.upload-text {
-  transition: all var(--animation-duration) var(--animation-easing);
-}
-
-.upload:hover .upload-text {
-  transform: scale(1.25);
-}
-
 /* https://stackoverflow.com/questions/210643/in-javascript-can-i-make-a-click-event-fire-programmatically-for-a-file-input */
-.upload-input {
+.images__input {
   opacity: 0;
   width: 100%;
-}
-
-.sport,
-.need {
-  display: block;
 }

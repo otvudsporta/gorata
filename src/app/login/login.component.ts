@@ -18,13 +18,13 @@ export class LoginComponent implements OnInit {
 
   i18n = {
     anonymousLogin: 'Анонимен Вход',
-    orLogin: 'или вход с вече съществуващ акаунт',
-    name: 'Име',
+    orLogin: 'Вход с вече съществуващ акаунт',
+    // name: 'Име',
     email: 'Имейл',
     password: 'Парола',
     passwordConfirmation: 'Потвърдете паролата',
     login: 'Вход',
-    orRegister: 'или създай нов акаунт',
+    orRegister: 'Създаване на нов акаунт',
     register: 'Създай нов акаунт',
 
     // loginFailed: 'Невалидна комбинация от имейл и парола. Моля, опитайте отново!',
@@ -108,7 +108,7 @@ interface LoginData {
 }
 
 interface RegisterData {
-  name: string;
+  // name: string;
   email: string;
   password: string;
   passwordConfirmation: string;
