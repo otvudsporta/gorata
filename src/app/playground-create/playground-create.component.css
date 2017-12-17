@@ -4,13 +4,6 @@
   grid-gap: 0.6rem;
 }
 
-.image {
-  box-shadow: var(--box-shadow);
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
 .image__remove {
   --size: 24px;
 

@@ -10,8 +10,11 @@ import { StoreService } from '../store.service';
 
     <div *ngIf="(store.playgrounds$ | async) as playgrounds; else loading">
       <a *ngFor="let playground of playgrounds" class="list-item" [routerLink]="['/playgrounds', playground.id]">
-        <img [src]="playground.imageUrls && playground.imageUrls[0] || 'assets/default.png'" />
-        <div>
+        <AspectRatioContainer x="4" y="3" class="bg-neutral-light">
+          <img class="image absolute stretch" [src]="playground.imageUrls && playground.imageUrls[0] || 'assets/default.png'" />
+        </AspectRatioContainer>
+
+        <div class="pa-md">
           <h4>{{playground.title}}</h4>
           <p>{{playground.address}}</p>
           <p>{{playground.text}}</p>
@@ -22,9 +25,7 @@ import { StoreService } from '../store.service';
   styles: [`
     .list-item {
       display: grid;
-      grid-template-columns: 64px 1fr auto;
-      grid-gap: 0.25rem;
-      padding: 0.75rem;
+      grid-template-columns: 128px 1fr auto;
     }
 
     .list-item + .list-item {

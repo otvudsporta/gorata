@@ -23,6 +23,7 @@ import { Component } from '@angular/core';
     }
 
     .header {
+      z-index: 10;
       box-shadow: var(--box-shadow);
     }
   `]
