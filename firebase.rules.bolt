@@ -6,13 +6,14 @@ path /playgrounds {
 
 path /playgrounds/{playgroundId} is Playground;
 
+// TODO: Move playground data into `details`, and create playground `contact` object with different permissions
 type Playground {
   create() { isAuthenticated() }
   update() { isCurrentUser(this.createdBy) || canModerate() }
 
   title: String
   address: String
-  text: String
+  text: String | Null
 
   imageUrls: String[]
   sports: Boolean[]
@@ -21,6 +22,8 @@ type Playground {
 
   created: InitialTimestamp
   createdBy: CurrentUser
+  name: String
+  email: String
   status: PlaygroundStatus
 }
 

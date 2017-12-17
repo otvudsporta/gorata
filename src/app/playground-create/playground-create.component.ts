@@ -31,7 +31,7 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
   @ViewChild('addressInput') addressInput: ElementRef;
 
   user: User;
-  subscriptions: Subscription;
+  subscriptions: Subscription[] = [];
   mapEventListeners: google.maps.MapsEventListener[] = [];
 
   uploading: boolean;
@@ -48,6 +48,8 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
     needs: { label: 'От какво има нужда игрището?' },
     images: { label: 'Добавяне на снимки (опционално)', title: 'Качете снимка' },
     text: { placeholder: 'Допълнителни коментари (опционално)' },
+    name: { placeholder: 'Твоето име' },
+    email: { placeholder: 'E-mail за връзка' },
     button: { create: 'Добави игрище', update: 'Запази промените' },
 
     success: {
@@ -55,18 +57,11 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
       update: 'Промените са запазени успешно'
     },
     errors: {
-      marker: {
-        required: 'Моля, маркирайте мястото върху картата!'
-      },
-      title: {
-        required: 'Моля, въведете името на площадката!'
-      },
-      address: {
-        required: 'Моля, въведете местоположението на площадката!'
-      },
-      text: {
-        required: 'Моля, въведете допълнителна информация!'
-      }
+      marker: { required: 'Моля, маркирайте мястото върху картата!' },
+      title: { required: 'Моля, въведете името на площадката!' },
+      address: { required: 'Моля, въведете местоположението на площадката!' },
+      name: { required: 'Моля, въведете името си!' },
+      email: { required: 'Моля, въведете имейл за контакт!' }
     },
     google: {
       ZERO_RESULTS: 'Няма резултати!'
@@ -77,8 +72,7 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
 
   // Lifecycle hooks
   async ngOnInit() {
-    this.subscriptions = new Subscription();
-    this.subscriptions.add(
+    this.subscriptions.push(
       this.store.user$.subscribe((user) => this.user = user)
     );
 
@@ -98,8 +92,10 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   ngOnDestroy() {
-    this.subscriptions.unsubscribe();
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+    this.subscriptions = [];
     this.mapEventListeners.forEach((listener) => listener.remove());
+    this.mapEventListeners = [];
     this.destroyMarker(this.marker);
   }
 
@@ -114,11 +110,17 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
       await Promise.all(files.map(async (file) => {
         const uploadTaskSnapshot = await this.fileUploadService.upload(`tmp/${guid()}`, file);
 
-        await loadImageIntoCache(uploadTaskSnapshot.downloadURL);
+        try {
+          await loadImageIntoCache(uploadTaskSnapshot.downloadURL);
+        }
+        catch (error) {
+          // Ignore error
+        }
         this.playground.imageUrls.push(uploadTaskSnapshot.downloadURL);
       }));
     }
     catch (error) {
+      throw error;
     }
     finally {
       this.uploading = false;
@@ -220,43 +222,31 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
   save(marker: google.maps.Marker, playground: Partial<Playground>) {
     this.validate(marker, playground);
 
+    const isNew = playground.id == null;
     const newPlayground: Partial<Playground> = {
+      createdBy: this.user.uid, // Only on create
       ...playground,
-      geo: marker.getPosition().toJSON(),
+      geo: marker.getPosition().toJSON()
     };
 
-    const isNew = playground.id == null;
     this.loading = true;
-    return (
-      this[isNew ? 'create' : 'update'](newPlayground)
-        .then(() => {
-          this.notify.success(this.i18n.success[isNew ? 'create' : 'update']);
-        })
-        .catch((error) => {
-          this.notify.error(error && error.message || error);
-          this.loading = false;
-        })
-    );
+    this.playgroundService[isNew ? 'create' : 'update'](newPlayground)
+      .then((id) => {
+        this.notify.success(this.i18n.success[isNew ? 'create' : 'update']);
+        this.router.navigate(['playgrounds', id]);
+      })
+      .catch((error) => {
+        this.notify.error(error && error.message || error);
+        this.loading = false;
+      })
+    ;
   }
 
   private validate(marker: google.maps.Marker, playground: Partial<Playground>) {
     if (!marker) throw new Error(this.i18n.errors.marker.required);
-    if (!playground.title) throw new Error(this.i18n.errors.title.required);
     if (!playground.address) throw new Error(this.i18n.errors.address.required);
-    if (!playground.text) throw new Error(this.i18n.errors.text.required);
-  }
-
-  private create(playground: Partial<Playground>) {
-    return (
-      this.playgroundService.create({ ...playground, createdBy: this.user.uid })
-        .then(() => this.router.navigate(['/']))
-    );
-  }
-
-  private update(playground: Partial<Playground>) {
-    return (
-      this.playgroundService.update(playground)
-        .then(() => this.router.navigate(['playgrounds', playground.id]))
-    );
+    if (!playground.title) throw new Error(this.i18n.errors.title.required);
+    if (!playground.name) throw new Error(this.i18n.errors.name.required);
+    if (!playground.email) throw new Error(this.i18n.errors.email.required);
   }
 }

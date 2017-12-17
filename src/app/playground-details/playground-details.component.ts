@@ -18,12 +18,22 @@ import { keys } from '../utils';
       <img *ngFor="let imageUrl of playground.imageUrls" [src]="imageUrl" />
       <div>
         <a *ngIf="(store.user$ | async)?.uid === playground.createdBy" [routerLink]="['edit']">✏️</a>
+
         <h4>{{playground.title}}</h4>
+
         <p>{{playground.address}}</p>
+
         <p>{{playground.text}}</p>
+
         <span *ngFor="let sport of keys(playground.sports)">{{sport}}&nbsp;</span>
+
         <br />
+
         <span *ngFor="let need of keys(playground.needs)">{{need}}&nbsp;</span>
+
+        <p *ngIf="canModerate(store.role) && playground.name && playground.email">
+          <a [href]="'mailto:' + playground.email">✉ {{playground.name}}</a>
+        </p>
       </div>
     </div>
   `,
@@ -41,5 +51,9 @@ export class PlaygroundDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.playground$ = this.route.paramMap.switchMap((params: ParamMap) => this.playgroundService.get(params.get('id')));
+  }
+
+  canModerate(role: string) {
+    return role === 'moderator' || role === 'admin';
   }
 }

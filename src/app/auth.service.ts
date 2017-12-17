@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
@@ -7,7 +8,15 @@ import 'firebase/auth';
 
 @Injectable()
 export class AuthService {
-  constructor(public angularFireAuth: AngularFireAuth) {
+  constructor(private angularFireAuth: AngularFireAuth, private db: AngularFireDatabase) {
+  }
+
+  getAuthState() {
+    return this.angularFireAuth.authState;
+  }
+
+  getUserRole(id: string) {
+    return this.db.object(`userRoles/${id}`).valueChanges<string>();
   }
 
   // facebookAuthProvider = new firebase.auth.FacebookAuthProvider();

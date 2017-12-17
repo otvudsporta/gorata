@@ -56,6 +56,12 @@
     <!-- Additional info -->
     <textarea class="w-100p" name="text" [placeholder]="i18n.text.placeholder" [(ngModel)]="playground.text"></textarea>
 
+    <!-- Name -->
+    <input class="w-100p" type="text" name="name" [placeholder]="i18n.name.placeholder" [(ngModel)]="playground.name" required />
+
+    <!-- Name -->
+    <input class="w-100p" type="email" name="email" [placeholder]="i18n.email.placeholder" [(ngModel)]="playground.email" required />
+
     <!-- Submit -->
     <button class="form-button" type="submit">{{playground.id == null ? i18n.button.create : i18n.button.update}}</button>
   </fieldset>

@@ -1,4 +1,5 @@
-export interface Playground {
+// TODO: Extract PlaygroundContact to its own database object
+export interface Playground extends PlaygroundContact {
   id: string;
 
   title: string;
@@ -13,4 +14,10 @@ export interface Playground {
   created: number;
   createdBy: string;
   status: string;
+}
+
+interface PlaygroundContact {
+  name: string;
+  email: string;
+  createdBy: string;
 }
