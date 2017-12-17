@@ -68,7 +68,7 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
     }
   };
   sports = ['футбол', 'баскетбол', 'волейбол', 'тенис на маса', 'тенис на стена', 'бадминтон'];
-  needs = ['обновяване', 'почистване', 'привличане на хора'];
+  needs = ['обновяване', 'почистване', 'привличане на спортуващи'];
 
   // Lifecycle hooks
   async ngOnInit() {
