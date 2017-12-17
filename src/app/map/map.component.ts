@@ -21,13 +21,13 @@ import { loadScript } from '../utils';
   `,
   styles: [`
     :host {
-      grid-row: 1 / -1;
-      grid-column: 2;
+      width: 100%;
+      height: 100%;
 
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 300px;
+
       color: var(--neutral-lighter);
     }
   `]

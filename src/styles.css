@@ -5,16 +5,13 @@
   box-sizing: inherit;
 }
 
-html {
+html,
+body {
   box-sizing: border-box;
+  height: 100%;
   font-family: var(--font-family);
   font-size: var(--font-size);
   color: var(--foreground);
-}
-
-html,
-body {
-  height: 100%;
 }
 
 body {
@@ -45,6 +42,20 @@ textarea {
 
 textarea {
   resize: vertical;
+}
+
+::-webkit-scrollbar-track {
+  margin: -0.5rem 0;
+	background-color: var(--neutral-light);
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+	background-color: var(--neutral);
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--neutral-dark);
 }
 
 /* Colors */

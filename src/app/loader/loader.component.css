@@ -4,10 +4,6 @@
   align-items: center;
 }
 
-:host.page-loader {
-  margin-top: calc(50vh - var(--header-height));
-}
-
 .loader-arc {
   width: 64px;
   height: 64px;

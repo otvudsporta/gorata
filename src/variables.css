@@ -1,9 +1,9 @@
 :root {
   /* Colors */
   --neutral-lighter: #ffffff;
-  --neutral-light: #ecf0f1;
+  --neutral-light: #ebeaea;
   --neutral: #bdc3c7;
-  --neutral-dark: #a1aab0;
+  --neutral-dark: #a5a5a5;
   --neutral-darker: #6c777f;
 
   --foreground-lighter: #999999;
@@ -34,7 +34,7 @@
 
   /* Font */
   --font-size: 14px;
-  --font-family: 'Trebuchet MS', Helvetica, sans-serif;
+  --font-family: 'Roboto', Helvetica, sans-serif;
 
   --h1-font-size: 40px;
   --h2-font-size: 32px;
@@ -44,7 +44,6 @@
   --h6-font-size: 14px;
 
   /* Layout */
-  --header-height: 75px;
   --sidebar-width-min: 375px;
   --sidebar-width-max: 35%;
 
