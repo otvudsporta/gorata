@@ -53,7 +53,6 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
     button: { create: 'Добави игрището', update: 'Запази промените' },
 
     success: {
-      create: 'Площадката е добавена успешно',
       update: 'Промените са запазени успешно'
     },
     errors: {
@@ -232,8 +231,13 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
     this.loading = true;
     this.playgroundService[isNew ? 'create' : 'update'](newPlayground)
       .then((id) => {
-        this.notify.success(this.i18n.success[isNew ? 'create' : 'update']);
-        this.router.navigate(['playgrounds', id]);
+        if (isNew) {
+          this.router.navigate(['thanks']);
+        }
+        else {
+          this.notify.success(this.i18n.success[isNew ? 'create' : 'update']);
+          this.router.navigate(['playgrounds', id]);
+        }
       })
       .catch((error) => {
         this.notify.error(error && error.message || error);

@@ -17,6 +17,7 @@ import { MapModule } from './map/map.module';
 import { RouterModule } from './router.module';
 import { PlaygroundCreateModule } from './playground-create/playground-create.module';
 // import { SettingsModule } from './settings/settings.module';
+import { ThanksModule } from './thanks/thanks.module';
 
 import { NavigatorService } from './navigator.service';
 import { StoreService } from './store.service';
@@ -58,6 +59,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     PlaygroundCreateModule,
     RouterModule,
     // SettingsModule,
+    ThanksModule,
   ],
   providers: [
     { provide: NgErrorHandler, useClass: ErrorHandler },

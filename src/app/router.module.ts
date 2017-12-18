@@ -8,15 +8,17 @@ import { PlaygroundListComponent } from './playground-list/playground-list.compo
 import { PlaygroundDetailsComponent } from './playground-details/playground-details.component';
 import { PlaygroundEditComponent } from './playground-edit/playground-edit.component';
 // import { SettingsComponent } from './settings/settings.component';
+import { ThanksComponent } from './thanks/thanks.component';
 
 export const routes: Routes = [
   { path: '', component: IntroComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'playgrounds', component: PlaygroundListComponent },
   { path: 'playgrounds/new', component: PlaygroundCreateComponent },
   { path: 'playgrounds/:id', component: PlaygroundDetailsComponent },
   { path: 'playgrounds/:id/edit', component: PlaygroundEditComponent },
-  { path: 'login', component: LoginComponent },
-  // { path: 'settings', component: SettingsComponent }
+  // { path: 'settings', component: SettingsComponent },
+  { path: 'thanks', component: ThanksComponent },
 ];
 
 @NgModule({
