@@ -17,7 +17,7 @@ import { StoreService } from '../store.service';
     <a *ngIf="(store.user$ | async) != null" routerLink="/" (click)="logout()">Изход</a>
     -->
 
-    <div class="toggle border-primary bg-primary br-md pointer" (click)="showSidebarChange.emit(!showSidebar)">
+    <div class="toggle border-primary br-md pointer" (click)="showSidebarChange.emit(!showSidebar)">
       <img class="toggle__image" [src]="showSidebar ? 'assets/chevron-up.svg' : 'assets/chevron-down.svg'" />
     </div>
   `,
@@ -36,8 +36,7 @@ import { StoreService } from '../store.service';
     }
 
     .logo__image {
-      width: 64px;
-      margin: 6px;
+      margin: 0.5rem;
     }
 
     .toggle {
@@ -47,6 +46,12 @@ import { StoreService } from '../store.service';
       height: 2rem;
       line-height: 2rem;
       text-align: center;
+
+      transition: background var(--transition-duration) var(--transition-easing);
+    }
+
+    .toggle:hover {
+      background: rgba(0, 0, 0, 0.02);
     }
 
     .toggle__image {
