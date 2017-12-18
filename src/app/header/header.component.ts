@@ -6,6 +6,14 @@ import { StoreService } from '../store.service';
 @Component({
   selector: 'Header',
   template: `
+    
+    <!-- Този back btn се появява само във формата, но това е отвъд моите способности :) -->
+    <div class="tl">
+      <a class="btn_back" routerLink="/">
+        <img src="assets/ui_icon_back.svg" alt="Върни се в началото" />
+      </a>
+    </div>
+
     <a class="logo__link" routerLink="/">
       <img class="logo__image" src="assets/logo.svg" alt="Отвъд Спорта Лого" />
     </a>
@@ -17,26 +25,42 @@ import { StoreService } from '../store.service';
     <a *ngIf="(store.user$ | async) != null" routerLink="/" (click)="logout()">Изход</a>
     -->
 
+    <!--
     <div class="toggle border-primary br-md pointer" (click)="showSidebarChange.emit(!showSidebar)">
       <img class="toggle__image" [src]="showSidebar ? 'assets/chevron-up.svg' : 'assets/chevron-down.svg'" />
     </div>
+    -->
   `,
   styles: [`
     :host {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
       align-items: center;
-      justify-content: space-between;
       background: var(--neutral-lighter);
       padding: 1rem;
+      text-align: center;
+    }
+
+    .btn_back {
+      background-color: rgba(0,100,177,0.10);
+      border-radius: 100%;
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      padding: 0 10px;
+      transition: background-color 0.2s ease-in-out;
+    }
+    .btn_back:hover {
+      background-color: rgba(0,100,177,0.20);
     }
 
     .logo__link {
-      display: flex;
-      align-items: center;
+      grid-column: 2;
     }
 
-    .logo__image {
-      margin: 0.5rem;
+    .logo__link img {
+      width: 32px;
     }
 
     .toggle {

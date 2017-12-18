@@ -12,19 +12,20 @@ import { Subscription } from 'rxjs/Subscription';
   `,
   styles: [`
     :host {
-      border-radius: 3px;
+      border-radius: 4px;
       background: var(--neutral-lighter);
+      box-shadow: 0 1px 2px 0 rgba(0,0,0,0.18), 0 6px 12px 0 rgba(0,0,0,0.18);
     }
 
     .header {
       z-index: 10;
-      height: var(--header-height);
+      // height: var(--header-height);
       box-shadow: var(--box-shadow);
     }
 
     .content {
       overflow-x: hidden;
-      overflow-y: auto;
+      overflow-y: overlay;
       transition: height var(--transition-duration) var(--transition-easing);
       height: calc(100vh - var(--header-height));
     }
@@ -39,6 +40,15 @@ import { Subscription } from 'rxjs/Subscription';
         height: calc(100vh - var(--header-height) - 20px);
       }
     }
+
+    .content::-webkit-scrollbar {
+      display: none;
+    }
+
+    .content:hover::-webkit-scrollbar {
+      display: block;
+    }
+
   `]
 })
 export class SidebarComponent implements OnInit, OnDestroy {
