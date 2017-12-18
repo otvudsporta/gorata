@@ -1,83 +1,68 @@
-<form name="anonymousLogin" (ngSubmit)="anonymousLogin()">
+<form class="ph-lg" name="anonymousLogin" (ngSubmit)="anonymousLogin()">
   <fieldset [disabled]="loading">
-    <button type="submit">{{i18n.anonymousLogin}}</button>
+    <div class="mv-md"></div>
+    <button class="w-100p bg-neutral-lighter color-primary border-primary" type="submit">{{i18n.anonymousLogin}}</button>
   </fieldset>
 </form>
 
-{{i18n.orLogin}}
+<hr class="mv-md" />
 
-<form name="login" (ngSubmit)="login(data.login)">
+<form class="ph-lg" name="login" (ngSubmit)="login(data.login)">
   <fieldset [disabled]="loading">
+    <h4>{{i18n.orLogin}}</h4>
+    <div class="mv-md"></div>
+
     <!-- <button type="button" (click)="facebookLogin()">
       <img src="assets/facebook.svg" />
       Вход с Facebook
-    </button>
+    </button> -->
 
-    <br /> -->
-
-    <label>
+    <label class="block">
       {{i18n.email}}
-      <br />
-      <input type="email" name="email" [(ngModel)]="data.login.email" required autofocus />
+      <input class="block w-100p" type="email" name="email" [(ngModel)]="data.login.email" required autofocus />
     </label>
 
-    <br />
-
-    <label>
+    <label class="block">
       {{i18n.password}}
-      <br />
-      <input type="password" name="password" [(ngModel)]="data.login.password" required />
+      <input class="block w-100p" type="password" name="password" [(ngModel)]="data.login.password" required />
     </label>
 
-    <br />
-
-    <button type="submit">{{i18n.login}}</button>
+    <button class="w-100p bg-primary color-neutral-lighter" type="submit">{{i18n.login}}</button>
   </fieldset>
 </form>
 
-{{i18n.orRegister}}
+<hr class="mv-md" />
 
-<form name="register" (ngSubmit)="register(data.register)">
+<form class="ph-lg" name="register" (ngSubmit)="register(data.register)">
   <fieldset [disabled]="loading">
+    <h4>{{i18n.orRegister}}</h4>
+    <div class="mv-md"></div>
+
     <!-- <button type="button" (click)="facebookRegister()">
       <img src="assets/facebook.svg" />
       Регистрация с Facebook
-    </button>
+    </button> -->
 
-    <br /> -->
-
-    <label>
+    <!-- <label class="block">
       {{i18n.name}}
-      <br />
-      <input type="name" name="name" [(ngModel)]="data.register.name" required />
-    </label>
+      <input class="block w-100p" type="text" name="name" [(ngModel)]="data.register.name" required />
+    </label> -->
 
-    <br />
-
-    <label>
+    <label class="block">
       {{i18n.email}}
-      <br />
-      <input type="email" name="email" [(ngModel)]="data.register.email" required />
+      <input class="block w-100p" type="email" name="email" [(ngModel)]="data.register.email" required />
     </label>
 
-    <br />
-
-    <label>
+    <label class="block">
       {{i18n.password}}
-      <br />
-      <input type="password" name="password" [(ngModel)]="data.register.password" required />
+      <input class="block w-100p" type="password" name="password" [(ngModel)]="data.register.password" required />
     </label>
 
-    <br />
-
-    <label>
+    <label class="block">
       {{i18n.passwordConfirmation}}
-      <br />
-      <input type="password" name="passwordConfirmation" [(ngModel)]="data.register.passwordConfirmation" required />
+      <input class="block w-100p" type="password" name="passwordConfirmation" [(ngModel)]="data.register.passwordConfirmation" required />
     </label>
 
-    <br />
-
-    <button type="submit">{{i18n.register}}</button>
+    <button class="w-100p bg-primary color-neutral-lighter" type="submit">{{i18n.register}}</button>
   </fieldset>
 </form>

@@ -11,11 +11,13 @@ import { environment } from '../environments/environment';
 
 import { AspectRatioContainerModule } from './aspect-ratio-container/aspect-ratio-container.module';
 // import { ImageModule } from './image/image.module';
+import { IntroModule } from './intro/intro.module';
 import { LoaderModule } from './loader/loader.module';
 import { MapModule } from './map/map.module';
 import { RouterModule } from './router.module';
 import { PlaygroundCreateModule } from './playground-create/playground-create.module';
 // import { SettingsModule } from './settings/settings.module';
+import { ThanksModule } from './thanks/thanks.module';
 
 import { NavigatorService } from './navigator.service';
 import { StoreService } from './store.service';
@@ -51,11 +53,13 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
     AspectRatioContainerModule,
     // ImageModule,
+    IntroModule,
     LoaderModule,
     MapModule,
     PlaygroundCreateModule,
     RouterModule,
     // SettingsModule,
+    ThanksModule,
   ],
   providers: [
     { provide: NgErrorHandler, useClass: ErrorHandler },

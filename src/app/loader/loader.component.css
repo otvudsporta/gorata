@@ -4,18 +4,14 @@
   align-items: center;
 }
 
-:host.page-loader {
-  margin-top: calc(50vh - var(--header-height));
-}
-
 .loader-arc {
   width: 64px;
   height: 64px;
   border-radius: 50%;
   border: 5px solid transparent;
-  border-right-color: var(--neural-lighter);
+  border-right-color: var(--neutral-lighter);
 
-  animation: spinRight calc(2 * var(--animation-duration)) linear infinite;
+  animation: spinRight calc(2 * var(--transition-duration)) linear infinite;
 }
 
 @keyframes spinRight {

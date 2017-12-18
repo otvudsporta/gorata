@@ -21,13 +21,7 @@ import { loadScript } from '../utils';
   `,
   styles: [`
     :host {
-      grid-row: 1 / -1;
-      grid-column: 2;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 300px;
+      display: block;
       color: var(--neutral-lighter);
     }
   `]
