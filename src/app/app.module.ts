@@ -11,6 +11,7 @@ import { environment } from '../environments/environment';
 
 import { AspectRatioContainerModule } from './aspect-ratio-container/aspect-ratio-container.module';
 // import { ImageModule } from './image/image.module';
+import { IntroModule } from './intro/intro.module';
 import { LoaderModule } from './loader/loader.module';
 import { MapModule } from './map/map.module';
 import { RouterModule } from './router.module';
@@ -51,6 +52,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
     AspectRatioContainerModule,
     // ImageModule,
+    IntroModule,
     LoaderModule,
     MapModule,
     PlaygroundCreateModule,
