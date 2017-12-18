@@ -15,7 +15,7 @@ import { keys } from '../utils';
     </ng-template>
 
     <div *ngIf="(playground$ | async) as playground; else loading">
-      <img *ngFor="let imageUrl of playground.imageUrls" [src]="imageUrl" />
+      <img *ngFor="let imageUrl of playground.imageUrls" class="w-100p" [src]="imageUrl" />
 
       <div class="pa-lg">
         <a *ngIf="(store.user$ | async)?.uid === playground.createdBy" [routerLink]="['edit']">✏️</a>

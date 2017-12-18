@@ -51,13 +51,13 @@
   --h6-font-size: 14px;
 
   /* Layout */
-  --sidebar-width-min: 375px;
-  --sidebar-width-max: 35%;
+  --header-height: 75px;
 
   /* Transitions */
   --transition-duration: 0.4s;
   --transition-easing: cubic-bezier(0.25, 1, 0.25, 1); /* ease */
 
   /* Misc */
+  --border-radius: 5px;
   --box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.18);
 }
