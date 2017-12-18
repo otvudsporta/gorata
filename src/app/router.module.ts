@@ -19,6 +19,7 @@ export const routes: Routes = [
   { path: 'playgrounds/:id/edit', component: PlaygroundEditComponent },
   // { path: 'settings', component: SettingsComponent },
   { path: 'thanks', component: ThanksComponent },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
