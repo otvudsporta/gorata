@@ -10,12 +10,12 @@ import { StoreService } from '../store.service';
       <img class="logo__image" src="assets/logo.svg" alt="Отвъд Спорта Лого" />
     </a>
 
+    <!--
     <a routerLink="/">Добави Игрище</a>
-
     <a routerLink="/playgrounds">Игрища</a>
-
     <a *ngIf="(store.user$ | async) == null" routerLink="/login">Вход</a>
     <a *ngIf="(store.user$ | async) != null" routerLink="/" (click)="logout()">Изход</a>
+    -->
 
     <div class="toggle border-primary bg-primary br-md pointer" (click)="showSidebarChange.emit(!showSidebar)">
       <img class="toggle__image" [src]="showSidebar ? 'assets/chevron-up.svg' : 'assets/chevron-down.svg'" />
@@ -25,8 +25,9 @@ import { StoreService } from '../store.service';
     :host {
       display: flex;
       align-items: center;
-      justify-content: space-around;
+      justify-content: space-between;
       background: var(--neutral-lighter);
+      padding: 1rem;
     }
 
     .logo__link {

@@ -12,16 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
   `,
   styles: [`
     :host {
-      overflow-x: hidden;
-      overflow-y: hidden;
-      position: fixed;
-
-      top: 0;
-      left: 0;
-
       border-radius: 3px;
-      width: 100%;
-      min-width: 375px;
       background: var(--neutral-lighter);
     }
 
@@ -44,18 +35,6 @@ import { Subscription } from 'rxjs/Subscription';
     }
 
     @media (min-width: 768px) {
-      :host {
-        width: 35%;
-      }
-    }
-
-    @media (min-width: 960px) {
-      :host {
-        top: 10px;
-        left: 10px;
-        max-height: calc(100% - 20px);
-      }
-
       .content {
         height: calc(100vh - var(--header-height) - 20px);
       }
