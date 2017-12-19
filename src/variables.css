@@ -5,6 +5,7 @@
   --neutral: #bdc3c7;
   --neutral-dark: #a5a5a5;
   --neutral-darker: #6c777f;
+  --neutral-transparent: rgba(188, 188, 188, 0.1);
 
   --foreground-lighter: #dbdbdb;
   --foreground-light: #666666;
@@ -23,6 +24,7 @@
 
   --info: #3498db;
   --info-dark: #217dbb;
+  --info-transparent: rgba(0, 100, 177, 0.15);
 
   --warning: #f1c40f;
   --warning-dark: #c29d0b;

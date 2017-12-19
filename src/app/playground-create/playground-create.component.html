@@ -6,7 +6,7 @@
       <!-- Address -->
       <label>
         <div class="mb-xs">{{i18n.address.label}}</div>
-        <input #addressInput class="w-100p" type="text" name="address" [placeholder]="i18n.address.placeholder" [(ngModel)]="playground.address" required />
+        <input #addressInput class="w-100p" type="text" name="address" [placeholder]="i18n.address.placeholder" [(ngModel)]="playground.address" required data-hj-whitelist />
       </label>
       <div *ngIf="addressSuggestion" class="addressSuggestion flex ai-center mb-sm">
         <small class="addressSuggestion__text">
@@ -28,10 +28,12 @@
     <div class="ph-lg">
       <!-- Sports -->
       <h4 class="mv-md">{{i18n.sports.label}}</h4>
-      <label *ngFor="let sport of sports" class="flex ai-center pointer">
-        <input type="checkbox" name="sport_{{sport}}" [(ngModel)]="playground.sports[sport]" />
-        {{sport | capitalize}}
-      </label>
+      <Checkbox
+        *ngFor="let sport of sports"
+        class="block"
+        [name]="'sport_' + sport"
+        [(model)]="playground.sports[sport]"
+      >{{sport | capitalize}}</Checkbox>
     </div>
 
     <hr class="mv-md" />
@@ -39,10 +41,12 @@
     <div class="ph-lg">
       <!-- Needs -->
       <h4 class="mv-md">{{i18n.needs.label}}</h4>
-      <label *ngFor="let need of needs" class="flex ai-center pointer">
-        <input type="checkbox" name="need_{{need}}" [(ngModel)]="playground.needs[need]" />
-        {{need | capitalize}}
-      </label>
+      <Checkbox
+        *ngFor="let need of needs"
+        class="block"
+        [name]="'need_' + need"
+        [(model)]="playground.needs[need]"
+      >{{need | capitalize}}</Checkbox>
     </div>
 
     <hr class="mv-md" />
@@ -82,7 +86,7 @@
       <!-- Additional info -->
       <h4 class="mb-xs">{{i18n.text.label}}</h4>
       <div class="mb-sm color-foreground-lighter"><small>{{i18n.text.description}}</small></div>
-      <textarea class="w-100p" name="text" [placeholder]="i18n.text.placeholder" rows="6" [(ngModel)]="playground.text"></textarea>
+      <textarea class="w-100p" name="text" [placeholder]="i18n.text.placeholder" rows="6" [(ngModel)]="playground.text" data-hj-whitelist></textarea>
     </div>
 
     <hr class="mv-md" />

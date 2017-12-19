@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { AspectRatioContainerModule } from '../aspect-ratio-container/aspect-ratio-container.module';
-
+import { CheckboxModule } from '../checkbox/checkbox.module';
 import { LoaderModule } from '../loader/loader.module';
 
 import { CapitalizePipe } from '../capitalize.pipe';
-import { InterpolatePipe } from '../interpolate.pipe';
 
 import { PlaygroundCreateComponent } from './playground-create.component';
 
@@ -17,12 +16,11 @@ import { PlaygroundCreateComponent } from './playground-create.component';
     FormsModule,
 
     AspectRatioContainerModule,
+    CheckboxModule,
     LoaderModule,
   ],
   declarations: [
     CapitalizePipe,
-    InterpolatePipe,
-
     PlaygroundCreateComponent,
   ],
   exports: [

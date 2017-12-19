@@ -11,7 +11,7 @@ h4 {
   border: 1px solid var(--foreground-lighter);
   border-top: 0;
   margin-top: -1.5rem;
-  background: rgba(188, 188, 188, 0.1);
+  background: var(--neutral-transparent);
   padding: 0.5rem 0.5rem 0 0.5rem;
 }
 
