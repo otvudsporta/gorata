@@ -23,6 +23,10 @@ import { StoreService } from '../store.service';
     </div>
   `,
   styles: [`
+    :host {
+      display: block;
+    }
+
     .list-item {
       display: grid;
       grid-template-columns: 128px 1fr auto;

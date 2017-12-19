@@ -42,12 +42,20 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
   // TODO: Move into database
   i18n = {
     details: 'Данни за игрището',
-    address: { placeholder: 'Отбележи на картата / потърси по адрес', suggestion: '{{address}}' },
-    title: { placeholder: 'Как се казва игрището?' },
+    address: {
+      label: 'Адрес на игрището',
+      placeholder: 'Отбележи на картата / потърси по адрес',
+      suggestion: 'Може би имате предвид',
+      button: '✔ Да'
+    },
+    title: {
+      label: 'Име на игрището',
+      placeholder: 'Как се казва игрището?'
+    },
     sports: { label: 'За какви спортове е предназначено?' },
     needs: { label: 'От какво има нужда игрището?' },
-    images: { label: 'Добавяне на снимки (опционално)', title: 'Добави снимка' },
-    text: { placeholder: 'Допълнителни коментари (опционално)' },
+    images: { label: 'Добави снимки', description: 'Тази стъпка не е задължителна', button: 'Добави снимки' },
+    text: { label: 'Допълнителни коментари', description: 'Това поле не е задължително', placeholder: 'Допълнителни коментари' },
     name: { placeholder: 'Твоето име' },
     email: { placeholder: 'E-mail за връзка' },
     button: { create: 'Добави игрището', update: 'Запази промените' },

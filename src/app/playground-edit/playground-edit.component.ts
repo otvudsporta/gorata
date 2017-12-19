@@ -11,6 +11,11 @@ import { PlaygroundService } from '../playground.service';
   template: `
     <PlaygroundCreate *ngIf="(playground$ | async) as playground" [playground]="playground"></PlaygroundCreate>
   `,
+  styles: [`
+    :host {
+      display: block;
+    }
+  `]
 })
 export class PlaygroundEditComponent implements OnInit {
   playground$: Observable<Playground>;

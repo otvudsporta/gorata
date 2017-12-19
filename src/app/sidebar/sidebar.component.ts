@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
 
 import { pageTransition } from '../animations';
 
@@ -8,58 +7,31 @@ import { pageTransition } from '../animations';
   selector: 'Sidebar',
   animations: [pageTransition],
   template: `
-    <Header class="header sticky top-0" [(showSidebar)]="showSidebar"></Header>
-    <div class="content" [class.--hidden]="!showSidebar" [@pageTransition]="getRouteLevel(routerOutlet)">
+    <Header class="header sticky top-0"></Header>
+    <div class="content" [@pageTransition]="getRouteLevel(routerOutlet)">
       <router-outlet #routerOutlet="outlet"></router-outlet>
     </div>
   `,
   styles: [`
     :host {
-      border-radius: 3px;
-      background: var(--neutral-lighter);
+      display: block;
+      position: relative;
     }
 
     .header {
       z-index: 10;
-      height: var(--header-height);
       box-shadow: var(--box-shadow);
     }
 
     .content {
       overflow-x: hidden;
       overflow-y: auto;
-      transition: height var(--transition-duration) var(--transition-easing);
-      height: calc(100vh - var(--header-height));
-    }
-
-    .content.--hidden {
-      overflow: hidden;
-      height: 0;
-    }
-
-    @media (min-width: 768px) {
-      .content {
-        height: calc(100vh - var(--header-height) - 20px);
-      }
+      height: 100%;
     }
   `]
 })
-export class SidebarComponent implements OnInit, OnDestroy {
+export class SidebarComponent {
   constructor(private router: Router) {
-  }
-
-  showSidebar = true;
-  private susbcriptions: Subscription[] = [];
-
-  ngOnInit() {
-    this.susbcriptions.push(
-      this.router.events.subscribe(() => this.showSidebar = true)
-    );
-  }
-
-  ngOnDestroy() {
-    this.susbcriptions.forEach((subscription) => subscription.unsubscribe());
-    this.susbcriptions = [];
   }
 
   getRouteLevel(routerOutlet: RouterOutlet) {

@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
   `,
   styles: [`
     :host {
+      display: block;
       position: relative;
     }
   `]
