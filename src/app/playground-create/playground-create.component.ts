@@ -88,6 +88,7 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
 
   ngAfterViewInit() {
     this.createSearchBox(this.addressInput.nativeElement);
+    this.generateCheckboxes();
   }
 
   ngOnDestroy() {
@@ -96,6 +97,33 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
     this.mapEventListeners.forEach((listener) => listener.remove());
     this.mapEventListeners = [];
     this.destroyMarker(this.marker);
+  }
+
+  private generateCheckboxes() {
+    const checkboxReplacements = Array.from(document.querySelectorAll('.checkbox-replacement'));
+    const checkboxInputs = Array.from(document.querySelectorAll('input[type="checkbox"]'));
+    
+    for (let index = 0; index < checkboxReplacements.length; index++) {
+      const el: any = checkboxReplacements[index];
+      var input = el.parentNode.querySelector('input');
+      if (input.checked == true) {
+        el.parentNode.classList.add('is-checked');
+      }
+      else {
+        el.parentNode.classList.remove('is-checked');
+      }
+      
+      el.addEventListener('click', (e) => {
+        e.currentTarget.parentNode.querySelector('input[type="checkbox"]').click();
+      })
+    }
+    
+    for (let index = 0; index < checkboxReplacements.length; index++) {
+      const el: any = checkboxReplacements[index];
+      el.addEventListener('change', function (e) {
+        this.parentNode.classList.toggle('is-checked')
+      });
+    }
   }
 
   // Methods

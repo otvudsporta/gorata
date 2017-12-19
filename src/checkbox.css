@@ -1,0 +1,38 @@
+/* Checkboxes */
+.checkbox {
+  display: block;
+  padding: 8px var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+  background: rgba(188,188,188,0.15);
+  border: 1px solid rgba(188,188,188,0.15);
+  border-radius: 4px;
+  transition: background 0.2s ease-in-out;
+}
+.checkbox.is-checked {
+  background: rgba(0, 100, 177, 0.15);
+  border-color: #BAD3E6
+}
+.checkbox input {
+  display: none;
+}
+.checkbox-replacement {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 2px 1px;
+  margin-right: 4px;
+  border-radius: 3px;
+  border: 1px solid #7E8992;
+  transition: all 0.1s ease-in-out;
+  background-image: url(http://beta.boyankostov.com/2017/check.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 0;
+  cursor: pointer;
+}
+.checkbox.is-checked .checkbox-replacement {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  background-size: 75%;
+}
