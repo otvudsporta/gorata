@@ -4,7 +4,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   selector: 'Checkbox',
   template: `
     <label class="lb-checkbox" [class.--checked]="model === true">
-      <input class="lb-checkbox-input" type="checkbox" [name]="name" [(ngModel)]="model" />
+      <input class="lb-checkbox-input" type="checkbox" [name]="name" [(ngModel)]="model" (change)="modelChange.emit(model)" />
       <div class="lb-checkbox-icon"></div>
       <ng-content class="lb-checkbox-content"></ng-content>
     </label>
