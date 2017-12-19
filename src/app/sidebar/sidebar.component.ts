@@ -7,7 +7,7 @@ import { pageTransition } from '../animations';
   selector: 'Sidebar',
   animations: [pageTransition],
   template: `
-    <Header class="header sticky top-0"></Header>
+    <Header class="header sticky top-0" [routeLevel]="getRouteLevel(routerOutlet)"></Header>
     <div class="content" [@pageTransition]="getRouteLevel(routerOutlet)">
       <router-outlet #routerOutlet="outlet"></router-outlet>
     </div>
