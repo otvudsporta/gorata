@@ -14,21 +14,20 @@ import { pageTransition } from '../animations';
     </div>
   `,
   styles: [`
-    :host {
-      border-radius: 3px;
-      background: var(--neutral-lighter);
-    }
 
     .header {
       z-index: 10;
-      height: var(--header-height);
+      // height: var(--header-height);
       box-shadow: var(--box-shadow);
     }
 
     .content {
       overflow-x: hidden;
-      overflow-y: auto;
+      overflow-y: overlay;
       transition: height var(--transition-duration) var(--transition-easing);
+    }
+
+    @media screen and (min-width: 768px) {
       height: calc(100vh - var(--header-height));
     }
 
@@ -37,11 +36,6 @@ import { pageTransition } from '../animations';
       height: 0;
     }
 
-    @media (min-width: 768px) {
-      .content {
-        height: calc(100vh - var(--header-height) - 20px);
-      }
-    }
   `]
 })
 export class SidebarComponent implements OnInit, OnDestroy {
