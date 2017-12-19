@@ -14,8 +14,9 @@ import { pageTransition } from '../animations';
   `,
   styles: [`
     :host {
-      display: block;
       position: relative;
+      display: flex;
+      flex-direction: column;
     }
 
     .header {
@@ -26,7 +27,6 @@ import { pageTransition } from '../animations';
     .content {
       overflow-x: hidden;
       overflow-y: auto;
-      height: 100%;
     }
   `]
 })

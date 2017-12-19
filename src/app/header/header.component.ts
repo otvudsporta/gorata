@@ -6,7 +6,7 @@ import { StoreService } from '../store.service';
 @Component({
   selector: 'Header',
   template: `
-    
+
     <!-- Този back btn се появява само във формата, но това е отвъд моите способности :) -->
     <div class="tl">
       <a class="btn_back" routerLink="/">
@@ -31,14 +31,16 @@ import { StoreService } from '../store.service';
     </div>
     -->
   `,
+  /* `min-height` in addition to `height` fixed an issue with flexbox on Chrome */
   styles: [`
     :host {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 2fr 1fr;
       align-items: center;
       background: var(--neutral-lighter);
       padding: 1rem;
       height: 64px;
+      min-height: 64px;
       text-align: center;
     }
 
