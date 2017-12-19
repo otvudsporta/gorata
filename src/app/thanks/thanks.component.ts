@@ -11,7 +11,9 @@ import { Component } from '@angular/core';
       <p class="mb-lg">{{i18n.p1}}</p>
 
       <a class="block" routerLink="/playgrounds/new">
-        <button class="w-100p bg-primary pa-md pv-sm ma-0 color-neutral-lighter b dim-and-grow" type="button"><img src="assets/ui-icon-diamond-plus.svg" alt="" class="inline-block va-middle" /> {{i18n.create}}</button>
+        <button class="w-100p bg-primary pa-md pv-sm ma-0 color-neutral-lighter b dim-and-grow" type="button">
+          <img src="assets/ui-icon-diamond-plus.svg" alt="" class="inline-block va-middle" />{{i18n.create}}
+        </button>
       </a>
 
       <a class="flex jc-center ai-center pa-md mh-xs color-primary b dim" href="https://www.facebook.com/otvudsporta" target="_blank">
@@ -21,6 +23,10 @@ import { Component } from '@angular/core';
     </div>
   `,
   styles: [`
+    :host {
+      display: block;
+    }
+
     p {
       line-height: 1.5;
     }

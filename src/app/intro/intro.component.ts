@@ -21,6 +21,10 @@ import { Component } from '@angular/core';
     </div>
   `,
   styles: [`
+    :host {
+      display: block;
+    }
+
     p {
       line-height: 1.5;
     }

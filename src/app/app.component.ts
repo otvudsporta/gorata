@@ -10,41 +10,30 @@ import { Component } from '@angular/core';
   `,
   styles: [`
     .map {
-      position: fixed;
-      right: 0;
-      bottom: 0;
-      left: 0;
       width: 100%;
-      height: calc(100% - 75px);
+      height: 35%;
     }
 
     .sidebar {
       background: var(--neutral-lighter);
-      box-shadow: 0 1px 2px 0 rgba(0,0,0,0.18), 0 6px 12px 0 rgba(0,0,0,0.18);
-      overflow-x: hidden;
-      overflow-y: auto;
-      position: fixed;
-      top: 35%;
-      left: 0;
-      width: 100%;
-      height: 65%;
-    }
-
-    @media screen and (min-width: 480px) {
-      min-width: 375px;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.18), 0 6px 12px 0 rgba(0, 0, 0, 0.18);
     }
 
     @media screen and (min-width: 768px) {
       .map {
-        top: 0;
         height: 100%;
       }
 
       .sidebar {
-        top: 10px;
-        left: 10px;
-        height: calc(100% - 20px);
+        --margin: 10px;
+
+        overflow: hidden;
+        position: fixed;
+        top: var(--margin);
+        bottom: var(--margin);
+        left: var(--margin);
         width: 35%;
+        min-width: 375px;
         border-radius: 4px;
       }
     }

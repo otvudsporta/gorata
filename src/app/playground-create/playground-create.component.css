@@ -1,3 +1,7 @@
+:host {
+  display: block;
+}
+
 h4 {
   max-width: 250px;
 }

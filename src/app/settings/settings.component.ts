@@ -5,11 +5,16 @@ import { NotificationsService } from '../notifications.service';
 @Component({
   selector: 'Settings',
   template: `
-  <button (click)="facebookLinkAccount()">
-    <img src="assets/facebook.svg" />
-    {{i18n.facebookLinkAccount}}
-  </button>
+    <button (click)="facebookLinkAccount()">
+      <img src="assets/facebook.svg" />
+      {{i18n.facebookLinkAccount}}
+    </button>
   `,
+  styles: [`
+    :host {
+      display: block;
+    }
+  `]
 })
 export class SettingsComponent {
   constructor(private authService: AuthService, private notify: NotificationsService) {

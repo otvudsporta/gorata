@@ -12,12 +12,11 @@ body {
   font-family: var(--font-family);
   font-size: var(--font-size);
   color: var(--foreground);
-  overflow: hidden;
 }
 
 body {
   line-height: 1.2;
-  background: var(--primary);
+  background: var(--neutral-lighter);
 }
 
 h1, .h1,
