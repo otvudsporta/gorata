@@ -28,11 +28,12 @@
     <div class="ph-lg">
       <!-- Sports -->
       <h4 class="mv-md">{{i18n.sports.label}}</h4>
-      <label *ngFor="let sport of sports" class="checkbox flex ai-center pointer">
-        <input type="checkbox" name="sport_{{sport}}" [(ngModel)]="playground.sports[sport]" />
-        <span class="checkbox-replacement"></span>
-        {{sport | capitalize}}
-      </label>
+      <Checkbox
+        *ngFor="let sport of sports"
+        class="block"
+        [name]="'sport_' + sport"
+        [(model)]="playground.sports[sport]"
+      >{{sport | capitalize}}</Checkbox>
     </div>
 
     <hr class="mv-md" />
