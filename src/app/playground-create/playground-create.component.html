@@ -41,11 +41,12 @@
     <div class="ph-lg">
       <!-- Needs -->
       <h4 class="mv-md">{{i18n.needs.label}}</h4>
-      <label *ngFor="let need of needs" class="checkbox flex ai-center pointer">
-        <input type="checkbox" name="need_{{need}}" [(ngModel)]="playground.needs[need]" />
-        <span class="checkbox-replacement"></span>
-        {{need | capitalize}}
-      </label>
+      <Checkbox
+        *ngFor="let need of needs"
+        class="block"
+        [name]="'need_' + need"
+        [(model)]="playground.needs[need]"
+      >{{need | capitalize}}</Checkbox>
     </div>
 
     <hr class="mv-md" />
