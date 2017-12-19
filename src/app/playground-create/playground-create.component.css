@@ -1,3 +1,20 @@
+h4 {
+  max-width: 250px;
+}
+
+.addressSuggestion {
+  border-radius: 0 0 3px 3px;
+  border: 1px solid var(--foreground-lighter);
+  border-top: 0;
+  margin-top: -1.5rem;
+  background: rgba(188, 188, 188, 0.1);
+  padding: 0.5rem 0.5rem 0 0.5rem;
+}
+
+.addressSuggestion__text {
+  flex: 1;
+}
+
 .images__container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
