@@ -4,13 +4,23 @@
       <h4 class="mv-md">{{i18n.details}}</h4>
 
       <!-- Address -->
-      <input #addressInput class="w-100p" type="text" name="address" [placeholder]="i18n.address.placeholder" [(ngModel)]="playground.address" required />
-      <small *ngIf="addressSuggestion" class="pointer" (click)="setAddressToSuggestion()">
-        {{(i18n.address.suggestion | interpolate:{ address: addressSuggestion })}}
-      </small>
+      <label>
+        <div class="mb-xs">{{i18n.address.label}}</div>
+        <input #addressInput class="w-100p" type="text" name="address" [placeholder]="i18n.address.placeholder" [(ngModel)]="playground.address" required />
+      </label>
+      <div *ngIf="addressSuggestion" class="addressSuggestion flex ai-center mb-sm">
+        <small class="addressSuggestion__text">
+          <b>{{i18n.address.suggestion}}:</b>
+          <div>{{addressSuggestion}}</div>
+        </small>
+        <button class="border-neutral pd-sm" type="button" (click)="setAddressToSuggestion()">{{i18n.address.button}}</button>
+      </div>
 
       <!-- Title -->
-      <input class="w-100p" type="text" name="title" [placeholder]="i18n.title.placeholder" [(ngModel)]="playground.title" required />
+      <label>
+        <div class="mb-xs">{{i18n.title.label}}</div>
+        <input class="w-100p" type="text" name="title" [placeholder]="i18n.title.placeholder" [(ngModel)]="playground.title" required />
+      </label>
     </div>
 
     <hr class="mv-md" />
@@ -39,7 +49,9 @@
 
     <div class="ph-lg">
       <!-- Images -->
-      <h4 class="mv-md">{{i18n.images.label}}</h4>
+      <h4 class="mb-xs">{{i18n.images.label}}</h4>
+      <div class="mb-sm color-foreground-lighter"><small>{{i18n.images.description}}</small></div>
+
       <div class="images__container">
         <AspectRatioContainer x="4" y="3" *ngFor="let imageUrl of playground.imageUrls" class="br-md bg-neutral-light">
           <img class="image absolute stretch br-md" [src]="imageUrl" />
@@ -54,7 +66,7 @@
       </div>
 
       <button class="images__addButton relative w-100p bg-neutral-lighter color-primary border-primary" type="button">
-        + {{i18n.images.title}}
+        + {{i18n.images.button}}
 
         <input
           class="images__input absolute stretch pointer"
@@ -68,6 +80,8 @@
 
     <div class="ph-lg">
       <!-- Additional info -->
+      <h4 class="mb-xs">{{i18n.text.label}}</h4>
+      <div class="mb-sm color-foreground-lighter"><small>{{i18n.text.description}}</small></div>
       <textarea class="w-100p" name="text" [placeholder]="i18n.text.placeholder" rows="6" [(ngModel)]="playground.text"></textarea>
     </div>
 
