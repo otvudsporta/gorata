@@ -7,6 +7,11 @@ import { NotificationsService } from '../notifications.service';
 @Component({
   selector: 'Login',
   templateUrl: './login.component.html',
+  styles: [`
+    :host {
+      display: block;
+    }
+  `]
 })
 export class LoginComponent implements OnInit {
   loading: boolean;

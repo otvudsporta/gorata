@@ -40,6 +40,11 @@ import { keys } from '../utils';
       </div>
     </div>
   `,
+  styles: [`
+    :host {
+      display: block;
+    }
+  `]
 })
 export class PlaygroundDetailsComponent implements OnInit {
   constructor(
