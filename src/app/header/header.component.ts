@@ -38,6 +38,7 @@ import { StoreService } from '../store.service';
       align-items: center;
       background: var(--neutral-lighter);
       padding: 1rem;
+      height: 64px;
       text-align: center;
     }
 

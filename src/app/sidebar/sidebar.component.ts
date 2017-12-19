@@ -11,11 +11,6 @@ import { Subscription } from 'rxjs/Subscription';
     </div>
   `,
   styles: [`
-    :host {
-      border-radius: 4px;
-      background: var(--neutral-lighter);
-      box-shadow: 0 1px 2px 0 rgba(0,0,0,0.18), 0 6px 12px 0 rgba(0,0,0,0.18);
-    }
 
     .header {
       z-index: 10;
@@ -27,6 +22,10 @@ import { Subscription } from 'rxjs/Subscription';
       overflow-x: hidden;
       overflow-y: overlay;
       transition: height var(--transition-duration) var(--transition-easing);
+      height: calc(100% - 64px);
+    }
+
+    @media screen and (min-width: 768px) {
       height: calc(100vh - var(--header-height));
     }
 
@@ -39,14 +38,6 @@ import { Subscription } from 'rxjs/Subscription';
       .content {
         height: calc(100vh - var(--header-height) - 20px);
       }
-    }
-
-    .content::-webkit-scrollbar {
-      display: none;
-    }
-
-    .content:hover::-webkit-scrollbar {
-      display: block;
     }
 
   `]
