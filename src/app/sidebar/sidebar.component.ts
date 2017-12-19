@@ -1,13 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+
+import { pageTransition } from '../animations';
 
 @Component({
   selector: 'Sidebar',
+  animations: [pageTransition],
   template: `
     <Header class="header sticky top-0" [(showSidebar)]="showSidebar"></Header>
-    <div class="content" [class.--hidden]="!showSidebar">
-      <router-outlet></router-outlet>
+    <div class="content" [class.--hidden]="!showSidebar" [@pageTransition]="getRouteLevel(routerOutlet)">
+      <router-outlet #routerOutlet="outlet"></router-outlet>
     </div>
   `,
   styles: [`
@@ -58,5 +61,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.susbcriptions.forEach((subscription) => subscription.unsubscribe());
     this.susbcriptions = [];
+  }
+
+  getRouteLevel(routerOutlet: RouterOutlet) {
+    return routerOutlet.activatedRouteData.level;
   }
 }

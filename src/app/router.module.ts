@@ -11,14 +11,14 @@ import { PlaygroundEditComponent } from './playground-edit/playground-edit.compo
 import { ThanksComponent } from './thanks/thanks.component';
 
 export const routes: Routes = [
-  { path: '', component: IntroComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'playgrounds', component: PlaygroundListComponent },
-  { path: 'playgrounds/new', component: PlaygroundCreateComponent },
-  { path: 'playgrounds/:id', component: PlaygroundDetailsComponent },
-  { path: 'playgrounds/:id/edit', component: PlaygroundEditComponent },
-  // { path: 'settings', component: SettingsComponent },
-  { path: 'thanks', component: ThanksComponent },
+  { path: '', component: IntroComponent, data: { level: 0 } },
+  { path: 'login', component: LoginComponent, data: { level: 1 } },
+  { path: 'playgrounds', component: PlaygroundListComponent, data: { level: 1 } },
+  { path: 'playgrounds/new', component: PlaygroundCreateComponent, data: { level: 1 } },
+  { path: 'playgrounds/:id', component: PlaygroundDetailsComponent, data: { level: 1 } },
+  { path: 'playgrounds/:id/edit', component: PlaygroundEditComponent, data: { level: 2 } },
+  // { path: 'settings', component: SettingsComponent, data: { level: 2 } },
+  { path: 'thanks', component: ThanksComponent, data: { level: 2 } },
   { path: '**', redirectTo: '' },
 ];
 
