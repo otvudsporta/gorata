@@ -25,7 +25,6 @@ import { pageTransition } from '../animations';
       overflow-x: hidden;
       overflow-y: overlay;
       transition: height var(--transition-duration) var(--transition-easing);
-      height: calc(100% - 64px);
     }
 
     @media screen and (min-width: 768px) {
@@ -35,12 +34,6 @@ import { pageTransition } from '../animations';
     .content.--hidden {
       overflow: hidden;
       height: 0;
-    }
-
-    @media (min-width: 768px) {
-      .content {
-        height: calc(100vh - var(--header-height) - 20px);
-      }
     }
 
   `]

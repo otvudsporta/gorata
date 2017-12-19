@@ -19,10 +19,10 @@ import { Component } from '@angular/core';
     }
 
     .sidebar {
-      
       background: var(--neutral-lighter);
       box-shadow: 0 1px 2px 0 rgba(0,0,0,0.18), 0 6px 12px 0 rgba(0,0,0,0.18);
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
       position: fixed;
       top: 35%;
       left: 0;
@@ -43,7 +43,7 @@ import { Component } from '@angular/core';
       .sidebar {
         top: 10px;
         left: 10px;
-        height: auto;
+        height: calc(100% - 20px);
         width: 35%;
         border-radius: 4px;
       }
