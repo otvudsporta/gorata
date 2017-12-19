@@ -20,17 +20,19 @@ import { keys } from '../utils';
       <div class="pa-lg">
         <a *ngIf="(store.user$ | async)?.uid === playground.createdBy" [routerLink]="['edit']">✏️</a>
 
-        <h4>{{playground.title}}</h4>
+        <h4 class="mb-lg color-primary">{{playground.title}}</h4>
 
-        <p>{{playground.address}}</p>
+        <div *ngIf="playground.text" class="mb-lg">{{playground.text}}</div>
 
-        <p>{{playground.text}}</p>
+        <div class="mb-lg" *ngIf="keys(playground.sports).length > 0">
+          {{i18n.sports}}:
+          <div *ngFor="let sport of keys(playground.sports)">&bull;&nbsp;{{sport}}</div>
+        </div>
 
-        <span *ngFor="let sport of keys(playground.sports)">{{sport}}&nbsp;</span>
-
-        <br />
-
-        <span *ngFor="let need of keys(playground.needs)">{{need}}&nbsp;</span>
+        <div class="mb-lg" *ngIf="keys(playground.needs).length > 0">
+          {{i18n.needs}}:
+          <div *ngFor="let need of keys(playground.needs)">&bull;&nbsp;{{need}}</div>
+        </div>
 
         <p *ngIf="canModerate(store.role) && playground.name && playground.email">
           <a [href]="'mailto:' + playground.email">✉ {{playground.name}}</a>
@@ -49,6 +51,10 @@ export class PlaygroundDetailsComponent implements OnInit {
 
   playground$: Observable<Playground>;
   keys = keys;
+  i18n = {
+    sports: 'Спортове',
+    needs: 'Има нужда от'
+  };
 
   ngOnInit() {
     this.playground$ = this.route.paramMap.switchMap((params: ParamMap) => this.playgroundService.get(params.get('id')));
