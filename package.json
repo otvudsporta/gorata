@@ -3,8 +3,8 @@
   "name": "otvudsporta",
   "version": "0.1.0",
   "scripts": {
-    "deploy": "npm run build && firebase deploy",
-    "deploy:hosting": "npm run build && firebase deploy --only hosting",
+    "deploy": "firebase deploy --except hosting",
+    "deploy:hosting": "npm run build && git add . && git commit -C HEAD --amend && git push heroku deploy:master -f",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod --build-optimizer",
