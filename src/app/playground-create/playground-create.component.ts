@@ -74,7 +74,7 @@ export class PlaygroundCreateComponent implements OnInit, OnDestroy, AfterViewIn
       ZERO_RESULTS: 'Няма резултати!'
     }
   };
-  sports = ['футбол', 'баскетбол', 'волейбол', 'тенис на маса', 'тенис на стена', 'бадминтон'];
+  sports = ['футбол', 'баскетбол', 'волейбол', 'тенис на маса', 'тенис на стена'];
   needs = ['обновяване', 'почистване', 'привличане на спортуващи'];
 
   // Lifecycle hooks
