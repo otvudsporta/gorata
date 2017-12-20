@@ -48,7 +48,9 @@ export class MapComponent implements OnInit, OnDestroy {
 
     const bounds = new google.maps.LatLngBounds();
     bounds.extend({ lat: 43.541944, lng: 28.609722 }); // East
-    bounds.extend({ lat: 43.80948, lng: 22.357125 });  // West
+    // bounds.extend({ lat: 43.80948, lng: 22.357125 });  // West
+    // Use Macedonia's westernmost point so that the sidebar doesn't cover Bulgaria 😅 Nothing personal
+    bounds.extend({ lat: 41.5187781, lng: 20.4533628 });  // West
     bounds.extend({ lat: 44.2125, lng: 22.665833 });   // North
     bounds.extend({ lat: 41.234722, lng: 25.288333 }); // South
 

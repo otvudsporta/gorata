@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
   styles: [`
     .map {
       width: 100%;
-      height: 35%;
+      height: 40%;
     }
 
     .sidebar {
