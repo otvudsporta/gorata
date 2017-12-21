@@ -10,6 +10,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 
 import { AspectRatioContainerModule } from './aspect-ratio-container/aspect-ratio-container.module';
+import { EmbedModule } from './embed/embed.module';
 // import { ImageModule } from './image/image.module';
 import { IntroModule } from './intro/intro.module';
 import { LoaderModule } from './loader/loader.module';
@@ -52,6 +53,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     SimpleNotificationsModule.forRoot(),
 
     AspectRatioContainerModule,
+    EmbedModule,
     // ImageModule,
     IntroModule,
     LoaderModule,

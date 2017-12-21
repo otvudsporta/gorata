@@ -18,11 +18,11 @@ import { keys } from '../utils';
       <img *ngFor="let imageUrl of playground.imageUrls" class="w-100p" [src]="imageUrl" />
 
       <div class="pa-lg">
-        <a *ngIf="(store.user$ | async)?.uid === playground.createdBy" [routerLink]="['edit']">✏️</a>
+        <a *ngIf="(store.user$ | async)?.uid === playground.createdBy" routerLink="edit">✏️</a>
 
         <h4 class="mb-lg color-primary">{{playground.title}}</h4>
 
-        <div *ngIf="playground.text" class="mb-lg">{{playground.text}}</div>
+        <div *ngIf="playground.text" class="mb-lg" [innerHTML]="playground.text | embed"></div>
 
         <div class="mb-lg" *ngIf="keys(playground.sports).length > 0">
           {{i18n.sports}}:
@@ -35,7 +35,7 @@ import { keys } from '../utils';
         </div>
 
         <p *ngIf="canModerate(store.role) && playground.name && playground.email">
-          <a [href]="'mailto:' + playground.email">✉ {{playground.name}}</a>
+          <a [href]="'mailto:' + playground.email">✉ <b>{{playground.name}}</b> &lt;{{playground.email}}&gt;</a>
         </p>
       </div>
     </div>

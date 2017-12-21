@@ -13,7 +13,7 @@ const left = style({ transform: 'translateX(-100%)' });
 const center = style({ transform: 'translateX(0%)' });
 const right = style({ transform: 'translateX(100%)' });
 
-const slideIn = [
+const leaveToLeftEnterFromRight = [
   query(':enter, :leave', absolute, optional),
   group([
     query(':enter', [right, animate(transitionOptions, center)], optional),
@@ -21,7 +21,7 @@ const slideIn = [
   ])
 ];
 
-const slideOut = [
+const leaveToRightEnterFromLeft = [
   query(':enter, :leave', absolute, optional),
   group([
     query(':enter', [left, animate(transitionOptions, center)], optional),
@@ -54,12 +54,19 @@ interface DynamicTransitionOptions {
 // TODO: Fix `x <=> x` transitions, as they're currently not being triggered
 export const pageTransition = trigger('pageTransition', [
   transition('0 <=> 0', fadeIn),
-  transition('0  => 1', slideIn),
-  transition('0  => 2', slideIn),
-  transition('1  => 0', slideOut),
+  transition('0  => 1', leaveToLeftEnterFromRight),
+  transition('0  => 2', leaveToLeftEnterFromRight),
+  transition('0  => 3', leaveToLeftEnterFromRight),
+  transition('1  => 0', leaveToRightEnterFromLeft),
   transition('1 <=> 1', fadeIn),
-  transition('1  => 2', slideIn),
-  transition('2  => 0', slideOut),
-  transition('2  => 1', slideOut),
+  transition('1  => 2', leaveToLeftEnterFromRight),
+  transition('1  => 3', leaveToLeftEnterFromRight),
+  transition('2  => 0', leaveToRightEnterFromLeft),
+  transition('2  => 1', leaveToRightEnterFromLeft),
   transition('2 <=> 2', fadeIn),
+  transition('2  => 3', leaveToLeftEnterFromRight),
+  transition('3  => 0', leaveToRightEnterFromLeft),
+  transition('3  => 1', leaveToRightEnterFromLeft),
+  transition('3  => 2', leaveToRightEnterFromLeft),
+  transition('3 <=> 3', fadeIn),
 ]);
