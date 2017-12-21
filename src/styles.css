@@ -19,6 +19,15 @@ body {
   background: var(--neutral-lighter);
 }
 
+a {
+  transition: color var(--transition-duration) var(--transition-easing);
+  color: var(--primary);
+}
+
+a:hover {
+  color: var(--primary-dark);
+}
+
 h1, .h1,
 h2, .h2,
 h3, .h3,

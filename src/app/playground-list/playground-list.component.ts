@@ -9,7 +9,7 @@ import { StoreService } from '../store.service';
     </ng-template>
 
     <div *ngIf="(store.playgrounds$ | async) as playgrounds; else loading">
-      <a *ngFor="let playground of playgrounds" class="list-item" [routerLink]="['playgrounds', playground.id]">
+      <a *ngFor="let playground of playgrounds" class="list-item" [routerLink]="playground.id">
         <AspectRatioContainer x="4" y="3" class="bg-neutral-light">
           <img class="image absolute stretch" [src]="playground.imageUrls && playground.imageUrls[0] || 'assets/default.png'" />
         </AspectRatioContainer>
